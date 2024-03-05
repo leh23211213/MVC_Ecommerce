@@ -13,6 +13,30 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Layout\\Account_shortcut_icon.png",
+      "PackagePath": "staticwebassets\\img\\Layout\\Account_shortcut_icon.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Layout\\CartItem_shortcut_icon.png",
+      "PackagePath": "staticwebassets\\img\\Layout\\CartItem_shortcut_icon.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Layout\\Position_shortcut_icon.png",
+      "PackagePath": "staticwebassets\\img\\Layout\\Position_shortcut_icon.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Layout\\search_shortcut_icon.png",
+      "PackagePath": "staticwebassets\\img\\Layout\\search_shortcut_icon.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Layout\\tiki_logo.png",
+      "PackagePath": "staticwebassets\\img\\Layout\\tiki_logo.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Layout\\trangChu_shortcut.png",
+      "PackagePath": "staticwebassets\\img\\Layout\\trangChu_shortcut.png"
+    },
+    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
