@@ -1,8 +1,175 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang Chủ";
 }
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ</title>
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true">
+</head>
+
+<body>
+    <div class="Container">
+        <div class="styles__StyledInner">
+            <div class="styles__StyledSideBar">
+                <div class="styles__StyledListItem">
+                    <div class="styles__StyledTitle">Danh Mục</div>
+                    <div class="styles__StyledItemV2">
+                        <a title="Nhà sách" href="">
+                            <div class="styles__StyledIcon">
+                                <img src="~/img/Index/book.png" alt="">
+                            </div>
+                            <div title="Nhà sách" class="styles__StyledContent">Nhà Sách</div>
+                        </a>
+                    </div>
+                    <div class="styles__StyledItemV2">
+                        <a title="Nhà sách" href="">
+                            <div class="styles__StyledIcon">
+                                <img src="~/img/Index/book.png" alt="">
+                            </div>
+                            <div title="Nhà sách" class="styles__StyledContent">Nhà Sách</div>
+                        </a>
+                    </div>
+                    <div class="styles__StyledItemV2">
+                        <a title="Nhà sách" href="">
+                            <div class="styles__StyledIcon">
+                                <img src="~/img/Index/book.png" alt="">
+                            </div>
+                            <div title="Nhà sách" class="styles__StyledContent">Nhà Sách</div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="styles__ContainerWidgets">
+                <div class="styles__ContainerWidget" style="min-height:127px">
+                    <div class="style__QuickLinksStyled">
+                        <div class="style__QuickLinkV2Styled">
+                            <a href="">
+                                <div class="style__BorderStyled" style="width:64px;height:64px">
+                                    <img src="~/img/Index/2f79e4d3e8b4a71941fa7da279c994db.png" height="64" width="64"
+                                        alt="quick-link-icon" style="width:64px;height:64px;opacity:1"
+                                        class="styles__StyledImg">
+                                </div>
+                                <div class="style__QuickLinkTitleStyled">Best Seller</div>
+                            </a>
+                        </div>
+                        <div class="style__QuickLinkV2Styled">
+                            <a href="">
+                                <div class="style__BorderStyled" style="width:64px;height:64px">
+                                    <img src="~/img/Index/2f79e4d3e8b4a71941fa7da279c994db.png" height="64" width="64"
+                                        alt="quick-link-icon" style="width:64px;height:64px;opacity:1"
+                                        class="styles__StyledImg">
+                                </div>
+                                <div class="style__QuickLinkTitleStyled">Best Seller</div>
+                            </a>
+                        </div>
+                        <div class="style__QuickLinkV2Styled">
+                            <a href="">
+                                <div class="style__BorderStyled" style="width:64px;height:64px">
+                                    <img src="~/img/Index/2f79e4d3e8b4a71941fa7da279c994db.png" height="64" width="64"
+                                        alt="quick-link-icon" style="width:64px;height:64px;opacity:1"
+                                        class="styles__StyledImg">
+                                </div>
+                                <div class="style__QuickLinkTitleStyled">Best Seller</div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="styles__StyledHorizontalScrollingProducts">
+                    <div class="styles__WidgetHeaderStyled">
+                        <div class="styles__WidgetHeaderTitleStyled">
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <div class="title">Tiki Best</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="styles__StyledHorizontalScrollingProductsTabsStyled">
+                        <div class="style__StyledSimpleSlider">
+                            <span class="icon icon-prev disabled"></span>
+                            <div class="content">
+                                <span class="slider"
+                                    style="gap: 8px; transition: all 0.5s ease-in-out 0s; transform: translateX(0px);">
+                                    <div class="ProductTab__ProductTabStyled"> <span>Điện Thoại</span></div>
+                                    <div class="ProductTab__ProductTabStyled"> <span>Máy Tính</span></div>
+                                    <div class="ProductTab__ProductTabStyled"> <span>Máy Tính Bảng</span></div>
+                                </span>
+                            </div>
+                            <span class="icon icon-next disabled"></span>
+                        </div>
+                    </div>
+                    <div class="style__StyledSimpleSlider">
+                        <span class="icon icon-prev disabled"></span>
+                        <div class="content">
+                            <span class="slider"
+                                style="gap: 8px; transition: all 0.5s ease-in-out 0s; transform: translateX(0px);">
+                                <div class="ProductsLine__WrapItemStyled" style="display: -webkit-box; width: 151px;">
+                                    <div style="height: 100%; width: 100%;">
+                                        <a class="style__ProductLink" href="">
+                                            <span class="style__StyledItem">
+                                                <div class="styles__ThumbnailStyled">
+                                                    <div class="image-wrapper">
+                                                        <img class="styles__StyledImg"
+                                                            src="~/img/Phone/0dab688ed5b5c3c8e55f7cf1c4e14822.png"
+                                                            alt="" style="width: 100%; height: 100%; opacity: 1;">
+                                                    </div>
+                                                </div>
+                                                <div class="style__ContentStyled">
+                                                    <div class="info">
+                                                        <div class="Badges__StyledBadges2List"
+                                                            style="min-height: 44px;">
+                                                            <picture class="webpimg-container">
+                                                                <img src="~/img/Phone/1fff0f8fe6125514354597d1c5f5260c.png"
+                                                                    alt=""
+                                                                    style="width: 74px; height: 20px; opacity: 1;">
+                                                            </picture>
+                                                            <div class="Badges__StyledBadgesList">
+                                                                <picture class="webpimg-container">
+                                                                    <img src="~/img/Phone/1be823299ae34c7ddcd922e73abd4909.png"
+                                                                        alt=""
+                                                                        style="width: 74px; height: 20px; opacity: 1;">
+                                                                </picture>
+                                                            </div>
+                                                        </div>
+                                                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                                                            <div class="name-wrapper"
+                                                                style="display: flex; flex-direction: column; gap: 4px; height: 52px;">
+                                                                <h3 class="style__NameStyled">Điện Thoại POCO C65
+                                                                    (6GB/128GB) - Hàng Chính Hãng</h3>
+                                                                <div class="style__StyledRatingList"
+                                                                    style="font-size: 12px; display: inline-block;">
+                                                                    <div class="styles__StyledStars" </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="style__PriceAndDiscountStyled">
+                                                                    <div class="price-discount">"3.000.000"<sup>đ</sup>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                                                        <div style="display: flex; flex-direction: column; gap: 6px;">
+                                                            <div class="ImportedInfo__ImportStyled"></div>
+                                                            <div class="style__DeliveryInfoStyled"><span>None</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <span class="icon icon-next"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

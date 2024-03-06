@@ -5,12 +5,24 @@
       "PackagePath": "staticwebassets\\MVC_Ecommerce.bundle.scp.css"
     },
     {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\css\\index.css",
+      "PackagePath": "staticwebassets\\css\\index.css"
+    },
+    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Index\\2f79e4d3e8b4a71941fa7da279c994db.png",
+      "PackagePath": "staticwebassets\\img\\Index\\2f79e4d3e8b4a71941fa7da279c994db.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Index\\book.png",
+      "PackagePath": "staticwebassets\\img\\Index\\book.png"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Layout\\Account_shortcut_icon.png",
@@ -35,6 +47,18 @@
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Layout\\trangChu_shortcut.png",
       "PackagePath": "staticwebassets\\img\\Layout\\trangChu_shortcut.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Phone\\0dab688ed5b5c3c8e55f7cf1c4e14822.png",
+      "PackagePath": "staticwebassets\\img\\Phone\\0dab688ed5b5c3c8e55f7cf1c4e14822.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Phone\\1be823299ae34c7ddcd922e73abd4909.png",
+      "PackagePath": "staticwebassets\\img\\Phone\\1be823299ae34c7ddcd922e73abd4909.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\img\\Phone\\1fff0f8fe6125514354597d1c5f5260c.png",
+      "PackagePath": "staticwebassets\\img\\Phone\\1fff0f8fe6125514354597d1c5f5260c.png"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\wwwroot\\js\\site.js",
