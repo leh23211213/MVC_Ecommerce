@@ -12,7 +12,6 @@ namespace MVC_Ecommerce
         public void ConfigureServices(IServiceCollection services)
         {
             string connectionString = _configuration.GetConnectionString("DefaultConnection");
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
