@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace MVC_Ecommerce.Models
 {
-    public class Users
+    public class Users : IdentityUser
     {
         public int UserId { get; set; }
         public string UserName { get; set; }
