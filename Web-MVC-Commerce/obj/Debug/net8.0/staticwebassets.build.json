@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "L+npueNQai9pMvUjqwylG+lBFlagnoVtJnotg6/s0nw=",
+  "Hash": "swdW73QN42fEh1lVw89kv/ghKU2BFwu2uZrBLA3EPFw=",
   "Source": "Web-MVC-Commerce",
   "BasePath": "_content/Web-MVC-Commerce",
   "Mode": "Default",
@@ -1231,6 +1231,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Web-MVC-Commerce.bundle.scp.css"
+    },
+    {
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\css\\Login.css",
+      "SourceId": "Web-MVC-Commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
+      "BasePath": "_content/Web-MVC-Commerce",
+      "RelativePath": "css/Login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Login.css"
     },
     {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\css\\site.css",
