@@ -262,3 +262,16 @@ E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\runtimes\win
 E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\Web-MVC-Commerce\obj\Debug\net8.0\Web-MVC-Commerce.MvcApplicationPartsAssemblyInfo.cs
