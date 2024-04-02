@@ -11,16 +11,11 @@ namespace Web_MVC_Commerce.Models.Account
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
         [Required(ErrorMessage = "Enter your password")]
         [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$",
             ErrorMessage = @"Password is incorrect")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-
-        public string IncorrectInput { get; set; }
-
-        public string ReturnUrl { get; set; }
     }
 }

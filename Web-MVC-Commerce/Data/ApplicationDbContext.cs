@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MVC_Ecommerce;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MVC_Ecommerce.Models;
 namespace Web_MVC_Commerce.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<Users>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
@@ -20,17 +20,25 @@ namespace Web_MVC_Commerce.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UsersMap());
-            modelBuilder.ApplyConfiguration(new AdressMap());
-            modelBuilder.ApplyConfiguration(new PaymenMethodMap());
-            modelBuilder.ApplyConfiguration(new AccountMap());
-            modelBuilder.ApplyConfiguration(new AccountTypeMap());
-            modelBuilder.ApplyConfiguration(new CategoryMap());
-            modelBuilder.ApplyConfiguration(new ProductMap());
-            modelBuilder.ApplyConfiguration(new CartMap());
-            modelBuilder.ApplyConfiguration(new OrderMap());
-            modelBuilder.ApplyConfiguration(new OrderItemMap());
+            // modelBuilder.ApplyConfiguration(new UsersMap());
+            // modelBuilder.ApplyConfiguration(new AdressMap());
+            // modelBuilder.ApplyConfiguration(new PaymenMethodMap());
+            // modelBuilder.ApplyConfiguration(new AccountMap());
+            // modelBuilder.ApplyConfiguration(new AccountTypeMap());
+            // modelBuilder.ApplyConfiguration(new CategoryMap());
+            // modelBuilder.ApplyConfiguration(new ProductMap());
+            // modelBuilder.ApplyConfiguration(new CartMap());
+            // modelBuilder.ApplyConfiguration(new OrderMap());
+            // modelBuilder.ApplyConfiguration(new OrderItemMap());
             base.OnModelCreating(modelBuilder);
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                var tableName = entityType.GetTableName();
+                if (tableName.StartsWith("AspNet"))
+                {
+                    entityType.SetTableName(tableName.Substring(6));
+                }
+            }
         }
     }
 }
