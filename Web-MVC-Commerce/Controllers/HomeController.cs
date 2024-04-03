@@ -29,6 +29,14 @@ namespace Web_MVC_Commerce.Controllers
         {
             return View();
         }
+        public IActionResult _LoginPartial()
+        {
+            return View();
+        }
+        public IActionResult Logout()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
