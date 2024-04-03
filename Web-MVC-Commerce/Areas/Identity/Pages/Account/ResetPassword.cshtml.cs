@@ -11,15 +11,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using MVC_Ecommerce.Models;
+using Web_MVC_Commerce.Models;
 
 namespace Web_MVC_Commerce.Areas.Identity.Pages.Account
 {
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<Users> _userManager;
+        private readonly UserManager<User> _userManager;
 
-        public ResetPasswordModel(UserManager<Users> userManager)
+        public ResetPasswordModel(UserManager<User> userManager)
         {
             _userManager = userManager;
         }

@@ -9,16 +9,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using MVC_Ecommerce.Models;
+using Web_MVC_Commerce.Models;
 
 namespace Web_MVC_Commerce.Areas.Identity.Pages.Account
 {
     public class LogoutModel : PageModel
     {
-        private readonly SignInManager<Users> _signInManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
 
-        public LogoutModel(SignInManager<Users> signInManager, ILogger<LogoutModel> logger)
+        public LogoutModel(SignInManager<User> signInManager, ILogger<LogoutModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
