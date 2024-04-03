@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MVC_Ecommerce.Models;
 using Web_MVC_Commerce.Data;
+using Web_MVC_Commerce.Models;
 
 [assembly: HostingStartup(typeof(Web_MVC_Commerce.Areas.Identity.IdentityHostingStartup))]
 namespace Web_MVC_Commerce.Areas.Identity

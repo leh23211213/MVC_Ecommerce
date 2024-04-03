@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MVC_Ecommerce.Models;
 using Web_MVC_Commerce.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Web_MVC_Commerce.Models;
+using Web_MVC_Commerce.Service;
+
 namespace Web_MVC_Commerce
 {
     public class Startup
@@ -15,16 +16,23 @@ namespace Web_MVC_Commerce
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            // send mail service
+            services.AddOptions();
+            var mailsetting = Configuration.GetSection("MailSettings");
+            services.Configure<MailSettings>(mailsetting);
+            services.AddSingleton<IEmailSender, SendMailService>();
+
+
             services.AddRazorPages();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
 
-            //     services.AddIdentity<Users, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+            // services.AddDefaultIdentity<Users>()
             // .AddEntityFrameworkStores<ApplicationDbContext>()
             // .AddDefaultTokenProviders();
-            services.AddDefaultIdentity<Users>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
             // Trong phương thức ConfigureServices
             services.Configure<IdentityOptions>(options =>
             {
@@ -76,9 +84,8 @@ namespace Web_MVC_Commerce
             app.UseStaticFiles();
             app.UseRouting();
             app.UseSession();
-
-            // app.UseAuthentication();
-            // app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

@@ -1,22 +1,23 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MVC_Ecommerce.Models;
+using Web_MVC_Commerce.Models;
+
 namespace Web_MVC_Commerce.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<Users>
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
-        public DbSet<Users> Users { get; set; }
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<PaymentMethod> PaymentMethods { get; set; }
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<AccountType> AccountTypes { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Cart> Carts { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
+        // public DbSet<Users> Users { get; set; }
+        // public DbSet<Address> Addresses { get; set; }
+        // public DbSet<PaymentMethod> PaymentMethods { get; set; }
+        // public DbSet<Account> Accounts { get; set; }
+        // public DbSet<AccountType> AccountTypes { get; set; }
+        // public DbSet<Category> Categories { get; set; }
+        // public DbSet<Product> Products { get; set; }
+        // public DbSet<Cart> Carts { get; set; }
+        // public DbSet<Order> Orders { get; set; }
+        // public DbSet<OrderItem> OrderItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

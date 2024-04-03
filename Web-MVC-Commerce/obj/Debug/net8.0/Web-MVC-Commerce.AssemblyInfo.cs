@@ -11,10 +11,11 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("e048114d-3545-4510-ac7b-5e6a9e661cb4")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Web-MVC-Commerce")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a54d758248780735adb3e83f1ed42bab9d1d8e7e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e59f295065441f2064abdc5f53d11486333e229a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Web-MVC-Commerce")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Web-MVC-Commerce")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
