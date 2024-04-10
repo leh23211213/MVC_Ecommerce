@@ -28,12 +28,19 @@ namespace Web_MVC_Commerce
                 options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
 
             services.AddIdentity<User, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
             // services.AddDefaultIdentity<Users>()
             // .AddEntityFrameworkStores<ApplicationDbContext>()
             // .AddDefaultTokenProviders();
             // Trong phương thức ConfigureServices
+            services.AddControllersWithViews();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.Configure<IdentityOptions>(options =>
             {
                 // Thiết lập về Password
@@ -59,13 +66,14 @@ namespace Web_MVC_Commerce
                 options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
 
             });
-            services.AddControllersWithViews();
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
-            });
+            services.AddAuthentication()
+                    .AddGoogle(options =>
+                    {
+                        var googleConfig = Configuration.GetSection("Authentication:Google");
+                        options.ClientId = googleConfig["ClientId"];
+                        options.ClientSecret = googleConfig["ClientSecret"];
+                        options.CallbackPath = "/LoginWithGoogle";
+                    });
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -105,6 +105,12 @@ namespace Web_MVC_Commerce.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            // Kiểm tra provider ( Google, fb , twitter...) đang sử dụng
+            // foreach (var provider in ExternalLogins)
+            // {
+            //     _logger.LogInformation(provider.Name);
+            // }
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
