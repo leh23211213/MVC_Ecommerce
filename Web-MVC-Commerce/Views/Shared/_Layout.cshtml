@@ -11,40 +11,57 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Apple Store</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
-                                asp-action="Privacy">Privacy</a>
-                        </li>
-                        <partial name="_LoginPartial" />
-                    </ul>
+    <div style="display: contents">
+        <div class="layout-wrapper">
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                            <div class="navbar-brand-box">
+                                <span>
+                                    <img src="~/lib/image/DashBoard/logo.png" alt="Csharp Logo" class="style__Logo"
+                                        height="40">
+                                </span>
+                            </div>
+                        </a>
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect"
+                            id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars">
+                                <svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M4 6l16 0"></path>
+                                    <path d="M4 12l16 0"></path>
+                                    <path d="M4 18l16 0"></path>
+                                </svg>
+                            </i>
+                        </button>
+                        <form class="app-search d-none d-lg-block" action="">
+                            <div class="position-relative">
+                                <input type="text" class="form-control form-control" placeholder="Search...">
+                            </div>
+                        </form>
+                        <span class="bx bx-search-alt"></span>
+                    </div>
+                    <partial name="_LoginPartial" />
                 </div>
+                </nav>
+            </header>
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Web_MVC_Commerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <footer class="border-top footer text-muted">
+                <div class="container">
+                    &copy; 2024 - Web_MVC_Commerce - <a asp-area="" asp-controller="Home"
+                        asp-action="Privacy">Privacy</a>
+                </div>
+            </footer>
+
         </div>
-    </footer>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

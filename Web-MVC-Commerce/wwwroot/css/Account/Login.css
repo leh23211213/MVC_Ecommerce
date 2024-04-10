@@ -6,12 +6,19 @@
 
 html {
     height: 100%;
+    position: relative;
 }
 
 body {
     font-size: 16px;
     height: 100%;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    position: relative;
 }
+
 header{
     background: #F6C356;
     display: flex;
@@ -41,3 +48,4 @@ footer{
     justify-content: center;
     align-items: center;
 }
+

@@ -9,6 +9,14 @@
       "PackagePath": "staticwebassets\\css\\Account\\Login.css"
     },
     {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\css\\Account\\LoginPartial.css",
+      "PackagePath": "staticwebassets\\css\\Account\\LoginPartial.css"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\css\\DashBoard.css",
+      "PackagePath": "staticwebassets\\css\\DashBoard.css"
+    },
+    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -201,8 +209,36 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\CsharpLogo.png",
-      "PackagePath": "staticwebassets\\lib\\image\\Login\\CsharpLogo.png"
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\DashBoard\\download.png",
+      "PackagePath": "staticwebassets\\lib\\image\\DashBoard\\download.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\DashBoard\\logo.png",
+      "PackagePath": "staticwebassets\\lib\\image\\DashBoard\\logo.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\DashBoard\\logoTiki.png",
+      "PackagePath": "staticwebassets\\lib\\image\\DashBoard\\logoTiki.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\DashBoard\\notification1.png",
+      "PackagePath": "staticwebassets\\lib\\image\\DashBoard\\notification1.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\DashBoard\\tikiLogoOn.png",
+      "PackagePath": "staticwebassets\\lib\\image\\DashBoard\\tikiLogoOn.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\DashBoard\\tikiLogoPurple.png",
+      "PackagePath": "staticwebassets\\lib\\image\\DashBoard\\tikiLogoPurple.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\Cshapr-icon-purple-logo.png",
+      "PackagePath": "staticwebassets\\lib\\image\\Login\\Cshapr-icon-purple-logo.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\GoogleLogo.png",
+      "PackagePath": "staticwebassets\\lib\\image\\Login\\GoogleLogo.png"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\megamenu-img.png",
@@ -319,6 +355,30 @@
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\SmartPhone\\Iphone\\IP15-Standard-PK-128GB.png",
       "PackagePath": "staticwebassets\\lib\\image\\SmartPhone\\Iphone\\IP15-Standard-PK-128GB.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\avatarIcon.png",
+      "PackagePath": "staticwebassets\\lib\\image\\avatarIcon.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\icone-cloche-notification-violet.png",
+      "PackagePath": "staticwebassets\\lib\\image\\icone-cloche-notification-violet.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\notification-icon.png",
+      "PackagePath": "staticwebassets\\lib\\image\\notification-icon.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\profile-icon.png",
+      "PackagePath": "staticwebassets\\lib\\image\\profile-icon.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\setting-icon.png",
+      "PackagePath": "staticwebassets\\lib\\image\\setting-icon.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\usfrag.png",
+      "PackagePath": "staticwebassets\\lib\\image\\usfrag.png"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
