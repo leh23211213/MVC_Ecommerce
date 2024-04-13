@@ -1,56 +1,55 @@
-
+/* Thiết lập font-size cho html */
 html {
   font-size: 14px;
   position: relative;
   min-height: 100%;
 }
 
+/* Thiết lập font-size cho html khi màn hình có độ rộng lớn hơn hoặc bằng 768px */
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+/* Thiết lập box-shadow cho các phần tử khi được focus */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-.tabs-container{
-  font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 1rem;
-    background: var(--bg);
-}
-
-#page-topbar{
-  position : fixed;
+/* Thiết lập cấu trúc và vị trí của header */
+#page-topbar {
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: 1002;
   background-color: #ffffff;
   box-shadow: 0 .75rem 1.5rem #12263f08;
-
+  height: 70px; /* Đảm bảo header có chiều cao cố định */
 }
-.navbar-header{
+
+.navbar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  height: 70px;
-  padding: 0 12px 0 0 ;
+  padding: 0 12px 0 0;
 }
-.navbar-brand{
+
+.navbar-brand {
   background-color: #333849;
   width: 250px;
   text-align: center;
-  padding: 16px; /* Thiết lập lề ngoài cho phần tử */
+  padding: 16px;
 }
 
-.waves-effect{
+/* Thiết lập kiểu của nút waves-effect */
+.waves-effect {
   cursor: pointer;
   font: 16px!important;
   position: relative;
@@ -60,11 +59,13 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
-.app-search{
+/* Thiết lập kiểu của ô tìm kiếm */
+.app-search {
   padding: 16px 0;
   display: block;
 }
-.app-search .form-control{
+
+.app-search .form-control {
   border: none;
   height: 38px;
   padding-left: 40px;
@@ -73,15 +74,25 @@ html {
   box-shadow: none;
   border-radius: 30px;
 }
-
-.vertical-menu{
+#login-partial {
+  position: fixed;
+  top: 20px; /* Điều chỉnh top tùy thuộc vào vị trí mong muốn */
+  right: 20px; /* Điều chỉnh right tùy thuộc vào vị trí mong muốn */
+  z-index: 1003; /* Đảm bảo phần tử hiển thị trên các phần tử khác */
+}
+/* Thiết lập cấu trúc và vị trí của vertical-menu */
+.vertical-menu {
   background-color: #333849;
   width: 250px;
   z-index: 1001;
   bottom: 0;
-  margin-top: 0;
+  margin-top: 70px; /* Đẩy vertical-menu xuống phía dưới header */
   position: fixed;
-  top: 70px;
+  top: 0;
 }
 
-
+/* Thiết lập cấu trúc và vị trí của main-content */
+.main-content {
+  margin-left: 320px; /* Đặt margin bên trái để tạo không gian cho vertical-menu */
+  padding-top: 100px; /* Đảm bảo main-content không bị che bởi header */
+}

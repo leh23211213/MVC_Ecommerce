@@ -213,6 +213,10 @@
       "PackagePath": "staticwebassets\\lib\\image\\DashBoard\\download.png"
     },
     {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\DashBoard\\home-icon.png",
+      "PackagePath": "staticwebassets\\lib\\image\\DashBoard\\home-icon.png"
+    },
+    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\DashBoard\\logo.png",
       "PackagePath": "staticwebassets\\lib\\image\\DashBoard\\logo.png"
     },
