@@ -22,7 +22,7 @@
 {
     <span class="navigation__group">
         <img class="icon" src="~/lib/image/notification-icon.png" alt="Notification">
-        <img class="profile" src="~/lib/image/person-icon.png" alt="User Picture">
+        <img class="profile" src="~/lib/image/person-icon.png" alt="User profile">
     </span>
     <div class="dropdown__wrapper hide dropdown__wrapper--fade-in none">
         <div class="dropdown__group">
@@ -31,9 +31,12 @@
         <nav>
             <ul>
                 <li>
-                    <img src="~/lib/image/profile-icon.png" alt="Profile" style="border-radius: 10px;" width="24"
-                        height="24">
-                    My Profile
+                    <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index"
+                        title="Manage">
+                        <img src="~/lib/image/profile-icon.png" alt="Profile" style="border-radius: 10px;" width="24"
+                            height="24">
+                        My Profile
+                    </a>
                 </li>
                 <li>
                     <img src="~/lib/image/setting-icon.png" alt="Settings" style="border-radius: 10px;" width="24"

@@ -237,8 +237,8 @@
       "PackagePath": "staticwebassets\\lib\\image\\Login\\Cshapr-icon-purple-logo.png"
     },
     {
-      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\GoogleLogo.png",
-      "PackagePath": "staticwebassets\\lib\\image\\Login\\GoogleLogo.png"
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\google_logo.png",
+      "PackagePath": "staticwebassets\\lib\\image\\Login\\google_logo.png"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\megamenu-img.png",
@@ -357,16 +357,16 @@
       "PackagePath": "staticwebassets\\lib\\image\\SmartPhone\\Iphone\\IP15-Standard-PK-128GB.png"
     },
     {
-      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\avatarIcon.png",
-      "PackagePath": "staticwebassets\\lib\\image\\avatarIcon.png"
-    },
-    {
-      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\icone-cloche-notification-violet.png",
-      "PackagePath": "staticwebassets\\lib\\image\\icone-cloche-notification-violet.png"
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\logout-icon.png",
+      "PackagePath": "staticwebassets\\lib\\image\\logout-icon.png"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\notification-icon.png",
       "PackagePath": "staticwebassets\\lib\\image\\notification-icon.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\person-icon.png",
+      "PackagePath": "staticwebassets\\lib\\image\\person-icon.png"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\profile-icon.png",
