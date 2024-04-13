@@ -17,7 +17,7 @@ namespace Web_MVC_Commerce.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Selling()
         {
             return View();
         }
