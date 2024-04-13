@@ -74,7 +74,7 @@ namespace Web_MVC_Commerce
                         options.ClientSecret = googleConfig["ClientSecret"];
                         options.CallbackPath = "/LoginWithGoogle";
                     });
-
+                    
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

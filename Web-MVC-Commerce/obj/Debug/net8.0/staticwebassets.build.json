@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fslCVCvYw6Bf9Zcmbad4YdoVeJ6HUifxiD2YYbZVsus=",
+  "Hash": "Wi5yXlrKhuQ/mXSrfi6r3BPTxz9n96k9YVtrKGPdPyw=",
   "Source": "Web-MVC-Commerce",
   "BasePath": "_content/Web-MVC-Commerce",
   "Mode": "Default",
@@ -2202,25 +2202,6 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\avatarIcon.png",
-      "SourceId": "Web-MVC-Commerce",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
-      "BasePath": "_content/Web-MVC-Commerce",
-      "RelativePath": "lib/image/avatarIcon.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\image\\avatarIcon.png"
-    },
-    {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\DashBoard\\download.png",
       "SourceId": "Web-MVC-Commerce",
       "SourceType": "Discovered",
@@ -2335,25 +2316,6 @@
       "OriginalItemSpec": "wwwroot\\lib\\image\\DashBoard\\tikiLogoPurple.png"
     },
     {
-      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\icone-cloche-notification-violet.png",
-      "SourceId": "Web-MVC-Commerce",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
-      "BasePath": "_content/Web-MVC-Commerce",
-      "RelativePath": "lib/image/icone-cloche-notification-violet.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\image\\icone-cloche-notification-violet.png"
-    },
-    {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\Cshapr-icon-purple-logo.png",
       "SourceId": "Web-MVC-Commerce",
       "SourceType": "Discovered",
@@ -2373,12 +2335,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\image\\Login\\Cshapr-icon-purple-logo.png"
     },
     {
-      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\GoogleLogo.png",
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\google_logo.png",
       "SourceId": "Web-MVC-Commerce",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
       "BasePath": "_content/Web-MVC-Commerce",
-      "RelativePath": "lib/image/Login/GoogleLogo.png",
+      "RelativePath": "lib/image/Login/google_logo.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2389,7 +2351,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\image\\Login\\GoogleLogo.png"
+      "OriginalItemSpec": "wwwroot\\lib\\image\\Login\\google_logo.png"
     },
     {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\megamenu-img.png",
@@ -2430,6 +2392,25 @@
       "OriginalItemSpec": "wwwroot\\lib\\image\\Login\\profile-img.png"
     },
     {
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\logout-icon.png",
+      "SourceId": "Web-MVC-Commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
+      "BasePath": "_content/Web-MVC-Commerce",
+      "RelativePath": "lib/image/logout-icon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\image\\logout-icon.png"
+    },
+    {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\notification-icon.png",
       "SourceId": "Web-MVC-Commerce",
       "SourceType": "Discovered",
@@ -2447,6 +2428,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\image\\notification-icon.png"
+    },
+    {
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\person-icon.png",
+      "SourceId": "Web-MVC-Commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
+      "BasePath": "_content/Web-MVC-Commerce",
+      "RelativePath": "lib/image/person-icon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\image\\person-icon.png"
     },
     {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\profile-icon.png",
