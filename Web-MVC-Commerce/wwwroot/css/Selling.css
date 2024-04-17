@@ -10,6 +10,18 @@
     --content-primary: #0e0f0c;
 }
 
+.selling-content {
+    display: flex;
+    font-size: 16px;
+}
+
+.scrolling-product{
+    max-width: 45rem;
+    width: 100%;
+    min-width: 20rem;
+    margin: 7.5rem auto;
+}
+
 .action-buttons {
     position: relative;
     display: inline-flex;
@@ -165,11 +177,4 @@
 
 .product-list:hover {
     background: var(--secondary-hover);
-}
-
-.container {
-    max-width: 45rem;
-    width: 100%;
-    min-width: 20rem;
-    margin: 7.5rem auto;
 }
