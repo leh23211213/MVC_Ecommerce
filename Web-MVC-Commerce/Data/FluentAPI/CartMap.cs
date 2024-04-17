@@ -11,7 +11,7 @@ namespace Web_MVC_Commerce.Data
         {
             builder.ToTable("Carts");
             builder.HasKey(e => e.CartId);
-            // Định nghĩa khóa ngoại
+            // Foreign Key defination
             builder.HasOne<Users>()
                    .WithMany()
                    .HasForeignKey(e => e.UserId);
