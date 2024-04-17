@@ -17,12 +17,24 @@
       "PackagePath": "staticwebassets\\css\\DashBoard.css"
     },
     {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\css\\ProductDetail.css",
+      "PackagePath": "staticwebassets\\css\\ProductDetail.css"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\css\\Selling.css",
+      "PackagePath": "staticwebassets\\css\\Selling.css"
+    },
+    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\js\\Selling.js",
+      "PackagePath": "staticwebassets\\js\\Selling.js"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\js\\site.js",

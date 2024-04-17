@@ -4,9 +4,6 @@
 
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
-@{
-    ViewData["Title"] = "Index";
-}
 
 <head>
     <meta charset="utf-8" />
@@ -21,6 +18,11 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <span class="navigation__group">
+        @{
+            // TODO : E:\Destop\ui\dropdown-menu-02
+                // TODO : E:\Destop\ui\menu-05
+
+        }
         <img class="icon" src="~/lib/image/notification-icon.png" alt="Notification">
         <img class="profile" src="~/lib/image/person-icon.png" alt="User profile">
     </span>
