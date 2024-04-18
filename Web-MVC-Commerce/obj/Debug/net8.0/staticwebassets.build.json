@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ehYQ9RSjA2rvvwpDF3wXN7zo+jURNdsfdIjyziiNrWY=",
+  "Hash": "wnlBDfOJ4Peyp+4HrOvOoi9qobWEVqm1dBiPv0TOS5M=",
   "Source": "Web-MVC-Commerce",
   "BasePath": "_content/Web-MVC-Commerce",
   "Mode": "Default",
@@ -1366,6 +1366,25 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\js\\LoginPartial.js",
+      "SourceId": "Web-MVC-Commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
+      "BasePath": "_content/Web-MVC-Commerce",
+      "RelativePath": "js/LoginPartial.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\LoginPartial.js"
+    },
+    {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\js\\Selling.js",
       "SourceId": "Web-MVC-Commerce",
       "SourceType": "Discovered",
@@ -2259,6 +2278,25 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\cart-icon.png",
+      "SourceId": "Web-MVC-Commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
+      "BasePath": "_content/Web-MVC-Commerce",
+      "RelativePath": "lib/image/cart-icon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\image\\cart-icon.png"
+    },
+    {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\DashBoard\\download.png",
       "SourceId": "Web-MVC-Commerce",
       "SourceType": "Discovered",
@@ -2523,6 +2561,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\image\\person-icon.png"
+    },
+    {
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\ProductDetail\\price-icon.png",
+      "SourceId": "Web-MVC-Commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
+      "BasePath": "_content/Web-MVC-Commerce",
+      "RelativePath": "lib/image/ProductDetail/price-icon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\image\\ProductDetail\\price-icon.png"
     },
     {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\profile-icon.png",

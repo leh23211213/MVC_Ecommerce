@@ -6,6 +6,57 @@
     --error: #E3452F;
 }
 
+#navbody {
+    width: 300px;
+    height: 60px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 40px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .ul {
+    list-style: none;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+  
+  .ul .li {
+    display: inline-block;
+  }
+  
+  .radio {
+    display: none;
+  }
+  
+  .svg {
+    width: 70px;
+    height: 70px;
+    opacity: 80%;
+    cursor: pointer;
+    padding: 13px 20px;
+    transition: 0.2s;
+  }
+  
+  .ul .li .svg:hover {
+    transition: 0.1s;
+    color: rgb(235, 40, 176);
+    position: relative;
+    margin-top: -4px;
+    opacity: 100%;
+  }
+  
+  .radio:checked + label .li .svg {
+    color: rgb(235, 40, 176);
+    fill-rule: evenodd;
+  }
+  
+
+
 .navigation {
     position: fixed;
     height: 80px;
@@ -109,14 +160,14 @@
     padding: 12px;
 }
 
-nav > ul {
+.dropdown__group > nav > ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     gap: 4px;
 }
 
-nav > ul > li {
+.dropdown__group > nav > ul > li {
     height: 40px;
     display: flex;
     flex-direction: row;
@@ -126,12 +177,12 @@ nav > ul > li {
     width: 100%;
 }
 
-nav > ul > li > img {
+.dropdown__group > nav > ul > li > img {
     height: 24px;
     width: 24px;
 }
 
-nav > ul > li:hover {
+.dropdown__group > nav > ul > li:hover {
     cursor: pointer;
     text-decoration: underline;
 }

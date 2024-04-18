@@ -25,9 +25,24 @@
       rgba(96, 93, 255, 0.1) 0%,
       rgba(96, 93, 255, 0) 100%
     );
-    padding-top: 12rem;
+    padding-top: 2rem;
     min-height: 100vh;
     height: 100%;
+}
+
+.top{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 16px;
+    min-height: 57px;
+}
+
+.product-detail-container .divider {
+    border-top: 1px solid #E6E8F0;
+    width: 100%; /* Chiều rộng sẽ chiếm toàn bộ chiều rộng của phần tử chứa nó */
+    height: 0; /* Chiều cao bằng 0 để không chiếm không gian dọc */
+    margin: 20px 0; /* Điều chỉnh khoảng cách trên và dưới */
 }
 
 .gradient-text {
@@ -42,9 +57,10 @@
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+    flex : 1;
 }
 
-.detail-container {
+.detail-content {
     width: 100%;
     height: auto;
     margin-top: 1rem;
@@ -66,8 +82,8 @@
     border-radius: 0.5rem;
     padding: 3rem 2rem;
     cursor: pointer;
-    border: 1px solid var(--primary-blue);
     background: #F7FAFF;
+    float: left;
 }
 
 .pricing-card__price {
@@ -99,7 +115,23 @@
     border: 1px solid #E6E8F0;
 }
 
-.pricing-card > .enroll {
+.pricing-card .group-button > .enroll {
+    display: block;
+    width: 100%;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    border-radius: 0.5rem;
+    background: #605DFF1A;
+    color: var(--primary-blue-violet);
+    text-decoration: none;
+    letter-spacing: 0.75px;
+    border: 0px solid var(--primary-blue-violet);
+}
+.pricing-card .group-button > ul > li > .enroll {
     display: block;
     width: 100%;
     font-weight: 700;
@@ -116,27 +148,26 @@
     border: 0px solid var(--primary-blue-violet);
 }
 
-.pricing-card > .enroll:hover {
+.pricing-card .group-button > .enroll:hover {
     border: 1px solid var(--primary-blue-violet);
     transition: border-width 0.2s linear;
 }
 
-.pricing-card > ul {
+.pricing-card .group-button > ul {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-
-.pricing-card > ul > li {
+.pricing-card .group-button > ul > li {
     position: relative;
     font-weight: 500;
     list-style-type: none;
     font-size: 0.875rem;
 }
 
-.pricing-card--primary > .enroll {
+.pricing-card--primary .group-button > ul > li > .enroll {
     background: linear-gradient(
       90deg, #605DFF, #AD63F6 50%,
       #AD63F6 50%, #605DFF 80%, #5DA8FF 100%
@@ -147,7 +178,7 @@
     color: white;
 }
 
-.pricing-card--primary > .enroll:hover, .enroll:focus {
+.pricing-card--primary .group-button > ul > li > .enroll:hover, .enroll:focus {
     border: none;
     background-position: 100% 100%;
     transition: background-position 1s;
