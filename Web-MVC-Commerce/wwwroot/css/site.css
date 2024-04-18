@@ -12,6 +12,7 @@ html {
   }
 }
 
+
 /* Thiết lập box-shadow cho các phần tử khi được focus */
 .btn:focus,
 .btn:active:focus,
@@ -79,6 +80,13 @@ html {
   top: 20px; /* Điều chỉnh top tùy thuộc vào vị trí mong muốn */
   right: 20px; /* Điều chỉnh right tùy thuộc vào vị trí mong muốn */
   z-index: 1003; /* Đảm bảo phần tử hiển thị trên các phần tử khác */
+}
+
+.divider {
+  border-top: 1px solid #E6E8F0; /* Màu và định dạng của đường gạch */
+  width: 100%; /* Chiều rộng của đường gạch, tùy thuộc vào vị trí và kích thước của phần tử chứa nó */
+  height: 0; /* Chiều cao của đường gạch, ở đây là 0 để chỉ hiển thị một đường gạch ngang */
+  margin: 70px 0; /* Khoảng cách trên và dưới của đường gạch */
 }
 /* Thiết lập cấu trúc và vị trí của vertical-menu */
 .vertical-menu {

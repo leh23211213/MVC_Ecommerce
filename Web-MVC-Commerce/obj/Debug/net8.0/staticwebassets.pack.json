@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\js\\LoginPartial.js",
+      "PackagePath": "staticwebassets\\js\\LoginPartial.js"
+    },
+    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\js\\Selling.js",
       "PackagePath": "staticwebassets\\js\\Selling.js"
     },
@@ -265,6 +269,10 @@
       "PackagePath": "staticwebassets\\lib\\image\\Login\\profile-img.png"
     },
     {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\ProductDetail\\price-icon.png",
+      "PackagePath": "staticwebassets\\lib\\image\\ProductDetail\\price-icon.png"
+    },
+    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\SmartPhone\\Iphone\\IP13-Mini-BK-128GB.png",
       "PackagePath": "staticwebassets\\lib\\image\\SmartPhone\\Iphone\\IP13-Mini-BK-128GB.png"
     },
@@ -371,6 +379,10 @@
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\SmartPhone\\Iphone\\IP15-Standard-PK-128GB.png",
       "PackagePath": "staticwebassets\\lib\\image\\SmartPhone\\Iphone\\IP15-Standard-PK-128GB.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\cart-icon.png",
+      "PackagePath": "staticwebassets\\lib\\image\\cart-icon.png"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\logout-icon.png",
