@@ -1,16 +1,121 @@
+@page "/Cart"
+@{
+
+}
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/DashBoard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Cart.css" asp-append-version="true" />
 </head>
 
-
 <div style="display: contents">
-    <div class="layout-wrapper">
-        <span>aaaaaaaaaaa</span>
-        <span>aaaaaaaaaaa</span>
-        <span>aaaaaaaaaaa</span>
-        <span>aaaaaaaaaaa</span>
+    <div class="cart-page">
+        <div class="main-title">
+            <h4>Cart</h4>
+        </div>
+        <div class="content">
+            <div class="left-content">
+                <div class="row-heading">
+                    <label class="checkBox">
+                        <input type="checkbox">
+                        <span class="checkbox-fake">
+                            <svg class="checkbox-mark" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                            </svg>
+                        </span>
+                        <span class="label">All 1 product</span>
+                    </label>
+                    <span>Price</span>
+                    <span>Amount</span>
+                    <span>Total</span>
+                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg" class="remove-all"
+                        alt="deleted">
+                </div>
+                <div>
+                    <div class="infinite-scroll-component">
+                        <div class="Seller">
+                            <div class="List-Intended">
+                                <div class="Row">
+                                    <div class="Item-Info">
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                        </label>
+                                        <a target="_blank" href="">
+                                            <img src="~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" width="80"
+                                                height="60" alt="">
+                                        </a>
+                                        <div class="Item-Content">
+                                            <a href="">Nội dung sản phẩm</a>
+                                        </div>
+                                    </div>
+                                    <div class="Item-Price">
+                                        <div type="normal" class="Price">180.000 <sup>đ</sup></div>
+                                    </div>
+                                    <div class="Item-Quantity">
+                                        <div class="Quantity">
+                                            <span data-view-id="cart_main_quantity.decrease"
+                                                data-view-index="1d03c9a4-d843-11ee-ac2d-52f8588d74d7">
+                                                <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/decrease.svg"
+                                                    alt="decrease" class="qty-decrease">
+                                            </span>
+                                            <input type="tel" class="qty-input" value="0">
+                                            <span data-view-id="cart_main_quantity.decrease"
+                                                data-view-index="1d03c9a4-d843-11ee-ac2d-52f8588d74d7">
+                                                <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/increase.svg"
+                                                    alt="increase" class="qty-increase">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="Item-Subtotal">
+                                        price <sup>đ</sup>
+                                    </div>
+                                    <div class="Item-Action">
+                                        <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                                            alt="deleted">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-content">
+                <div class="Right-Inner" style="top: -270px;">
+                    <div>
+                        <div class="Address-Block">
+                            <div class="Customer-Info">
+                                <p class="Customer-Info-Name">
+                                    Le Van Hiep
+                                </p>
+                                <i></i>
+                                <p class="Customer-Info-PhoneNumber">0944</p>
+                            </div>
+                            <div class="Address">536 Dien Bien Phu</div>
+                        </div>
+                    </div>
+                    <div class="Price-Summary">
+                        <ul class="Price-Items">
+                            <li class="Price-Item">
+                                <div class="Prices-Text">temporary price</div>
+                                <div class="Prices-Value"> 0 <sup>đ</sup> </div>
+                            </li>
+                            <li class="Price-Item">
+                                <div class="Prices-Text">discount</div>
+                                <div class="Prices-Value"> 0 <sup>đ</sup> </div>
+                            </li>
+                        </ul>
+                        <i></i>
+                        <div class="Prices-Total">
+                            <span class="Prices-Text">Total</span>
+                            <div class="Prices-Content">
+                                <span class="Prices-Value-Final"> 0 <sup>đ</sup> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button">BUY</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

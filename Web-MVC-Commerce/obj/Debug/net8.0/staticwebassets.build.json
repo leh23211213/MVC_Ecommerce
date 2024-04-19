@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wnlBDfOJ4Peyp+4HrOvOoi9qobWEVqm1dBiPv0TOS5M=",
+  "Hash": "NaHbpbI5d1uMDJqV9Mk3aIjPEesUgau/92i/IQXqF3Y=",
   "Source": "Web-MVC-Commerce",
   "BasePath": "_content/Web-MVC-Commerce",
   "Mode": "Default",
@@ -1271,6 +1271,25 @@
       "OriginalItemSpec": "wwwroot\\css\\Account\\LoginPartial.css"
     },
     {
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\css\\Cart.css",
+      "SourceId": "Web-MVC-Commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
+      "BasePath": "_content/Web-MVC-Commerce",
+      "RelativePath": "css/Cart.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Cart.css"
+    },
+    {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\css\\DashBoard.css",
       "SourceId": "Web-MVC-Commerce",
       "SourceType": "Discovered",
@@ -1364,6 +1383,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\js\\Cart.js",
+      "SourceId": "Web-MVC-Commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
+      "BasePath": "_content/Web-MVC-Commerce",
+      "RelativePath": "js/Cart.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Cart.js"
     },
     {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\js\\LoginPartial.js",
