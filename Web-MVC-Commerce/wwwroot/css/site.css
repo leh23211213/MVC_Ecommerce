@@ -101,6 +101,6 @@ html {
 
 /* Thiết lập cấu trúc và vị trí của main-content */
 .main-content {
-  margin-left: 320px; /* Đặt margin bên trái để tạo không gian cho vertical-menu */
-  padding-top: 100px; /* Đảm bảo main-content không bị che bởi header */
+  margin-right: auto;
+  margin-left: auto;
 }
