@@ -75,36 +75,38 @@
             </ul>
         </form>
     </div>
-    <div class="dropdown__wrapper hide dropdown__wrapper--fade-in none">
-        <div class="dropdown__group">
-            <div class="email">@UserManager.GetUserName(User)</div>
-        </div>
-        <nav>
-            <ul>
-                <li>
-                    <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index"
-                        title="Manage">
-                        <img src="~/lib/image/profile-icon.png" alt="Profile" style="border-radius: 10px;" width="24"
-                            height="24">
-                        My Profile
-                    </a>
-                </li>
-                <li>
-                    <img src="~/lib/image/setting-icon.png" alt="Settings" style="border-radius:10px; width: 24;
-                        height:24;">
-                    Settings
-                </li>
-                <li>
-                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
-                        asp-route-returnUrl="~/Login">
-                        <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">
-                            <img src="~/lib/image/logout-icon.png" alt="Logout" style="border-radius: 10px;" width="40"
-                                height="40">Logout
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </nav>
-    </div>
+
+
+    @* <div class="dropdown__wrapper hide dropdown__wrapper--fade-in none">
+<div class="dropdown__group">
+<div class="email">@UserManager.GetUserName(User)</div>
+</div>
+<nav>
+<ul>
+<li>
+<a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index"
+title="Manage">
+<img src="~/lib/image/profile-icon.png" alt="Profile" style="border-radius: 10px;" width="24"
+height="24">
+My Profile
+</a>
+</li>
+<li>
+<img src="~/lib/image/setting-icon.png" alt="Settings" style="border-radius:10px; width: 24;
+height:24;">
+Settings
+</li>
+<li>
+<form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
+asp-route-returnUrl="~/Login">
+<button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">
+<img src="~/lib/image/logout-icon.png" alt="Logout" style="border-radius: 10px;" width="40"
+height="40">Logout
+</button>
+</form>
+</li>
+</ul>
+</nav>
+</div> *@
 }
 <script src="~/js/LoginPartial.js"></script>

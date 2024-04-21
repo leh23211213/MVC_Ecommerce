@@ -99,24 +99,17 @@
     line-height: 150%;
 }
 
-.Item-Quantity .qty-decrease,
-.Item-Quantity .qty-increase {
+.Item-Quantity button
+ {
     display: inline-block;
     color: #999;
-    cursor: pointer;
     width: 24px;
     height: 24px;
     border: 1px solid #c8c8c8;
 }
 
-.Item-Quantity .qty-decrease img,
-.Item-Quantity .qty-increase img {
-    width: 23px;
-    height: 23px;
-    display: block;
-}
 
-.Item-Quantity .qty-input {
+.Item-Quantity .base-stats {
     border: none;
     background: transparent;
     width: 32px;
@@ -249,7 +242,6 @@
     margin: 15px 0px 0px;
 }
 
-
 sup {
     top: -0.5rem;
     font-size: 75%;
@@ -261,6 +253,3 @@ sup {
 a{
     text-decoration: none;
 }
-
-
-

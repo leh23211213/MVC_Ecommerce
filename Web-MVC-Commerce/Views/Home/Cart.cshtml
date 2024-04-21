@@ -54,17 +54,16 @@
                                     </div>
                                     <div class="Item-Quantity">
                                         <div class="Quantity">
-                                            <span data-view-id="cart_main_quantity.decrease"
-                                                data-view-index="1d03c9a4-d843-11ee-ac2d-52f8588d74d7">
-                                                <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/decrease.svg"
-                                                    alt="decrease" class="qty-decrease">
-                                            </span>
-                                            <input type="tel" class="qty-input" value="0">
-                                            <span data-view-id="cart_main_quantity.decrease"
-                                                data-view-index="1d03c9a4-d843-11ee-ac2d-52f8588d74d7">
-                                                <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/increase.svg"
-                                                    alt="increase" class="qty-increase">
-                                            </span>
+                                            <button class="Substract"
+                                                onclick="let decreaseWith = 1; let newValue = parseInt(document.getElementById('base-life').value) - decreaseWith; if(newValue >= 1) { document.getElementById('base-life').value = newValue; }">
+                                                -
+                                            </button>
+                                            <input id="base-life" class="base-stats" type="number" name="base-life"
+                                                value="1" readonly />
+                                            <button class="Add"
+                                                onclick="let increaseWith = 1; let newValue = parseInt(document.getElementById('base-life').value) + increaseWith; if(newValue <= 5) { document.getElementById('base-life').value = newValue; }">
+                                                +
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="Item-Subtotal">
