@@ -15,5 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
             dropdown.classList.add('hide');
             dropdown.classList.remove('dropdown__wrapper--fade-in');
         }
+        else {
+            dropdown.classList.remove('hide');
+            dropdown.classList.add('dropdown__wrapper--fade-in');
+        }
     });
 });
