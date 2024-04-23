@@ -1,10 +1,12 @@
-#navbody {
+#header_user_shortcut {
     width: 300px;
     height: 60px;
     align-items: center;
-    justify-content: center;
     display: flex;
-  }
+    -webkit-box-align: center;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
 
 .ul {
     list-style: none;
@@ -13,219 +15,55 @@
     display: flex;
     justify-content: space-between;
     margin-top: 5px;
-  }
+}
 
 .ul .li {
-    display: inline-block;
+    cursor: pointer; /* Loại bỏ display: inline-block; vì display: flex trong .ul đã xác định layout */
+    
 }
-
-#navbody .ul li a:hover {
-    transition: 0.1s;
-    color: rgb(235, 40, 176);
-    position: relative;
-    margin-top: -4px;
-    opacity: 100%;
-}
-
-#navbody .ul li a img:hover {
-    transition: 0.1s;
-    color: rgb(235, 40, 176);
-    position: relative;
-    margin-top: -4px;
-    opacity: 100%;
-}
-
-
-.ul .li a:hover{
-    transition: 0.1s;
-    color: rgb(235, 40, 176);
-    position: relative;
-    margin-top: -4px;
-    opacity: 100%;
-}
-
 
 .dropbtn {
-    display: none;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    display:inline-block;
+    user-select: none;
+    position: relative;
 }
 
 .dropdown {
     position: relative;
 }
 
-.ul .li .svg:hover {
-    transition: 0.1s;
-    color: rgb(235, 40, 176);
-    position: relative;
-    margin-top: -4px;
-    opacity: 100%;
-}
-
-.ul .li .svg{
+.ul .li .svg {
     color: blue;
 }
-.dropdown-content{
-    display:none;
+
+.dropdown-content {
+    display: none;
     position: absolute;
-    min-width: 160px;
-    overflow: auto;
+    width: 240px;
+    top: 88px;
+    right: 16px;
+    border-radius: 8px;
+    border: 1px solid;
+    flex-direction: column;
+    gap: 4px;
     z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.show {
+    display: block;
 }
 
 a{
     text-decoration: none;
 }
-
-.show {display: block;}
-
-:root {
-    --text-gray: #2656db;
-    /* --primary: #625BFE;
-    --text: #0F192D;
-    --gray: #c0bcff;
-    --error: #E3452F; */
-}
-
-.dropdown-content {
-    width: 240px;
-    top: 88px;
-    right: 16px;
-    position: absolute;
-    border-radius: 8px;
-    border: 1px solid var(--text-gray);
-    flex-direction: column;
-    gap: 4px;
-}
-
-
-
-/* 
-.navigation {
-    position: fixed;
-    height: 80px;
-    padding: 0 16px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    background-color: var(--primary);
-}
-
-.navigation__group {
-    display: flex;
-    align-items: center;
-    gap: 8px;  Khoảng cách giữa biểu tượng và văn bản 
-}
-
-.navigation__group > .icon {
-    cursor: pointer;
-    width: 36px;
-    height: 36px;
-    transition: all 0.2s ease-in-out;
-}
-
-.navigation__group > .icon:hover {
-    transform: scale(1.1);
-}
-
-.profile {
-    display: block;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    border-radius: 50%;
-    border: 3px solid #f7f7f7;
-    
-}
-
-.profile:hover {
-    transform: scale(1.05);
-    transition: all 0.2s ease-in-out;
-}
-
-.email {
-    color: var(--text-gray);
-}
-
-.dropdown__wrapper {
-    width: 240px;
-    top: 88px;
-    right: 16px;
-    position: absolute;
-    border-radius: 8px;
-    border: 1px solid var(--text-gray);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    animation: fadeOutAnimation ease-in-out 0.3s forwards;
-}
-
-.dropdown__wrapper--fade-in {
-    animation: fadeInAnimation ease-in-out 0.3s forwards;
-}
-
-.none {
-    display: none;
-}
-
-.hide {
-    opacity: 0;
-    visibility: hidden;
-    animation: fadeOutAnimation ease-in-out 0.3s forwards;
-}
-
-@keyframes fadeInAnimation {
-    0% {
-        opacity: 0;
-        visibility: hidden;
-        width: 160px;
-    }
-    100% {
-        opacity: 1;
-        visibility: visible;
-        width: 240px;
-    }
-}
-
-@keyframes fadeOutAnimation {
-    0% {
-        opacity: 1;
-        width: 240px;
-        visibility: visible;
-    }
-    100% {
-        opacity: 0;
-        width: 160px;
-        visibility: hidden;
-    }
-}
-
-.dropdown__group {
-    padding: 12px;
-}
-
-.dropdown__group > nav > ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    gap: 4px;
-}
-
-.dropdown__group > nav > ul > li {
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    padding-left: 8px;
-    width: 100%;
-}
-
-.dropdown__group > nav > ul > li > img {
-    height: 24px;
-    width: 24px;
-}
-
-.dropdown__group > nav > ul > li:hover {
-    cursor: pointer;
-    text-decoration: underline;
-} */

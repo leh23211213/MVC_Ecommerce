@@ -1,6 +1,6 @@
 /* Thiết lập font-size cho html */
 html {
-  font-size: 14px;
+  font-size: 16px;
   position: relative;
   min-height: 100%;
 }
@@ -30,7 +30,6 @@ html {
   left: 0;
   z-index: 1002;
   background-color: #ffffff;
-  box-shadow: 0 .75rem 1.5rem #12263f08;
   height: 70px; /* Đảm bảo header có chiều cao cố định */
 }
 
@@ -75,6 +74,7 @@ html {
   box-shadow: none;
   border-radius: 30px;
 }
+
 #login-partial {
   position: fixed;
   top: 20px; /* Điều chỉnh top tùy thuộc vào vị trí mong muốn */
@@ -94,13 +94,17 @@ html {
   width: 250px;
   z-index: 1001;
   bottom: 0;
-  margin-top: 70px; /* Đẩy vertical-menu xuống phía dưới header */
+  margin-top: 0px; /* Đẩy vertical-menu xuống phía dưới header */
   position: fixed;
-  top: 0;
+  top: 70px;
 }
 
 /* Thiết lập cấu trúc và vị trí của main-content */
 .main-content {
-  margin-right: auto;
-  margin-left: auto;
+  /* margin-right: auto;
+  margin-left: auto; */
+  flex: 1; /* Phần nội dung sẽ chiếm hết không gian còn lại */
+  padding-left: 260px; /* Padding cho phần nội dung */
+  overflow: hidden;
 }
+

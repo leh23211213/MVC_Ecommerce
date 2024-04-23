@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NaHbpbI5d1uMDJqV9Mk3aIjPEesUgau/92i/IQXqF3Y=",
+  "Hash": "Si6zxdOaUFS3qUuWYGTZWp1h/CosujcWYmT7r30yjFM=",
   "Source": "Web-MVC-Commerce",
   "BasePath": "_content/Web-MVC-Commerce",
   "Mode": "Default",
@@ -2468,6 +2468,25 @@
       "OriginalItemSpec": "wwwroot\\lib\\image\\DashBoard\\tikiLogoPurple.png"
     },
     {
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\home-icon.png",
+      "SourceId": "Web-MVC-Commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
+      "BasePath": "_content/Web-MVC-Commerce",
+      "RelativePath": "lib/image/home-icon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\image\\home-icon.png"
+    },
+    {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\Login\\Cshapr-icon-purple-logo.png",
       "SourceId": "Web-MVC-Commerce",
       "SourceType": "Discovered",
@@ -2580,25 +2599,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\image\\notification-icon.png"
-    },
-    {
-      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\person-icon.png",
-      "SourceId": "Web-MVC-Commerce",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\",
-      "BasePath": "_content/Web-MVC-Commerce",
-      "RelativePath": "lib/image/person-icon.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\image\\person-icon.png"
     },
     {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\ProductDetail\\price-icon.png",

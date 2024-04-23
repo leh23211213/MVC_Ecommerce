@@ -393,16 +393,16 @@
       "PackagePath": "staticwebassets\\lib\\image\\cart-icon.png"
     },
     {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\home-icon.png",
+      "PackagePath": "staticwebassets\\lib\\image\\home-icon.png"
+    },
+    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\logout-icon.png",
       "PackagePath": "staticwebassets\\lib\\image\\logout-icon.png"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\notification-icon.png",
       "PackagePath": "staticwebassets\\lib\\image\\notification-icon.png"
-    },
-    {
-      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\person-icon.png",
-      "PackagePath": "staticwebassets\\lib\\image\\person-icon.png"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\Web-MVC-Commerce\\wwwroot\\lib\\image\\profile-icon.png",
