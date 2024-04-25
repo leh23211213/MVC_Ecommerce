@@ -7,7 +7,7 @@
     --background-blue: #E5F1FF;
 }
 
-.product-detail-container{
+.page-content{
     min-width: 1280px;
     max-width: 1440px;
     width: 100%;
@@ -42,7 +42,7 @@
 
 }
 
-.product-detail-container .divider {
+.page-content .divider {
     border-top: 1px solid #E6E8F0;
     width: 100%; /* Chiều rộng sẽ chiếm toàn bộ chiều rộng của phần tử chứa nó */
     height: 0; /* Chiều cao bằng 0 để không chiếm không gian dọc */

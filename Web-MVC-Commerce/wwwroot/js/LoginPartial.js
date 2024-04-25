@@ -1,5 +1,4 @@
 function dropdownFunction() {
-    console.log("Radio button was clicked!");
     document.getElementById("profile-dropdown").classList.toggle("show");
 }
   // Close the dropdown if the user clicks outside of it

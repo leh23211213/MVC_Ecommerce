@@ -1,10 +1,10 @@
 namespace MVC_Ecommerce.Models
 {
-    public class Order
+    public class Customer
     {
-        public Order()
+        public Customer()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
+            this.Orders = new HashSet<Order>();
         }
         public int OrderId { get; set; }
         public int UserId { get; set; }
@@ -12,8 +12,7 @@ namespace MVC_Ecommerce.Models
         public int TotalAmount { get; set; }
         public string Status { get; set; }
 
-
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual Customer Customers { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+        public virtual Account Account { get; set; }
     }
 }
