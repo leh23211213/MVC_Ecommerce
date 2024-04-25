@@ -29,13 +29,13 @@
                         width="24">Cart</a>
             </li>
             <li>
-                <div class="dropdown">
+                <div class="d-inline-block dropdown">
                     <button class="dropbtn" type="button" onclick="dropdownFunction()">
                         @{
                             // TODO : bấm thẻ img không dropdown
                         }
-                        <img src="~/lib/image/profile-icon.png" alt="" class="rounded-circle header-profile-user"
-                            height="36" width="36">
+                        <img src="~/lib/image/profile-icon.png" alt=""
+                            class="img-thumbnail rounded-circle header-profile-user" height="36" width="36">
                         <span key="t-fullname">
                             @UserManager.GetUserName(User)
                         </span>

@@ -1,6 +1,7 @@
 #header_user_shortcut {
-    width: 300px;
-    height: 60px;
+    width: 400px;
+    height: 70px;
+    
     align-items: center;
     display: flex;
     -webkit-box-align: center;
@@ -15,6 +16,8 @@
     display: flex;
     justify-content: space-between;
     margin-top: 5px;
+    gap: 16px;
+    align-items: center;
 }
 
 .ul .li {
