@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MVC_Ecommerce.Models;
+using Web_MVC_Commerce.Models;
 
 namespace Web_MVC_Commerce.Data
 {
@@ -12,7 +13,7 @@ namespace Web_MVC_Commerce.Data
             builder.ToTable("Carts");
             builder.HasKey(e => e.CartId);
             // Foreign Key defination
-            builder.HasOne<Users>()
+            builder.HasOne<User>()
                    .WithMany()
                    .HasForeignKey(e => e.UserId);
             builder.HasOne<Product>()
