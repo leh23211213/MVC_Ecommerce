@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecommerce.WebUI", "ecommerce.WebUI\ecommerce.WebUI.csproj", "{17547A10-A51E-4FE6-9935-B930E3F9EADD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecommerce.Data", "ecommerce.Data\ecommerce.Data.csproj", "{A0C7AA7F-E132-444C-91E7-2AE2EF44E167}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17547A10-A51E-4FE6-9935-B930E3F9EADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17547A10-A51E-4FE6-9935-B930E3F9EADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17547A10-A51E-4FE6-9935-B930E3F9EADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17547A10-A51E-4FE6-9935-B930E3F9EADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67A43B4C-9330-4193-B18F-F34ADA0D48A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67A43B4C-9330-4193-B18F-F34ADA0D48A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67A43B4C-9330-4193-B18F-F34ADA0D48A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67A43B4C-9330-4193-B18F-F34ADA0D48A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0C7AA7F-E132-444C-91E7-2AE2EF44E167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0C7AA7F-E132-444C-91E7-2AE2EF44E167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0C7AA7F-E132-444C-91E7-2AE2EF44E167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0C7AA7F-E132-444C-91E7-2AE2EF44E167}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82ACD161-FD22-4350-9962-241674DDD8A6}
+	EndGlobalSection
+EndGlobal
