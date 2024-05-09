@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "6OqaroCmHtpVC3eYdXLWSa9x/Qf7/ZJiVGRHShz3NysVJ42Xw5RoFPwluqaMle/tNYYUU9sqqd6KNllQ4nPBNA==",
+  "success": true,
+  "projectFilePath": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce\\ecommerce.WebUI\\ecommerce.WebUI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.5\\microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512"
+  ],
+  "logs": []
+}

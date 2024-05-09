@@ -1,0 +1,125 @@
+﻿@model IEnumerable<ecommerce_temp.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap">
+    <link rel="stylesheet" type="text/css" href="/css/Selling.css" asp-append-version="true">
+</head>
+
+<div class="page-content">
+    <div class="Content">
+        <div class="Left-Content">
+            <div class="Filter">
+                <div class="Filter-Block">
+                    <div class="Filter-Title"> Hãng sản xuất </div>
+                    <div class="Filter-CheckList" data-level="-1" data-query="hang-san-xuat"></div>
+                </div>
+            </div>
+        </div>
+        <div class="Right-Content">
+            <div class="box-filter top-box  block-scroll-main cate-42">
+                <section>
+                    <div class="Title">All Product</div>
+                    <h3>Filter</h3>
+                </section>
+            </div>
+            <section id="CategoryPage" data-name="Phone" data-template="cate">
+                <div class="Product-Box">
+                    <ul class="List-Product">
+                        @foreach (var item in Model)
+                        {
+                            <li class="Item">
+                                <a href="">
+                                    <div class="Item-Img">
+                                        <img src="@Url.Content(item.ImageUrl)" alt="">
+                                    </div>
+                                </a>
+                                <div class="Product-Info">
+                                    <h3>@item.Name</h3>
+                                    <strong class="price">@item.Price<sup>đ</sup></strong>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Selling.js"></script>
+
+
+
+@*
+<h1>Index</h1>
+
+<p>
+<a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+<thead>
+<tr>
+<th>
+@Html.DisplayNameFor(model => model.Name)
+</th>
+<th>
+@Html.DisplayNameFor(model => model.Description)
+</th>
+<th>
+@Html.DisplayNameFor(model => model.ImageUrl)
+</th>
+<th>
+@Html.DisplayNameFor(model => model.Price)
+</th>
+<th>
+@Html.DisplayNameFor(model => model.Quantity)
+</th>
+<th>
+@Html.DisplayNameFor(model => model.CategoryId)
+</th>
+<th>
+@Html.DisplayNameFor(model => model.Vote)
+</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+@foreach (var item in Model)
+{
+<tr>
+<td>
+@Html.DisplayFor(modelItem => item.Name)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.Description)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.ImageUrl)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.Price)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.Quantity)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.CategoryId)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.Vote)
+</td>
+<td>
+<a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+<a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+<a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+</td>
+</tr>
+}
+</tbody>
+</table> *@
