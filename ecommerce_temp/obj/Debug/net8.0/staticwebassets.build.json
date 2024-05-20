@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8DJMHI8aJS0kNloonPv2qXZtC4wHQBXLmDXSMnNaOvE=",
+  "Hash": "87xrL+FKC8RyX4q4RmXdB1sX+CvcH/65WVV0V0Ow0kY=",
   "Source": "ecommerce_temp",
   "BasePath": "_content/ecommerce_temp",
   "Mode": "Default",
@@ -1423,12 +1423,12 @@
       "OriginalItemSpec": "wwwroot\\js\\LoginPartial.js"
     },
     {
-      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\js\\Selling.js",
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\js\\Product.js",
       "SourceId": "ecommerce_temp",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\",
       "BasePath": "_content/ecommerce_temp",
-      "RelativePath": "js/Selling.js",
+      "RelativePath": "js/Product.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1439,7 +1439,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\Selling.js"
+      "OriginalItemSpec": "wwwroot\\js\\Product.js"
     },
     {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\js\\site.js",

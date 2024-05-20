@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Web_MVC_Commerce.styles.css" asp-append-version="true" />
 </head>
 
 <body>
@@ -51,7 +50,6 @@
                     // TODO : E:\Destop\ui\dropdown-menu-06
                     // TODO : E:\Destop\ui\toolbar-02
                 }
-                <h2>Main</h2>
                 <ul>
                     <li>
                         <a asp-controller="Home" asp-action="Index">
@@ -59,17 +57,12 @@
                         </a>
                     </li>
                     <li>
-                        <a asp-controller="Products" asp-action="Index">
+                        <a asp-controller="Product" asp-action="Index">
                             <span>Product</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-controller="Home" asp-action="ProductDetail">
-                            <span>ProductDetail</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-controller="Carts" asp-action="Index">
+                        <a asp-controller="Cart" asp-action="Index">
                             <span>Cart</span>
                         </a>
                     </li>

@@ -1,9 +1,9 @@
-// namespace Web_MVC_Commerce.Data
+// namespace ecommerce_temp.Data
 // {
 //     using Microsoft.EntityFrameworkCore;
 //     using Microsoft.EntityFrameworkCore.Metadata.Builders;
-//     using MVC_Ecommerce.Models;
-//     public class OrderItemMap : IEntityTypeConfiguration<OrderDetail>
+//     using ecommerce_temp.Models;
+//     public class OrderDetailMap : IEntityTypeConfiguration<OrderDetail>
 //     {
 //         public void Configure(EntityTypeBuilder<OrderDetail> builder)
 //         {
@@ -11,7 +11,7 @@
 //             builder.HasKey(e => e.OrderId);
 //             builder.Property(e => e.Quantity).IsRequired();
 //             // builder.Property(e => e.Price).HasColumnType("decimal(18,2)").IsRequired();
-            
+
 //             // Định nghĩa khóa ngoại
 //             builder.HasOne<Order>()
 //                    .WithMany()

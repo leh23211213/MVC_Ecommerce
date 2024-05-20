@@ -1,23 +1,21 @@
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ecommerce_temp.Models;
 
-namespace ecommerce_temp.Data
+public class CartMap : IEntityTypeConfiguration<Cart>
 {
-    public class CartMap : IEntityTypeConfiguration<Cart>
+    public void Configure(EntityTypeBuilder<Cart> builder)
     {
-        public void Configure(EntityTypeBuilder<Cart> builder)
-        {
-            builder.ToTable("Carts");
-            builder.HasKey(e => e.CartId);
-            // Foreign Key defination
-            builder.HasOne<User>()
-                   .WithMany()
-                   .HasForeignKey(e => e.UserId);
-            builder.HasOne<Product>()
-                   .WithMany()
-                   .HasForeignKey(e => e.ProductId);
-        }
+        builder.ToTable("Carts");
+        builder.HasKey(c => c.CartId);
+
+        builder.Property(c => c.UserId)
+            .IsRequired();
+
+        builder.Property(c => c.DateCreated)
+            .IsRequired();
+
+        builder.HasMany(c => c.CartItems)
+            .WithOne(ci => ci.Cart)
+            .HasForeignKey(ci => ci.CartId);
     }
 }

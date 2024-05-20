@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap">
     <link rel="stylesheet" type="text/css" href="/css/Selling.css" asp-append-version="true">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <div class="page-content">
@@ -34,14 +35,22 @@
                         @foreach (var item in Model)
                         {
                             <li class="Item">
-                                <a href="">
-                                    <div class="Item-Img">
-                                        <img src="@Url.Content(item.ImageUrl)" alt="">
-                                    </div>
-                                </a>
+                                <div class="Item-Img">
+                                    <a href="">
+                                        <a asp-action="Details" asp-route-id="@item.ProductId"> <img
+                                                src="@Url.Content(item.ImageUrl)" alt=""> </a>
+                                    </a>
+                                </div>
                                 <div class="Product-Info">
                                     <h3>@item.Name</h3>
                                     <strong class="price">@item.Price<sup>đ</sup></strong>
+                                </div>
+                                <div>
+                                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary add-to-cart" data-product-id="@item.ProductId"
+                                        data-quantity="1">Add to Cart</button>
                                 </div>
                             </li>
                         }
@@ -51,75 +60,26 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $(".add-to-cart").click(function () {
+            var productId = $(this).data("product-id");
+            var quantity = $(this).data("quantity");
 
-<script src="~/js/Selling.js"></script>
-
-
-
-@*
-<h1>Index</h1>
-
-<p>
-<a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-<thead>
-<tr>
-<th>
-@Html.DisplayNameFor(model => model.Name)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Description)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.ImageUrl)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Price)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Quantity)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.CategoryId)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Vote)
-</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-@foreach (var item in Model)
-{
-<tr>
-<td>
-@Html.DisplayFor(modelItem => item.Name)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Description)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.ImageUrl)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Price)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Quantity)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.CategoryId)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Vote)
-</td>
-<td>
-<a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-<a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-<a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
-</td>
-</tr>
-}
-</tbody>
-</table> *@
+            $.ajax({
+                url: '@Url.Action("AddToCart", "Cart")',
+                type: 'POST',
+                data: {
+                    productId: productId,
+                    quantity: quantity
+                },
+                success: function (response) {
+                    alert("Product added to cart!");
+                },
+                error: function (xhr, status, error) {
+                    alert("An error occurred while adding the product to the cart.");
+                }
+            });
+        });
+    });
+</script>
