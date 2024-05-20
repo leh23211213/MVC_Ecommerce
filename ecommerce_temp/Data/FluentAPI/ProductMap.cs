@@ -11,15 +11,18 @@ namespace ecommerce_temp.Data
             builder.ToTable("Products");
             builder.HasKey(e => e.ProductId);
             builder.Property(e => e.Name).HasMaxLength(100).IsRequired();
+            builder.Property(e => e.Description).IsRequired(false).HasMaxLength(500); ;
             builder.Property(e => e.Price).HasColumnType("decimal(18,2)").IsRequired();
-            builder.Property(e => e.Description).IsRequired(false);
             builder.Property(e => e.Quantity).IsRequired(false);
             builder.Property(e => e.ImageUrl).HasMaxLength(255).IsRequired(false);
             builder.Property(e => e.Vote).IsRequired(false);
             // Định nghĩa khóa ngoại
-            builder.HasOne<Category>()
-                   .WithMany()
-                   .HasForeignKey(e => e.CategoryId);
+            builder.HasMany(p => p.CartItems)
+            .WithOne(ci => ci.Product)
+            .HasForeignKey(ci => ci.ProductId);
+            // builder.HasOne<Category>()
+            //        .WithMany()
+            //        .HasForeignKey(e => e.CategoryId);
         }
     }
 }

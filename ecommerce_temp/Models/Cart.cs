@@ -1,9 +1,15 @@
-namespace ecommerce_temp.Models
+using ecommerce_temp.Models;
+
+public class Cart
 {
-    public class Cart
+    public string CartId { get; set; }
+    public string UserId { get; set; }
+    public DateTime DateCreated { get; set; }
+
+    public virtual ICollection<CartItem> CartItems { get; set; }
+
+    public Cart()
     {
-        public string UserId { get; set; }
-        public Product Product { get; set; }
-        public int Quantity { get; set; }
+        CartItems = new List<CartItem>();
     }
 }

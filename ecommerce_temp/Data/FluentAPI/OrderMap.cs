@@ -1,8 +1,7 @@
-// namespace Web_MVC_Commerce.Data
+// namespace ecommerce_temp.Data
 // {
 //     using Microsoft.EntityFrameworkCore;
-//     using MVC_Ecommerce.Models;
-//     using Web_MVC_Commerce.Models;
+//     using ecommerce_temp.Models;
 
 //     public class OrderMap : IEntityTypeConfiguration<Order>
 //     {

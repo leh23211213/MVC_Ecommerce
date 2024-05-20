@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ecommerce_temp.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using ecommerce_temp.Models;
 using ecommerce_temp.Service;
 namespace ecommerce_temp
@@ -29,17 +28,20 @@ namespace ecommerce_temp
             .AddEntityFrameworkStores<ecommerce_tempContext>()
             .AddDefaultTokenProviders();
 
-            // services.AddDefaultIdentity<Users>()
-            // .AddEntityFrameworkStores<ecommerce_tempContext>()
-            // .AddDefaultTokenProviders();
-            // Trong phương thức ConfigureServices
+            services.AddDistributedMemoryCache();
+            // Đăng ký CartService
+            services.AddScoped<CartService>();
             services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
+
+
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Thiết lập về Password
@@ -73,37 +75,37 @@ namespace ecommerce_temp
                         options.ClientSecret = googleConfig["ClientSecret"];
                         options.CallbackPath = "/LoginWithGoogle";
                     });
-
-            services.AddDbContext<ecommerce_tempContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ecommerce_tempContext")));
-
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage(); // Hiển thị trang lỗi chi tiết khi ứng dụng đang trong môi trường phát triển.
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
+                app.UseHsts(); // Thêm HTTP Strict Transport Security (HSTS) headers.
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseRouting();
+            app.UseHttpsRedirection(); //  Chuyển hướng các yêu cầu HTTP sang HTTPS. 
+            app.UseStaticFiles(); //  Cho phép phục vụ các tệp tĩnh như CSS, JavaScript, v.v.
+            app.UseRouting(); // Thêm middleware định tuyến vào pipeline xử lý yêu cầu.
             app.UseSession();
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseAuthentication(); // Thêm middleware xác thực vào pipeline.
+            app.UseAuthorization(); // Thêm middleware phân quyền vào pipeline.
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "Cart",
+                    pattern: "Cart", // Đường dẫn URL mà bạn muốn định tuyến
+                    defaults: new { controller = "Cart", action = "Index" }); // Controller và action mặc định
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
-            });
-
+            }); // Cấu hình các điểm cuối cho ứng dụng. Ở đây, chúng ta định nghĩa một route mặc định cho ứng dụng.
         }
     }
 }

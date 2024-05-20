@@ -5,19 +5,22 @@ using ecommerce_temp.Models;
 
 namespace ecommerce_temp.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductController : Controller
     {
+        private readonly ILogger<ProductController> _logger;
         private readonly ecommerce_tempContext _context;
-
-        public ProductsController(ecommerce_tempContext context)
+        // private readonly CartService _cartService;
+        public ProductController(ILogger<ProductController> logger, ecommerce_tempContext context)
         {
+            _logger = logger;
             _context = context;
         }
 
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Product.ToListAsync());
+            var products = await _context.Products.ToListAsync();
+            return View(products);
         }
 
         // GET: Products/Details/5
@@ -28,7 +31,7 @@ namespace ecommerce_temp.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
+            var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
@@ -37,29 +40,6 @@ namespace ecommerce_temp.Controllers
 
             return View(product);
         }
-
-        // GET: Products/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,Name,Description,ImageUrl,Price,Quantity,CategoryId,Vote")] Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(product);
-        }
-
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
@@ -68,7 +48,7 @@ namespace ecommerce_temp.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -110,43 +90,9 @@ namespace ecommerce_temp.Controllers
             }
             return View(product);
         }
-
-        // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
-
-        // POST: Products/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var product = await _context.Product.FindAsync(id);
-            if (product != null)
-            {
-                _context.Product.Remove(product);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
         private bool ProductExists(string id)
         {
-            return _context.Product.Any(e => e.ProductId == id);
+            return _context.Products.Any(e => e.ProductId == id);
         }
     }
 }

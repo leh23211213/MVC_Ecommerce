@@ -19,25 +19,24 @@
         <ul class="ul">
             <li>
                 <a asp-controller="Home" asp-action="Index">
-                    <img src="~/lib/image/home-icon.png" alt="" height="12" width="24">Home
+                    <img src="~/lib/image/home-icon.png" alt="" style="width: 24px; height: 24px">Home
                 </a>
             </li>
             <li>
-                <a asp-controller="Carts" asp-action="Index"><img src="~/lib/image/cart-icon.png" alt="" height="24"
-                        width="24">Cart</a>
+                <a asp-controller="Cart" asp-action="Index"><img src="~/lib/image/cart-icon.png" alt=""
+                        style="width: 24px; height: 24px">Cart</a>
             </li>
             <li>
+                @{
+                    // TODO : bấm thẻ img không dropdown
+                }
                 <div class="d-inline-block dropdown">
-                    <button class="dropbtn" type="button" onclick="dropdownFunction()">
-                        @{
-                            // TODO : bấm thẻ img không dropdown
-                        }
+                    <div onclick="dropdownFunction()" class="dropbtn">
                         <img src="~/lib/image/profile-icon.png" alt=""
-                            class="img-thumbnail rounded-circle header-profile-user" height="36" width="36">
-                        <span key="t-fullname">
-                            @UserManager.GetUserName(User)
-                        </span>
-                    </button>
+                            class="dropbtn img-thumbnail rounded-circle header-profile-user"
+                            style="width: 36px; height: 36px">
+                        <span key="t-fullname" class="dropbtn">@UserManager.GetUserName(User)</span>
+                    </div>
                     <ul id="profile-dropdown" class="dropdown-content">
                         <a id="manage" class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index"
                             title="Manage">
