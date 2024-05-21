@@ -1,9 +1,10 @@
 using System.Security.Claims;
-using ecommerce_temp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace ecommerce_temp.Controllers
 {
-    // [Route("[controller]")]
+    [Authorize]
+    [Route("Cart")]
     public class CartController : Controller
     {
         private readonly CartService _cartService;
@@ -12,31 +13,22 @@ namespace ecommerce_temp.Controllers
         {
             _cartService = cartService;
         }
-
+        [HttpGet("")]
         public IActionResult Index()
         {
-            // var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userId = "user1"; // Ví dụ người dùng
-            var cart = _cartService.GetCartByUserId(userId);
-            if (cart == null)
+            // TODO: bug userId can not get
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
             {
-                // Nếu cart null, tạo một đối tượng mới
-                cart = new Cart
-                {
-                    CartItems = new List<CartItem>()
-                };
+                // Xử lý khi không tìm thấy userId
+                return Unauthorized(); // Hoặc chuyển hướng đến trang đăng nhập
             }
-            var cartViewModel = new CartViewModel
+            var cartViewModel = _cartService.GetCartByUserId(userId);
+
+            if (cartViewModel == null)
             {
-                CartItems = cart.CartItems.Select(item => new CartItemViewModel
-                {
-                    ProductId = item.ProductId,
-                    ProductName = item.Product.Name,
-                    ImageUrl = item.Product.ImageUrl,
-                    Price = item.Product.Price,
-                    Quantity = item.Quantity
-                }).ToList(),
-            };
+                return NotFound();
+            }
 
             return View(cartViewModel);
         }
@@ -49,19 +41,34 @@ namespace ecommerce_temp.Controllers
             _cartService.AddToCart(userId, productId, quantity);
             return RedirectToAction("Index");
         }
-
+        [HttpPost("RemoveFromCart")]
         public IActionResult RemoveFromCart(string productId)
         {
             var userId = User.GetUserId();
             _cartService.RemoveFromCart(userId, productId);
             return RedirectToAction("Index");
         }
-
+        [HttpPost("ClearCart")]
         public IActionResult ClearCart()
         {
             var userId = User.GetUserId();
             _cartService.ClearCart(userId);
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public IActionResult IncreaseQuantity(string cartItemId)
+        {
+            var userId = "user1"; // Ví dụ người dùng
+            var updatedCart = _cartService.IncreaseCartItemQuantity(userId, cartItemId);
+            return Json(updatedCart);
+        }
+
+        [HttpPost]
+        public IActionResult DecreaseQuantity(string cartItemId)
+        {
+            var userId = "user1"; // Ví dụ người dùng
+            var updatedCart = _cartService.DecreaseCartItemQuantity(userId, cartItemId);
+            return Json(updatedCart);
         }
     }
 }

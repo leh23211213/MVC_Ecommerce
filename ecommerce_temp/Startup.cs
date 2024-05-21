@@ -3,6 +3,7 @@ using ecommerce_temp.Data;
 using Microsoft.AspNetCore.Identity;
 using ecommerce_temp.Models;
 using ecommerce_temp.Service;
+using Microsoft.AspNetCore.Authentication.Cookies;
 namespace ecommerce_temp
 {
     public class Startup
@@ -14,6 +15,12 @@ namespace ecommerce_temp
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+           .AddCookie(options =>
+           {
+               options.LoginPath = "/Account/Login";
+           });
             // send mail service
             services.AddOptions();
             var mailsetting = Configuration.GetSection("MailSettings");
@@ -21,6 +28,7 @@ namespace ecommerce_temp
             services.AddSingleton<IEmailSender, SendMailService>();
 
             services.AddRazorPages();
+
             services.AddDbContext<ecommerce_tempContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ecommerce_tempContext")));
 
@@ -31,7 +39,6 @@ namespace ecommerce_temp
             services.AddDistributedMemoryCache();
             // Đăng ký CartService
             services.AddScoped<CartService>();
-            services.AddControllersWithViews();
             services.AddHttpContextAccessor();
 
 

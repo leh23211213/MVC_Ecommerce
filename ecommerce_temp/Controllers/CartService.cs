@@ -1,4 +1,5 @@
 using ecommerce_temp.Data;
+using ecommerce_temp.Models;
 using Microsoft.EntityFrameworkCore;
 
 public class CartService
@@ -10,17 +11,37 @@ public class CartService
         _context = context;
     }
 
-    public Cart GetCartByUserId(string userId)
+    public CartViewModel GetCartByUserId(string userId)
     {
-        return _context.Carts
+        var cart = _context.Carts
             .Include(c => c.CartItems)
             .ThenInclude(ci => ci.Product)
             .FirstOrDefault(c => c.UserId == userId);
+
+        if (cart == null)
+        {
+            return null;
+        }
+
+        var cartViewModel = new CartViewModel
+        {
+            UserId = cart.UserId,
+            CartItems = cart.CartItems.Select(ci => new CartItemViewModel
+            {
+                CartItemId = ci.CartItemId,
+                ProductName = ci.Product.Name,
+                Price = ci.Product.Price,
+                Quantity = ci.Quantity
+            }).ToList()
+        };
+        return cartViewModel;
     }
 
     public void AddToCart(string userId, string productId, int quantity)
     {
-        var cart = GetCartByUserId(userId);
+        var cart = _context.Carts
+          .Include(c => c.CartItems)
+          .FirstOrDefault(c => c.UserId == userId);
         if (cart == null)
         {
             cart = new Cart
@@ -52,7 +73,10 @@ public class CartService
 
     public void RemoveFromCart(string userId, string productId)
     {
-        var cart = GetCartByUserId(userId);
+        var cart = _context.Carts
+          .Include(c => c.CartItems)
+          .FirstOrDefault(c => c.UserId == userId);
+
         if (cart != null)
         {
             var cartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == productId);
@@ -66,11 +90,51 @@ public class CartService
 
     public void ClearCart(string userId)
     {
-        var cart = GetCartByUserId(userId);
+        var cart = _context.Carts
+          .Include(c => c.CartItems)
+          .FirstOrDefault(c => c.UserId == userId);
+
         if (cart != null)
         {
             _context.CartItems.RemoveRange(cart.CartItems);
             _context.SaveChanges();
         }
+    }
+    public CartViewModel IncreaseCartItemQuantity(string userId, string cartItemId)
+    {
+        var cart = _context.Carts
+            .Include(c => c.CartItems)
+            .FirstOrDefault(c => c.UserId == userId);
+
+        if (cart != null)
+        {
+            var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartItemId == cartItemId);
+            if (cartItem != null)
+            {
+                cartItem.Quantity++;
+                _context.SaveChanges();
+            }
+        }
+
+        return GetCartByUserId(userId);
+    }
+
+    public CartViewModel DecreaseCartItemQuantity(string userId, string cartItemId)
+    {
+        var cart = _context.Carts
+            .Include(c => c.CartItems)
+            .FirstOrDefault(c => c.UserId == userId);
+
+        if (cart != null)
+        {
+            var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartItemId == cartItemId);
+            if (cartItem != null && cartItem.Quantity > 1)
+            {
+                cartItem.Quantity--;
+                _context.SaveChanges();
+            }
+        }
+
+        return GetCartByUserId(userId);
     }
 }
