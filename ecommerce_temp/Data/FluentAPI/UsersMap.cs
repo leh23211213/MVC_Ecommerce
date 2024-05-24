@@ -21,6 +21,12 @@ namespace ecommerce_temp
             builder.Property(e => e.BirthDate)
            .IsRequired(false) // (Tuỳ chọn) Có hoặc không cần thiết
            .HasColumnType("date"); // Kiểu dữ liệu cột
+
+            // Cấu hình mối quan hệ giữa User và Cart
+            builder.HasOne(u => u.Cart)
+                .WithOne(c => c.User)
+                .HasForeignKey<Cart>(c => c.UserId)
+                .OnDelete(DeleteBehavior.Cascade); // Hoặc DeleteBehavior.Restrict nếu bạn không muốn xóa tự động
         }
     }
 }

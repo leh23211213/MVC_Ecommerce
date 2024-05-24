@@ -1,9 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Http
-@using ecommerce_temp.Models;
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
-
+@model ecommerce_temp.Models.User
 @{
     ViewData["Title"] = "Home Page";
 }

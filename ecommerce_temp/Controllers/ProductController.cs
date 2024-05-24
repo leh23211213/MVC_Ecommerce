@@ -5,11 +5,11 @@ using ecommerce_temp.Models;
 
 namespace ecommerce_temp.Controllers
 {
+    [Route("Product")]
     public class ProductController : Controller
     {
         private readonly ILogger<ProductController> _logger;
         private readonly ecommerce_tempContext _context;
-        // private readonly CartService _cartService;
         public ProductController(ILogger<ProductController> logger, ecommerce_tempContext context)
         {
             _logger = logger;
@@ -17,6 +17,7 @@ namespace ecommerce_temp.Controllers
         }
 
         // GET: Products
+        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
             var products = await _context.Products.ToListAsync();
@@ -24,10 +25,12 @@ namespace ecommerce_temp.Controllers
         }
 
         // GET: Products/Details/5
+        [HttpGet("Details")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
+                _logger.LogWarning("Product with ID {ProductId} not found.", id);
                 return NotFound();
             }
 
@@ -41,10 +44,12 @@ namespace ecommerce_temp.Controllers
             return View(product);
         }
         // GET: Products/Edit/5
+        [HttpGet("Edit")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
+                _logger.LogWarning("Product with ID {ProductId} not found.", id);
                 return NotFound();
             }
 

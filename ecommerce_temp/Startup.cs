@@ -16,38 +16,25 @@ namespace ecommerce_temp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
            .AddCookie(options =>
            {
                options.LoginPath = "/Account/Login";
-           });
-            // send mail service
-            services.AddOptions();
-            var mailsetting = Configuration.GetSection("MailSettings");
-            services.Configure<MailSettings>(mailsetting);
-            services.AddSingleton<IEmailSender, SendMailService>();
+           }).AddGoogle(options =>
+                    {
+                        var googleConfig = Configuration.GetSection("Authentication:Google");
+                        options.ClientId = googleConfig["ClientId"];
+                        options.ClientSecret = googleConfig["ClientSecret"];
+                        options.CallbackPath = "/LoginWithGoogle";
+                    });
 
-            services.AddRazorPages();
-
-            services.AddDbContext<ecommerce_tempContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ecommerce_tempContext")));
+            services.AddAuthorization();
 
             services.AddIdentity<User, IdentityRole>()
             .AddEntityFrameworkStores<ecommerce_tempContext>()
             .AddDefaultTokenProviders();
-
-            services.AddDistributedMemoryCache();
-            // Đăng ký CartService
-            services.AddScoped<CartService>();
-            services.AddHttpContextAccessor();
-
-
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
-            });
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -74,14 +61,29 @@ namespace ecommerce_temp
                 options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
 
             });
-            services.AddAuthentication()
-                    .AddGoogle(options =>
-                    {
-                        var googleConfig = Configuration.GetSection("Authentication:Google");
-                        options.ClientId = googleConfig["ClientId"];
-                        options.ClientSecret = googleConfig["ClientSecret"];
-                        options.CallbackPath = "/LoginWithGoogle";
-                    });
+            // Database context
+            services.AddDbContext<ecommerce_tempContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("ecommerce_tempContext")));
+            // Session configuration
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            // Email sender service
+            services.AddOptions();
+            var mailsetting = Configuration.GetSection("MailSettings");
+            services.Configure<MailSettings>(mailsetting);
+            services.AddSingleton<IEmailSender, SendMailService>();
+
+            // Register CartService and UserManager<User> correctly
+            services.AddScoped<CartService>();
+            services.AddHttpContextAccessor();
+            // UserManager is registered by AddIdentity, no need to register it manually
+            services.AddHttpContextAccessor();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -105,12 +107,21 @@ namespace ecommerce_temp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "Cart",
-                    pattern: "Cart", // Đường dẫn URL mà bạn muốn định tuyến
-                    defaults: new { controller = "Cart", action = "Index" }); // Controller và action mặc định
-                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "Cart",
+                    pattern: "Cart", // URL /Cart
+                    defaults: new { controller = "Cart", action = "Index" }); // Controller và action mặc định
+
+                // Bạn có thể thêm các định tuyến riêng cho các controller khác nếu cần thiết
+                // Ví dụ:
+                // endpoints.MapControllerRoute(
+                //     name: "Product",
+                //     pattern: "Products/{action=Index}/{id?}",
+                //     defaults: new { controller = "Product" });
+
                 endpoints.MapRazorPages();
             }); // Cấu hình các điểm cuối cho ứng dụng. Ở đây, chúng ta định nghĩa một route mặc định cho ứng dụng.
         }

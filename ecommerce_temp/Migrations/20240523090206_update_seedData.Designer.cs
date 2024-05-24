@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ecommerce_temp.Data;
 
@@ -11,9 +12,11 @@ using ecommerce_temp.Data;
 namespace ecommerce_temp.Migrations
 {
     [DbContext(typeof(ecommerce_tempContext))]
-    partial class ecommerce_tempContextModelSnapshot : ModelSnapshot
+    [Migration("20240523090206_update_seedData")]
+    partial class update_seedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,18 +31,13 @@ namespace ecommerce_temp.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateCreated")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CartId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Carts", (string)null);
 
@@ -361,17 +359,6 @@ namespace ecommerce_temp.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("Cart", b =>
-                {
-                    b.HasOne("ecommerce_temp.Models.User", "User")
-                        .WithOne("Cart")
-                        .HasForeignKey("Cart", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("CartItem", b =>
                 {
                     b.HasOne("Cart", "Cart")
@@ -461,12 +448,6 @@ namespace ecommerce_temp.Migrations
                     b.Navigation("CartItems");
 
                     b.Navigation("Details");
-                });
-
-            modelBuilder.Entity("ecommerce_temp.Models.User", b =>
-                {
-                    b.Navigation("Cart")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
