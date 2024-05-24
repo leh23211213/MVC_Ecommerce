@@ -15,5 +15,6 @@ namespace ecommerce_temp.Models
         // public string? Country { get; set; }
         // public IEnumerable<Order>? Orders { get; set; }
         public DateTime? BirthDate { get; set; }
+        public virtual Cart Cart { get; set; }
     }
 }

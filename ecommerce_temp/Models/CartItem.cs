@@ -7,6 +7,8 @@ public class CartItem
     public string ProductId { get; set; }
     public int Quantity { get; set; }
 
-    public virtual Product Product { get; set; }
-    public virtual Cart Cart { get; set; }
+    // Navigation property for Cart
+    public Cart Cart { get; set; }
+    // Navigation property for Product
+    public Product Product { get; set; }
 }

@@ -29,17 +29,17 @@ namespace ecommerce_temp.Data
             base.OnModelCreating(modelBuilder);
             // SeedData
             modelBuilder.Entity<Product>().HasData(
-           new Product { ProductId = "1", Name = "Product 1", Price = 100, ImageUrl = "/images/product1.png" },
-           new Product { ProductId = "2", Name = "Product 2", Price = 200, ImageUrl = "/images/product2.png" }
-       );
+               new Product { ProductId = "IP13MiniBK128GB", Name = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" },
+               new Product { ProductId = "IP13MiniPK128GB", Name = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-PK-128GB.png" }
+           );
 
             modelBuilder.Entity<Cart>().HasData(
-                new Cart { CartId = "1", UserId = "user1" }
+                new Cart { CartId = "1", UserId = "1508df73-fedc-4196-a720-68ddf118bb6b", DateCreated = DateTime.Now }
             );
 
             modelBuilder.Entity<CartItem>().HasData(
-                new CartItem { CartItemId = "1", CartId = "1", ProductId = "1", Quantity = 1 },
-                new CartItem { CartItemId = "2", CartId = "1", ProductId = "2", Quantity = 2 }
+                new CartItem { CartItemId = "1", CartId = "1", ProductId = "IP13MiniBK128GB", Quantity = 1 },
+                new CartItem { CartItemId = "2", CartId = "1", ProductId = "IP13MiniPK128GB", Quantity = 2 }
             );
 
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
@@ -50,6 +50,40 @@ namespace ecommerce_temp.Data
                     entityType.SetTableName(tableName.Substring(6));
                 }
             }
+        }
+
+        public override int SaveChanges()
+        {
+            var entries = ChangeTracker.Entries<User>().Where(e => e.State == EntityState.Added).ToList();
+
+            foreach (var entry in entries)
+            {
+                var user = entry.Entity;
+                Carts.Add(new Cart
+                {
+                    UserId = user.Id,
+                    DateCreated = DateTime.Now
+                });
+            }
+
+            return base.SaveChanges();
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var entries = ChangeTracker.Entries<User>().Where(e => e.State == EntityState.Added).ToList();
+
+            foreach (var entry in entries)
+            {
+                var user = entry.Entity;
+                Carts.Add(new Cart
+                {
+                    UserId = user.Id,
+                    DateCreated = DateTime.Now
+                });
+            }
+
+            return await base.SaveChangesAsync(cancellationToken);
         }
     }
 }

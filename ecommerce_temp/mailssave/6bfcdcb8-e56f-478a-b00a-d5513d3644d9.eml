@@ -1,0 +1,10 @@
+From: hieple2000 <siu.mon.1238@gmail.com>
+Date: Thu, 23 May 2024 21:03:17 +0700
+Subject: Confirm your email
+Message-Id: <OV67F53P4NU4.EDW6XXU9QLYX1@laptop-9fc23ac2>
+Sender: hieple2000 <siu.mon.1238@gmail.com>
+To: demo1@gmail.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+Please confirm your account by <a href='http://localhost:5135/Identity/Account/ConfirmEmail?userId=62e57f2a-16e3-476f-9a21-0b6c41f8b987&amp;code=Q2ZESjhLMVRoSXRiaDRWUGtjL3FpYmg1QWxXUHc4WjJrbzFFWjhNQTRmOUNVSnVoR09Za1l1WllDWW9weEpZenZ3aldOWGx3NExKNzRsaE9kTk15VUxEYlo4UFB2QmZzM01IUURWTmdwci9ycDFja0ZDMksrUmwzS0d5dmRxZU5MQi9kLzFnQXRIYmluL2k3VG1LcjlTSWFKN0pFcURlbVpTdDhGbHd2bWovcEJ4a3MyV2FrNXBicFFwMWVsblJnMitBYmplWXdLWUdQelRYNWZDWWJrL0VrSGF3eGpHN2VaYUtpeDdEaTRPTEFzNWkzbEl3YVUyaXNJTjAyZXJ2OWVQbHI2QT09&amp;returnUrl=%2F'>clicking here</a>.

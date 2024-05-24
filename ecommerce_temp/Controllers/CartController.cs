@@ -1,42 +1,42 @@
-using System.Security.Claims;
 using ecommerce_temp.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+
 namespace ecommerce_temp.Controllers
 {
-    // [Route("[controller]")]
+    [Authorize]
+    [Route("Cart")]
     public class CartController : Controller
     {
+        private readonly UserManager<User> _userManager;
         private readonly CartService _cartService;
 
-        public CartController(CartService cartService)
+
+        [ActivatorUtilitiesConstructor] // BUG: MULTIple contructors add <~
+        public CartController(UserManager<User> userManager, CartService cartService)
         {
             _cartService = cartService;
+            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        [HttpGet("")]
+        public async Task<IActionResult> Index()
         {
-            // var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userId = "user1"; // Ví dụ người dùng
-            var cart = _cartService.GetCartByUserId(userId);
-            if (cart == null)
+            // TODO: bug userId can not get
+            var userId = _userManager.GetUserId(User);
+            if (string.IsNullOrEmpty(userId))
             {
-                // Nếu cart null, tạo một đối tượng mới
-                cart = new Cart
-                {
-                    CartItems = new List<CartItem>()
-                };
+                // Handle when userId is not found
+                return Unauthorized(); // Or redirect to the login page
             }
-            var cartViewModel = new CartViewModel
+
+            var cartViewModel = _cartService.GetCartByUserId(userId);
+
+            if (cartViewModel == null)
             {
-                CartItems = cart.CartItems.Select(item => new CartItemViewModel
-                {
-                    ProductId = item.ProductId,
-                    ProductName = item.Product.Name,
-                    ImageUrl = item.Product.ImageUrl,
-                    Price = item.Product.Price,
-                    Quantity = item.Quantity
-                }).ToList(),
-            };
+                return NotFound();
+            }
 
             return View(cartViewModel);
         }
@@ -45,23 +45,41 @@ namespace ecommerce_temp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddToCart(string productId, int quantity)
         {
-            var userId = User.GetUserId();
+            var userId = _userManager.GetUserId(User);
             _cartService.AddToCart(userId, productId, quantity);
             return RedirectToAction("Index");
         }
 
+        [HttpPost("RemoveFromCart")]
         public IActionResult RemoveFromCart(string productId)
         {
-            var userId = User.GetUserId();
+            var userId = _userManager.GetUserId(User);
             _cartService.RemoveFromCart(userId, productId);
             return RedirectToAction("Index");
         }
 
+        [HttpPost("ClearCart")]
         public IActionResult ClearCart()
         {
-            var userId = User.GetUserId();
+            var userId = _userManager.GetUserId(User);
             _cartService.ClearCart(userId);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult IncreaseQuantity(string cartItemId)
+        {
+            var userId = _userManager.GetUserId(User);
+            var updatedCart = _cartService.IncreaseCartItemQuantity(userId, cartItemId);
+            return Json(updatedCart);
+        }
+
+        [HttpPost]
+        public IActionResult DecreaseQuantity(string cartItemId)
+        {
+            var userId = _userManager.GetUserId(User);
+            var updatedCart = _cartService.DecreaseCartItemQuantity(userId, cartItemId);
+            return Json(updatedCart);
         }
     }
 }

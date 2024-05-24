@@ -2,7 +2,7 @@ namespace ecommerce_temp.Models
 {
     public class CartItemViewModel
     {
-        public string ProductId { get; set; }
+        public string CartItemId { get; set; }
         public string ProductName { get; set; }
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
