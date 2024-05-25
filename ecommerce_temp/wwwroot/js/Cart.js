@@ -1,4 +1,4 @@
-let charlife = document.getElementById('base-life');
+let charlife = document.getElementById('quantity');
 let increaseWith = 1;
 function increase() {
      value = parseInt(charlife.value);

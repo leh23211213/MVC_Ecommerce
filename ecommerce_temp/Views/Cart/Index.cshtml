@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="~/css/Cart.css" asp-append-version="true" />
 </head>
 @if (User.Identity.IsAuthenticated)
-
 {
     <div class="page-content">
         <div class="main-title">
@@ -38,9 +37,88 @@
                         alt="deleted">
                 </div>
                 <div>
+                    <div class="Seller">
+                        <div class="List-Intended">
+                            <div class="Row">
+                                <div class="Item-Info">
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                    </label>
+                                    <a target="_blank" href="">
+                                        <img src="~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" width="80"
+                                            height="60" alt="">
+                                    </a>
+                                    <div class="Item-Content">
+                                        <a href=""> iphone 14</a>
+                                    </div>
+                                </div>
+                                <div class="Item-Price">
+                                    <span>30usd</span>
+                                </div>
+                                <div class="Item-Quantity">
+                                    <div class="Quantity">
+                                        <button class="Substract" onclick="DecreTest2()">
+                                            -
+                                        </button>
+                                        <input id="quantity-test-2" class="base-stats" type="number" name="quantity"
+                                            value="5" readonly />
+                                        <button class="Add" onclick="IncreTest2()">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="Item-Subtotal">
+                                    <p>500usd</p>
+                                </div>
+                                <div class="Item-Action">
+                                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                                        alt="deleted">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Seller">
+                        <div class="List-Intended">
+                            <div class="Row">
+                                <div class="Item-Info">
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                    </label>
+                                    <a target="_blank" href="">
+                                        <img src="~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" width="80"
+                                            height="60" alt="">
+                                    </a>
+                                    <div class="Item-Content">
+                                        <a href=""> iphone 13</a>
+                                    </div>
+                                </div>
+                                <div class="Item-Price">
+                                    <span>30usd</span>
+                                </div>
+                                <div class="Item-Quantity">
+                                    <div class="Quantity">
+                                        <button class="Substract" onclick="DecreTest()">
+                                            -
+                                        </button>
+                                        <input id="quantity-test" class="base-stats" type="number" name="quantity" value="5"
+                                            readonly />
+                                        <button class="Add" onclick="IncreTest()">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="Item-Subtotal">
+                                    <p>500111usd</p>
+                                </div>
+                                <div class="Item-Action">
+                                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                                        alt="deleted">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="infinite-scroll-component">
                         @foreach (var item in Model.CartItems)
-
                         {
                             <div class="Seller">
                                 <div class="List-Intended">
@@ -62,22 +140,23 @@
                                         </div>
                                         <div class="Item-Quantity">
                                             <div class="Quantity">
-                                                <button class="Substract" onclick="let decreaseWith = 1; let newValue =
-parseInt(document.getElementById('base-life').value) - decreaseWith;
-if(newValue >= 1) { document.getElementById('base-life').value = newValue; }">
+                                                <button class="Substract" onclick="Decre(@item.CartItemId,@item.Price)">
                                                     -
                                                 </button>
-                                                <input id="base-life" class="base-stats" type="number" name="base-life"
-                                                    value="1" readonly />
-                                                <button class="Add" onclick="let increaseWith = 1; let newValue =
-parseInt(document.getElementById('base-life').value) + increaseWith;
-if(newValue <= 5) { document.getElementById('base-life').value = newValue; }">
+                                                <input id="product-@item.CartItemId" class="base-stats" type="number"
+                                                    name="quantity" value="5" readonly />
+                                                <button class="Add" onclick="Incre(@item.CartItemId)">
                                                     +
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="Item-Subtotal">
-                                            @(item.Price * item.Quantity) <sup>đ</sup>
+                                        <div id="itemTotal-@item.CartItemId" class="Item-Subtotal">
+                                            @item.Price
+                                            @*
+
+
+                                    *@
+                                            <sup>đ</sup>
                                         </div>
                                         <div class="Item-Action">
                                             <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
@@ -128,138 +207,52 @@ if(newValue <= 5) { document.getElementById('base-life').value = newValue; }">
             </div>
         </div>
     </div>
+    <script>
+        function Decre(productId, price) {
+            let increaseWith = 1;
+            let newValue = parseInt(document.getElementById(`product-${productId}`).value) - increaseWith;
+            if (newValue <= 5) {
+                document.getElementById(`product-${productId}`).value = newValue;
+            }
+
+            let currentValue = document.getElementById(`product-${productId}`).value;
+            let total = price * currentValue;
+           document.getElementById(`itemTotal-${productId}`).innerHTML = total;
+        }
+
+
+
+        @* // id querry *@
+            function Incre(productId) {
+                console.log(productId);
+                let increaseWith = 1; let newValue =
+                    parseInt(document.getElementById('quantity').value) + increaseWith;
+                if (newValue <= 5) { document.getElementById('quantity').value = newValue; }
+            }
+
+
+
+
+
+        function DecreTest() {
+            console.log("123");
+            let increaseWith = 1;
+            let quantity = document.getElementById('quantity-test');
+            let quantityValue = quantity.value;
+            console.log("133", quantityValue);
+            let newValue = parseInt(quantityValue) - increaseWith;
+
+            if (newValue <= 5) {
+                quantity.value = newValue;
+            }
+        }
+
+    </script>
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 else
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {
     <p>Please log in.</p>
 }
-
 @* @model ecommerce_temp.Models.CartViewModel
 
 @{
