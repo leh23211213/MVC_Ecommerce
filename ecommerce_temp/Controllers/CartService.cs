@@ -5,23 +5,26 @@ using Microsoft.EntityFrameworkCore;
 public class CartService
 {
     private readonly ecommerce_tempContext _context;
+    private readonly HttpContext HttpContext;
 
     public CartService(ecommerce_tempContext context)
     {
         _context = context;
     }
 
-    public CartViewModel GetCartByUserId(string userId)
+    private Cart GetCartId(string userId)
     {
         var cart = _context.Carts
-            .Include(c => c.CartItems)
-            .ThenInclude(ci => ci.Product)
-            .FirstOrDefault(c => c.UserId == userId);
+           .Include(c => c.CartItems)
+           .ThenInclude(ci => ci.Product)
+           .FirstOrDefault(c => c.UserId == userId);
 
-        if (cart == null)
-        {
-            return null;
-        }
+        return cart == null ? null : cart;
+    }
+
+    public CartViewModel GetView(string userId)
+    {
+        var cart = GetCartId(userId);
 
         var cartViewModel = new CartViewModel
         {
@@ -30,6 +33,7 @@ public class CartService
             {
                 CartItemId = ci.CartItemId,
                 ProductName = ci.Product.Name,
+                ImageUrl = ci.Product.ImageUrl,
                 Price = ci.Product.Price,
                 Quantity = ci.Quantity
             }).ToList()
@@ -37,23 +41,11 @@ public class CartService
         return cartViewModel;
     }
 
-    public void AddToCart(string userId, string productId, int quantity)
+    public void AddToCart(string userId, string productId, int quantity = 1)
     {
-        var cart = _context.Carts
-          .Include(c => c.CartItems)
-          .FirstOrDefault(c => c.UserId == userId);
-        if (cart == null)
-        {
-            cart = new Cart
-            {
-                UserId = userId,
-                DateCreated = DateTime.Now
-            };
-            _context.Carts.Add(cart);
-            _context.SaveChanges();
-        }
+        var cart = GetCartId(userId);
 
-        var cartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == productId);
+        var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartId == cart.CartId && ci.ProductId == productId);
         if (cartItem == null)
         {
             cartItem = new CartItem
@@ -66,7 +58,8 @@ public class CartService
         }
         else
         {
-            cartItem.Quantity += quantity;
+            cartItem.Quantity += 1;
+            _context.CartItems.Update(cartItem);
         }
         _context.SaveChanges();
     }
@@ -100,41 +93,41 @@ public class CartService
             _context.SaveChanges();
         }
     }
-    public CartViewModel IncreaseCartItemQuantity(string userId, string cartItemId)
-    {
-        var cart = _context.Carts
-            .Include(c => c.CartItems)
-            .FirstOrDefault(c => c.UserId == userId);
+    // public CartViewModel IncreaseCartItemQuantity(string userId, string cartItemId)
+    // {
+    //     var cart = _context.Carts
+    //         .Include(c => c.CartItems)
+    //         .FirstOrDefault(c => c.UserId == userId);
 
-        if (cart != null)
-        {
-            var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartItemId == cartItemId);
-            if (cartItem != null)
-            {
-                cartItem.Quantity++;
-                _context.SaveChanges();
-            }
-        }
+    //     if (cart != null)
+    //     {
+    //         var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartItemId == cartItemId);
+    //         if (cartItem != null)
+    //         {
+    //             cartItem.Quantity++;
+    //             _context.SaveChanges();
+    //         }
+    //     }
 
-        return GetCartByUserId(userId);
-    }
+    //     return GetCart(userId);
+    // }
 
-    public CartViewModel DecreaseCartItemQuantity(string userId, string cartItemId)
-    {
-        var cart = _context.Carts
-            .Include(c => c.CartItems)
-            .FirstOrDefault(c => c.UserId == userId);
+    // public CartViewModel DecreaseCartItemQuantity(string userId, string cartItemId)
+    // {
+    //     var cart = _context.Carts
+    //         .Include(c => c.CartItems)
+    //         .FirstOrDefault(c => c.UserId == userId);
 
-        if (cart != null)
-        {
-            var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartItemId == cartItemId);
-            if (cartItem != null && cartItem.Quantity > 1)
-            {
-                cartItem.Quantity--;
-                _context.SaveChanges();
-            }
-        }
+    //     if (cart != null)
+    //     {
+    //         var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartItemId == cartItemId);
+    //         if (cartItem != null && cartItem.Quantity > 1)
+    //         {
+    //             cartItem.Quantity--;
+    //             _context.SaveChanges();
+    //         }
+    //     }
 
-        return GetCartByUserId(userId);
-    }
+    //     return GetCart(userId);
+    // }
 }

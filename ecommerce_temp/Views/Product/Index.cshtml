@@ -36,10 +36,8 @@
                         {
                             <li class="Item">
                                 <div class="Item-Img">
-                                    <a href="">
-                                        <a asp-action="Details" asp-route-id="@item.ProductId"> <img
-                                                src="@Url.Content(item.ImageUrl)" alt=""> </a>
-                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.ProductId"> <img
+                                            src="@Url.Content(item.ImageUrl)" alt=""> </a>
                                 </div>
                                 <div class="Product-Info">
                                     <h3>@item.Name</h3>
@@ -47,10 +45,6 @@
                                 </div>
                                 <div>
                                     <a asp-action="Details" asp-route-id="@item.ProductId">Details</a>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary add-to-cart" data-product-id="@item.ProductId"
-                                        data-quantity="1">Add to Cart</button>
                                 </div>
                             </li>
                         }
@@ -62,22 +56,28 @@
 </div>
 <script>
     $(document).ready(function () {
-        $(".add-to-cart").click(function () {
-            var productId = $(this).data("product-id");
-            var quantity = $(this).data("quantity");
+        $('.add-to-cart').click(function () {
+            var productId = $(this).data('product-id');
+            var quantity = $(this).data('quantity');
+            var token = $('input[name="__RequestVerificationToken"]').val();
 
             $.ajax({
                 url: '@Url.Action("AddToCart", "Cart")',
                 type: 'POST',
                 data: {
                     productId: productId,
-                    quantity: quantity
+                    quantity: quantity,
+                    __RequestVerificationToken: token
                 },
                 success: function (response) {
-                    alert("Product added to cart!");
+                    if (response.success) {
+                        alert("Product added to cart!");
+                    } else {
+                        alert("There was an error adding the product to the cart.");
+                    }
                 },
-                error: function (xhr, status, error) {
-                    alert("An error occurred while adding the product to the cart.");
+                error: function () {
+                    alert("There was an error processing your request.");
                 }
             });
         });

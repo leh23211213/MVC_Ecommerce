@@ -9,7 +9,6 @@ E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\obj\Debug\net8.0\ecommerce_temp
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\obj\Debug\net8.0\ecommerce_temp.sourcelink.json
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\obj\Debug\net8.0\ecommerce_temp.MvcApplicationPartsAssemblyInfo.cs
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Debug\net8.0\appsettings.Development.json
-E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Debug\net8.0\appsettings.json
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Debug\net8.0\ecommerce_temp.staticwebassets.runtime.json
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Debug\net8.0\ecommerce_temp.exe
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Debug\net8.0\ecommerce_temp.deps.json
