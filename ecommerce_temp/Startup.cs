@@ -97,10 +97,10 @@ namespace ecommerce_temp
                 app.UseHsts(); // Thêm HTTP Strict Transport Security (HSTS) headers.
             }
 
+            app.UseSession();
             app.UseHttpsRedirection(); //  Chuyển hướng các yêu cầu HTTP sang HTTPS. 
             app.UseStaticFiles(); //  Cho phép phục vụ các tệp tĩnh như CSS, JavaScript, v.v.
             app.UseRouting(); // Thêm middleware định tuyến vào pipeline xử lý yêu cầu.
-            app.UseSession();
             app.UseAuthentication(); // Thêm middleware xác thực vào pipeline.
             app.UseAuthorization(); // Thêm middleware phân quyền vào pipeline.
 
@@ -110,10 +110,10 @@ namespace ecommerce_temp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapControllerRoute(
-                    name: "Cart",
-                    pattern: "Cart", // URL /Cart
-                    defaults: new { controller = "Cart", action = "Index" }); // Controller và action mặc định
+                // endpoints.MapControllerRoute(
+                //     name: "Cart",
+                //     pattern: "Cart", // URL /Cart
+                //     defaults: new { controller = "Cart", action = "Index" }); // Controller và action mặc định
 
                 // Bạn có thể thêm các định tuyến riêng cho các controller khác nếu cần thiết
                 // Ví dụ:

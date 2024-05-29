@@ -6,6 +6,9 @@ public class CartItemMap : IEntityTypeConfiguration<CartItem>
     public void Configure(EntityTypeBuilder<CartItem> builder)
     {
         builder.HasKey(ci => ci.CartItemId);
+        // Set CartItemId as an identity column
+        builder.Property(ci => ci.CartItemId)
+            .ValueGeneratedOnAdd();
 
         builder.Property(ci => ci.Quantity)
             .IsRequired();

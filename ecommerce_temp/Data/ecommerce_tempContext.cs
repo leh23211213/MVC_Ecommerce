@@ -33,13 +33,9 @@ namespace ecommerce_temp.Data
                new Product { ProductId = "IP13MiniPK128GB", Name = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-PK-128GB.png" }
            );
 
-            modelBuilder.Entity<Cart>().HasData(
-                new Cart { CartId = "1", UserId = "1508df73-fedc-4196-a720-68ddf118bb6b", DateCreated = DateTime.Now }
-            );
-
             modelBuilder.Entity<CartItem>().HasData(
-                new CartItem { CartItemId = "1", CartId = "1", ProductId = "IP13MiniBK128GB", Quantity = 1 },
-                new CartItem { CartItemId = "2", CartId = "1", ProductId = "IP13MiniPK128GB", Quantity = 2 }
+                new CartItem { CartItemId = 1, ProductId = "IP13MiniBK128GB", Quantity = 1, CartId = "1" },
+                new CartItem { CartItemId = 2, ProductId = "IP13MiniPK128GB", Quantity = 1, CartId = "1" }
             );
 
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
@@ -52,38 +48,38 @@ namespace ecommerce_temp.Data
             }
         }
 
-        public override int SaveChanges()
-        {
-            var entries = ChangeTracker.Entries<User>().Where(e => e.State == EntityState.Added).ToList();
+        // public override int SaveChanges()
+        // {
+        //     var entries = ChangeTracker.Entries<User>().Where(e => e.State == EntityState.Added).ToList();
 
-            foreach (var entry in entries)
-            {
-                var user = entry.Entity;
-                Carts.Add(new Cart
-                {
-                    UserId = user.Id,
-                    DateCreated = DateTime.Now
-                });
-            }
+        //     foreach (var entry in entries)
+        //     {
+        //         var user = entry.Entity;
+        //         Carts.Add(new Cart
+        //         {
+        //             UserId = user.Id,
+        //             DateCreated = DateTime.Now
+        //         });
+        //     }
 
-            return base.SaveChanges();
-        }
+        //     return base.SaveChanges();
+        // }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            var entries = ChangeTracker.Entries<User>().Where(e => e.State == EntityState.Added).ToList();
+        // public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        // {
+        //     var entries = ChangeTracker.Entries<User>().Where(e => e.State == EntityState.Added).ToList();
 
-            foreach (var entry in entries)
-            {
-                var user = entry.Entity;
-                Carts.Add(new Cart
-                {
-                    UserId = user.Id,
-                    DateCreated = DateTime.Now
-                });
-            }
+        //     foreach (var entry in entries)
+        //     {
+        //         var user = entry.Entity;
+        //         Carts.Add(new Cart
+        //         {
+        //             UserId = user.Id,
+        //             DateCreated = DateTime.Now
+        //         });
+        //     }
 
-            return await base.SaveChangesAsync(cancellationToken);
-        }
+        //     return await base.SaveChangesAsync(cancellationToken);
+        // }
     }
 }

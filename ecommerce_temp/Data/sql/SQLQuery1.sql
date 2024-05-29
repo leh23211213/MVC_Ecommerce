@@ -112,4 +112,6 @@ VALUES
 ('IP13B1TB16','iPhone 13 Standard', 'Description of iPhone 13 (Black, Thường, 16GB)', 'image_url_of_iphone13_black_thường' , 999.99, 100, 'SmartPhone',0),
 ('IP13B1TB32','iPhone 13 Standard', 'Description of iPhone 13 (Black, Thường, 32GB)', 'image_url_of_iphone13_black_thường', 1099.99, 150, 'SmartPhone',0),
 ('IP13B1PMB16','iPhone 13 Pro Max)', 'Description of iPhone 13 (Black, Pro Max, 16GB)', 'image_url_of_iphone13_black_pro_max' , 999.99, 100, 'SmartPhone',0),
-('IP13B1PMB32','iPhone 13 Pro Max', 'Description of iPhone 13 (Black, Pro Max, 32GB)', 'image_url_of_iphone13_black_pro_max', 1099.99, 150, 'SmartPhone',0),
+('IP13-Mini-GR128GB','iPhone 13 Mini', 'iPhone 13 (Black, Pro Max, 32GB)', '~/lib/image/SmartPhone/Iphone/IP13-Mini-GR-128GB.png', 1099, 150, 'SmartPhone',0),
+('IP13MiniPK128GB' ,'iPhone 13 Mini' ,'iPhone 13 (Pink, Mini, 128GB)' ,'~\lib\image\SmartPhone\Iphone\IP13-Mini-PK-128GB.png' ,999 ,100 ,'SmartPhone' ,0),
+('IP13MiniPK128GB' ,'iPhone 13 Mini' ,'iPhone 13 (Pink, Mini, 128GB)' ,'~\lib\image\SmartPhone\Iphone\IP13-Mini-PK-128GB.png' ,999 ,100 ,'SmartPhone' ,0);

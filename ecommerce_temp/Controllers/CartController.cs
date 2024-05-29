@@ -1,7 +1,9 @@
+using ecommerce_temp.Data;
 using ecommerce_temp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ecommerce_temp.Controllers
 {
@@ -10,8 +12,8 @@ namespace ecommerce_temp.Controllers
     public class CartController : Controller
     {
         private readonly UserManager<User> _userManager;
+        private readonly ecommerce_tempContext _context;
         private readonly CartService _cartService;
-
 
         [ActivatorUtilitiesConstructor] // BUG: MULTIple contructors add <~
         public CartController(UserManager<User> userManager, CartService cartService)
@@ -23,7 +25,6 @@ namespace ecommerce_temp.Controllers
         [HttpGet("")]
         public async Task<IActionResult> Index()
         {
-            // TODO: bug userId can not get
             var userId = _userManager.GetUserId(User);
             if (string.IsNullOrEmpty(userId))
             {
@@ -31,7 +32,7 @@ namespace ecommerce_temp.Controllers
                 return Unauthorized(); // Or redirect to the login page
             }
 
-            var cartViewModel = _cartService.GetCartByUserId(userId);
+            var cartViewModel = _cartService.GetView(userId);
 
             if (cartViewModel == null)
             {
@@ -41,45 +42,50 @@ namespace ecommerce_temp.Controllers
             return View(cartViewModel);
         }
 
-        [HttpPost]
+        [HttpPost("Add")]
         [ValidateAntiForgeryToken]
-        public IActionResult AddToCart(string productId, int quantity)
+        public async Task<IActionResult> Add(string productId)
         {
+            // var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
+            // if (product == null)
+            // {
+            //     return NotFound("{product.Name} Not exits.");
+            // }
+
             var userId = _userManager.GetUserId(User);
-            _cartService.AddToCart(userId, productId, quantity);
+            if (userId == null)
+            {
+                return Unauthorized("User not found");
+            }
+
+            _cartService.AddToCart(userId, productId);
+
             return RedirectToAction("Index");
         }
-
-        [HttpPost("RemoveFromCart")]
-        public IActionResult RemoveFromCart(string productId)
+        public async Task<IActionResult> AddToCart()
         {
-            var userId = _userManager.GetUserId(User);
-            _cartService.RemoveFromCart(userId, productId);
-            return RedirectToAction("Index");
+
+            return View("Index");
         }
 
-        [HttpPost("ClearCart")]
-        public IActionResult ClearCart()
+        // POST: Classes/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string? id)
         {
-            var userId = _userManager.GetUserId(User);
-            _cartService.ClearCart(userId);
-            return RedirectToAction("Index");
-        }
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        [HttpPost]
-        public IActionResult IncreaseQuantity(string cartItemId)
-        {
-            var userId = _userManager.GetUserId(User);
-            var updatedCart = _cartService.IncreaseCartItemQuantity(userId, cartItemId);
-            return Json(updatedCart);
-        }
+            var cartItems = await _context.CartItems.FindAsync(id);
+            if (cartItems != null)
+            {
+                _context.CartItems.Remove(cartItems);
+            }
 
-        [HttpPost]
-        public IActionResult DecreaseQuantity(string cartItemId)
-        {
-            var userId = _userManager.GetUserId(User);
-            var updatedCart = _cartService.DecreaseCartItemQuantity(userId, cartItemId);
-            return Json(updatedCart);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("");
         }
     }
 }

@@ -28,7 +28,7 @@
                                 xmlns="http://www.w3.org/2000/svg">
                             </svg>
                         </span>
-                        <span class="label">All 1 product</span>
+                        <span class="label">All 0 product</span>
                     </label>
                     <span>Price</span>
                     <span>Amount</span>
@@ -37,86 +37,6 @@
                         alt="deleted">
                 </div>
                 <div>
-                    <div class="Seller">
-                        <div class="List-Intended">
-                            <div class="Row">
-                                <div class="Item-Info">
-                                    <label class="checkbox">
-                                        <input type="checkbox">
-                                    </label>
-                                    <a target="_blank" href="">
-                                        <img src="~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" width="80"
-                                            height="60" alt="">
-                                    </a>
-                                    <div class="Item-Content">
-                                        <a href=""> iphone 14</a>
-                                    </div>
-                                </div>
-                                <div class="Item-Price">
-                                    <span>30usd</span>
-                                </div>
-                                <div class="Item-Quantity">
-                                    <div class="Quantity">
-                                        <button class="Substract" onclick="DecreTest2()">
-                                            -
-                                        </button>
-                                        <input id="quantity-test-2" class="base-stats" type="number" name="quantity"
-                                            value="5" readonly />
-                                        <button class="Add" onclick="IncreTest2()">
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="Item-Subtotal">
-                                    <p>500usd</p>
-                                </div>
-                                <div class="Item-Action">
-                                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
-                                        alt="deleted">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Seller">
-                        <div class="List-Intended">
-                            <div class="Row">
-                                <div class="Item-Info">
-                                    <label class="checkbox">
-                                        <input type="checkbox">
-                                    </label>
-                                    <a target="_blank" href="">
-                                        <img src="~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" width="80"
-                                            height="60" alt="">
-                                    </a>
-                                    <div class="Item-Content">
-                                        <a href=""> iphone 13</a>
-                                    </div>
-                                </div>
-                                <div class="Item-Price">
-                                    <span>30usd</span>
-                                </div>
-                                <div class="Item-Quantity">
-                                    <div class="Quantity">
-                                        <button class="Substract" onclick="DecreTest()">
-                                            -
-                                        </button>
-                                        <input id="quantity-test" class="base-stats" type="number" name="quantity" value="5"
-                                            readonly />
-                                        <button class="Add" onclick="IncreTest()">
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="Item-Subtotal">
-                                    <p>500111usd</p>
-                                </div>
-                                <div class="Item-Action">
-                                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
-                                        alt="deleted">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="infinite-scroll-component">
                         @foreach (var item in Model.CartItems)
                         {
@@ -127,40 +47,39 @@
                                             <label class="checkbox">
                                                 <input type="checkbox">
                                             </label>
-                                            <a target="_blank" href="">
-                                                <img src="~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" width="80"
-                                                    height="60" alt="">
+                                            <a href="#">
+                                                <img src="@Url.Content(item.ImageUrl)" width="80" height="60">
                                             </a>
                                             <div class="Item-Content">
                                                 <a href="">@item.ProductName</a>
                                             </div>
                                         </div>
                                         <div class="Item-Price">
-                                            <div type="normal" class="Price">@item.Price<sup>đ</sup></div>
+                                            <div type="normal" class="Price">@item.Price <sup>đ</sup> </div>
                                         </div>
                                         <div class="Item-Quantity">
                                             <div class="Quantity">
-                                                <button class="Substract" onclick="Decre(@item.CartItemId,@item.Price)">
+                                                <button class="Substract" onclick="Decre(@item.CartItemId, @item.Price)">
                                                     -
                                                 </button>
                                                 <input id="product-@item.CartItemId" class="base-stats" type="number"
-                                                    name="quantity" value="5" readonly />
-                                                <button class="Add" onclick="Incre(@item.CartItemId)">
+                                                    name="quantity" value="@item.Quantity" readonly />
+                                                <button class="Add" onclick="Incre(@item.CartItemId, @item.Price)">
                                                     +
                                                 </button>
                                             </div>
                                         </div>
                                         <div id="itemTotal-@item.CartItemId" class="Item-Subtotal">
                                             @item.Price
-                                            @*
-
-
-                                    *@
                                             <sup>đ</sup>
                                         </div>
                                         <div class="Item-Action">
-                                            <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
-                                                alt="deleted">
+                                            @* <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                                    alt="deleted" class="delete-button" type="submit" value="Delete"> *@
+                                            <form asp-action="Delete" asp-controller="Cart" method="post">
+                                                <input type="hidden" asp-for="@item.CartItemId" />
+                                                <input type="submit" value="Delete" class="btn btn-danger" />
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -207,79 +126,9 @@
             </div>
         </div>
     </div>
-    <script>
-        function Decre(productId, price) {
-            let increaseWith = 1;
-            let newValue = parseInt(document.getElementById(`product-${productId}`).value) - increaseWith;
-            if (newValue <= 5) {
-                document.getElementById(`product-${productId}`).value = newValue;
-            }
-
-            let currentValue = document.getElementById(`product-${productId}`).value;
-            let total = price * currentValue;
-           document.getElementById(`itemTotal-${productId}`).innerHTML = total;
-        }
-
-
-
-        @* // id querry *@
-            function Incre(productId) {
-                console.log(productId);
-                let increaseWith = 1; let newValue =
-                    parseInt(document.getElementById('quantity').value) + increaseWith;
-                if (newValue <= 5) { document.getElementById('quantity').value = newValue; }
-            }
-
-
-
-
-
-        function DecreTest() {
-            console.log("123");
-            let increaseWith = 1;
-            let quantity = document.getElementById('quantity-test');
-            let quantityValue = quantity.value;
-            console.log("133", quantityValue);
-            let newValue = parseInt(quantityValue) - increaseWith;
-
-            if (newValue <= 5) {
-                quantity.value = newValue;
-            }
-        }
-
-    </script>
+    <script src="~/js/Cart.js"></script>
 }
 else
 {
     <p>Please log in.</p>
 }
-@* @model ecommerce_temp.Models.CartViewModel
-
-@{
-ViewData["Title"] = "Giỏ hàng";
-}
-
-<h2>Giỏ hàng của bạn</h2>
-
-<table>
-<thead>
-<tr>
-<th>Sản phẩm</th>
-<th>Giá</th>
-<th>Số lượng</th>
-<th>Tổng</th>
-</tr>
-</thead>
-<tbody>
-@foreach (var item in Model.CartItems)
-
-{
-<tr>
-<td>@item.ProductName</td>
-<td>@item.Price</td>
-<td>@item.Quantity</td>
-<td>@(item.Price * item.Quantity)</td>
-</tr>
-}
-</tbody>
-</table> *@

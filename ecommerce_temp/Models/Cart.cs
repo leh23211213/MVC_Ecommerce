@@ -1,5 +1,4 @@
 using ecommerce_temp.Models;
-
 public class Cart
 {
     public string CartId { get; set; }
@@ -7,6 +6,8 @@ public class Cart
     public DateTime DateCreated { get; set; }
     public virtual User User { get; set; }
     public virtual ICollection<CartItem> CartItems { get; set; }
+    // public int RecordId { get; set; }
+    // public int Count { get; set; }
     public Cart()
     {
         CartId = Guid.NewGuid().ToString(); // Tạo GUID mới cho CartId khi khởi tạo Cart

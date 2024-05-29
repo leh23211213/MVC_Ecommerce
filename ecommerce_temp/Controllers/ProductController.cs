@@ -25,12 +25,11 @@ namespace ecommerce_temp.Controllers
         }
 
         // GET: Products/Details/5
-        [HttpGet("Details")]
+        [HttpGet("Details/{id}")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
-                _logger.LogWarning("Product with ID {ProductId} not found.", id);
                 return NotFound();
             }
 
