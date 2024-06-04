@@ -29,3 +29,7 @@ E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce\ecommerce.WebUI\obj\Debug\net8.0\ref
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce\ecommerce.WebUI\obj\Debug\net8.0\ecommerce.WebUI.pdb
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce\ecommerce.WebUI\obj\Debug\net8.0\ecommerce.WebUI.genruntimeconfig.cache
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce\ecommerce.WebUI\obj\Debug\net8.0\ref\ecommerce.WebUI.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce\ecommerce.WebUI\bin\Debug\net8.0\ecommerce.Data.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce\ecommerce.WebUI\bin\Debug\net8.0\ecommerce.Data.pdb
+E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce\ecommerce.WebUI\obj\Debug\net8.0\ecommerce.WebUI.csproj.AssemblyReference.cache
+E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce\ecommerce.WebUI\obj\Debug\net8.0\ecommerce.WebUI.csproj.CopyComplete

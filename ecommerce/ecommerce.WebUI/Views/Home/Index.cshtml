@@ -1,8 +1,81 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true">
+</head>
+
+<body>
+    <!-- Header  -->
+
+    <head id="header">
+        <div class="header container">
+            
+            <div class="brand">
+                <a href="#" class="main-link">
+                    <img src="img/icon/logo_dark.svg" alt="" class="logo">
+                </a>
+            </div>
+
+            <div class="hamburger">
+                <label for="toggle-nav-checkbox">
+                    <img src="" class="icon" alt="">
+                </label>
+            </div>
+            <input type="checkbox" name="toggle-nav-checkbox" id="toggle-nav-checkbox">
+
+            <nav class="nav-list">
+                <ul class="nav-links">
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#" class="nav-link">News</a></li>
+                    <li><a href="#" class="nav-link">Community</a></li>
+                    <li><a href="#" class="nav-link">More</a></li>
+                </ul>
+            </nav>
+        </div>
+    </head>
+    <!-- End Header  -->
+
+    <!-- Introduce -->
+    <section id="Introduce">
+        <div class="Introduce container">
+            <article class="article">
+                @* <h1 class="primary-title">The game engine you <span>waited</span> for.</h1>
+                <p>Godot provides a huge set of common tools, so you can just focus on making your game without
+                reinventing
+                the
+                wheel.
+                <br><br>
+                Godot is completely free and open-source under the very permissive MIT license. No strings attached,
+                no
+                royalties, nothing. Your game is yours, down to the last line of engine code.
+                </p> *@
+            </article>
+        </div>
+    </section>
+    <!-- End Introduce -->
+
+    <!-- features -->
+    <section id="features">
+
+    </section>
+    <!-- End features -->
+
+    <!-- get-involved -->
+    <section id="get-involved">
+
+    </section>
+    <!-- End get-involved -->
+
+    <!-- Footer  -->
+    <footer id="footer">
+
+    </footer>
+    <!--End Footer-->
+</body>

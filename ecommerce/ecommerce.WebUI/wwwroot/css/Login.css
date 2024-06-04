@@ -1,0 +1,167 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  scroll-behavior: smooth;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+:root {
+  /* Font sizes  */
+  --bigF: 3.6rem;
+  --midF: 1.8rem;
+  --smallF: 1.6rem;
+  --lightF: 1.4rem;
+
+  --padding: clamp(1rem, 4vw, 2rem);
+
+  /* Colors */
+  --textC: rgb(59, 59, 59);
+  --textC2: black;
+
+  --textC: hsl(216, 12%, 92%);
+  --textC2: white;
+
+  --accentC: hsl(225, 39%, 24%);
+  --accentCT: hsl(225, 38%, 29%);
+  --accentC2: hsl(206, 48%, 51%);
+  --accentC3: hsl(223, 22%, 19%);
+  --accentCO: linear-gradient(
+    hsla(0, 0%, 0%, 0.3),
+    hsla(0, 0%, 0%, 0.6),
+    rgba(0, 0, 0, 0.9)
+  );
+
+  --bgC: hsl(216, 12%, 92%);
+  --bgC: hsl(0, 0%, 0%);
+  --bgC2: hsl(0, 2%, 11%);
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: "Roboto", Helvetica, sans-serif;
+    background-color: var(--bgC);
+    color: var(--textC);
+    overflow-x: hidden;
+    scrollbar-width: 10px;
+}
+
+body::-webkit-scrollbar {
+    cursor: pointer;
+    width: 10px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(87, 175, 76, 0.3);
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    /* border-radius: 1em; */
+    background-color: var(--accentC2);
+  }
+
+/* Top heading section */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 98;
+    transition: background-color 1s ease;
+}
+
+.header {
+    padding-bottom: 0;
+    min-height: 5rem;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    padding-top: 0;
+}
+
+.container {
+    padding: 10rem var(--padding);
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+/* Media Query For Tablet */
+@media (max-width: 768px) {
+    /* Header  */
+    .nav-list {
+      /* display: none; */
+    position: absolute;
+    top: -600%;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bgC);
+    text-align: center;
+
+    width: 100vw;
+    z-index: 99;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    padding-bottom: 2rem;
+    padding-top: 7rem;
+    }
+
+    .hamburger {
+    display: block;
+    }
+
+    .brand,
+    .hamburger {
+    z-index: 100;
+    }
+    .nav-links.extra {
+    margin-top: 4rem;
+    }
+
+    .hamburger label {
+    cursor: pointer;
+    }
+
+    #toggle-nav-checkbox:checked ~ .nav-list {
+    top: -2rem;
+    opacity: 1;
+    }
+
+    /* hero  */
+
+    /* Feature  */
+    .features .article {
+      flex-wrap: wrap;
+    }
+
+    /* get-involved */
+}
+
+/* Introduce  */
+.Introduce {
+    padding-bottom: 0;
+    flex-direction: row;
+    background: var(--accentCO), url("../lib/image/Login/eCommerceMVC.png") center/cover; 
+    background-attachment: fixed;
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
