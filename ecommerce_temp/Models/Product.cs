@@ -2,11 +2,6 @@ namespace ecommerce_temp.Models
 {
     public class Product
     {
-        public Product()
-        {
-            this.Details = new HashSet<ProductDetail>();
-        }
-
         public string ProductId { get; set; }
         public string Name { get; set; }
         public string? Description { get; set; }

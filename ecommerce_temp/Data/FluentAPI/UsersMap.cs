@@ -8,6 +8,7 @@ namespace ecommerce_temp
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.ToTable("Users");
             // Thiết lập cấu hình cho thuộc tính HomeAdress
             // builder.Property(e => e.AddressLine1)
             // .IsRequired(false) // (Tuỳ chọn) Có hoặc không cần thiết

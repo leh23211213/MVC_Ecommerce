@@ -41,7 +41,7 @@ public class CartService
         return cartViewModel;
     }
 
-    public void AddToCart(string userId, string productId, int quantity = 1)
+    public async Task Add(string userId, string productId, int quantity = 1)
     {
         var cart = GetCartId(userId);
 
@@ -64,7 +64,7 @@ public class CartService
         _context.SaveChanges();
     }
 
-    public void RemoveFromCart(string userId, string productId)
+    public void Delete(string userId, string productId)
     {
         var cart = _context.Carts
           .Include(c => c.CartItems)

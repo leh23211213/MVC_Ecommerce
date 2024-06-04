@@ -1,14 +1,16 @@
-using ecommerce_temp.Models;
-
-public class CartItem
+namespace ecommerce_temp.Models
 {
-    public int CartItemId { get; set; }
-    public string CartId { get; set; }
-    public string ProductId { get; set; }
-    public int Quantity { get; set; }
+    public class CartItem
+    {
+        public int CartItemId { get; set; }
+        public string CartId { get; set; }
+        public string ProductId { get; set; }
+        public int Quantity { get; set; }
 
-    // Navigation property for Cart
-    public Cart Cart { get; set; }
-    // Navigation property for Product
-    public Product Product { get; set; }
+        // Navigation property for Cart
+        public Cart Cart { get; set; }
+        // Navigation property for Product
+        public Product Product { get; set; }
+    }
+
 }
