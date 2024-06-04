@@ -10,28 +10,30 @@ namespace ecommerce_temp.Data
             : base(options)
         {
         }
-
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UsersMap());
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
+            //modelBuilder.ApplyConfiguration(new UsersMap());
             modelBuilder.ApplyConfiguration(new ProductMap());
-            modelBuilder.ApplyConfiguration(new CartItemMap());
+            // modelBuilder.ApplyConfiguration(new CartItemConfiguration());
             modelBuilder.ApplyConfiguration(new CartMap());
             // modelBuilder.ApplyConfiguration(new PaymenMethodMap());
             // modelBuilder.ApplyConfiguration(new CategoryMap());
-            // modelBuilder.ApplyConfiguration(new OrderMap());
-            // modelBuilder.ApplyConfiguration(new OrderDetailMap());
 
-            base.OnModelCreating(modelBuilder);
             // SeedData
             modelBuilder.Entity<Product>().HasData(
-               new Product { ProductId = "IP13MiniBK128GB", Name = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" },
-               new Product { ProductId = "IP13MiniPK128GB", Name = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-PK-128GB.png" }
-           );
+                new Product { ProductId = "IP13MiniBK128GB", Name = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" },
+                new Product { ProductId = "IP13MiniPK128GB", Name = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-PK-128GB.png" }
+            );
 
             modelBuilder.Entity<CartItem>().HasData(
                 new CartItem { CartItemId = 1, ProductId = "IP13MiniBK128GB", Quantity = 1, CartId = "1" },

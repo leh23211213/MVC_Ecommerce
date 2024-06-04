@@ -11,15 +11,18 @@ namespace ecommerce_temp.Controllers
     [Route("Cart")]
     public class CartController : Controller
     {
+        private readonly ILogger<ProductController> _logger;
         private readonly UserManager<User> _userManager;
         private readonly ecommerce_tempContext _context;
         private readonly CartService _cartService;
 
         [ActivatorUtilitiesConstructor] // BUG: MULTIple contructors add <~
-        public CartController(UserManager<User> userManager, CartService cartService)
+        public CartController(ecommerce_tempContext context, UserManager<User> userManager, CartService cartService, ILogger<ProductController> logger)
         {
             _cartService = cartService;
             _userManager = userManager;
+            _logger = logger;
+            _context = context;
         }
 
         [HttpGet("")]
@@ -28,12 +31,10 @@ namespace ecommerce_temp.Controllers
             var userId = _userManager.GetUserId(User);
             if (string.IsNullOrEmpty(userId))
             {
-                // Handle when userId is not found
-                return Unauthorized(); // Or redirect to the login page
+                return Unauthorized();
             }
 
             var cartViewModel = _cartService.GetView(userId);
-
             if (cartViewModel == null)
             {
                 return NotFound();
@@ -46,11 +47,11 @@ namespace ecommerce_temp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(string productId)
         {
-            // var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
-            // if (product == null)
-            // {
-            //     return NotFound("{product.Name} Not exits.");
-            // }
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
+            if (product == null)
+            {
+                return NotFound("{product.Name} Not exits.");
+            }
 
             var userId = _userManager.GetUserId(User);
             if (userId == null)
@@ -58,33 +59,46 @@ namespace ecommerce_temp.Controllers
                 return Unauthorized("User not found");
             }
 
-            _cartService.AddToCart(userId, productId);
-
-            return RedirectToAction("Index");
-        }
-        public async Task<IActionResult> AddToCart()
-        {
-
-            return View("Index");
+            _cartService.Add(userId, productId);
+            return Json(new { success = true });
         }
 
+
+        // TODO : clean code
         // POST: Classes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var cartItems = await _context.CartItems.FindAsync(id);
-            if (cartItems != null)
+            var userId = _userManager.GetUserId(User);
+            if (userId == null)
             {
-                _context.CartItems.Remove(cartItems);
+                return Unauthorized("User not found");
             }
+            // // c1
+            // var cartItem = await _context.CartItems.FindAsync(id);
+            // if (cartItem != null)
+            // {
+            //     return NotFound("{product.Name} Not exits.");
+            // }
+            // _context.CartItems.Remove(cartItem);
+            // await _context.SaveChangesAsync();
 
-            await _context.SaveChangesAsync();
+            // c2
+            var cart = _context.Carts
+         .Include(c => c.CartItems)
+         .FirstOrDefault(c => c.UserId == userId);
+
+            if (cart != null)
+            {
+                var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartItemId == id);
+                if (cartItem != null)
+                {
+                    _context.CartItems.Remove(cartItem);
+                    _context.SaveChanges();
+                }
+            }
             return RedirectToAction("");
         }
     }

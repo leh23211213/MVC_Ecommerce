@@ -1,19 +1,19 @@
-// namespace ecommerce_temp.Models
-// {
-//     public class Order
-//     {
-//         public Order()
-//         {
-//             this.OrderDetails = new HashSet<OrderDetail>();
-//         }
-//         public int OrderId { get; set; }
-//         public string UserId { get; set; }
-//         public DateTime OrderDate { get; set; }
-//         public int TotalAmount { get; set; }
-//         public string Status { get; set; }
+namespace ecommerce_temp.Models
+{
+    public class Order
+    {
+        public int OrderId { get; set; }
+        public string UserId { get; set; }
+        public decimal TotalPrice { get; set; }
+        public OrderStatus Status { get; set; }
+        public DateTime OrderDate { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
+    }
 
-
-//         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-//         // public virtual Customer Customers { get; set; }
-//     }
-// }
+    public enum OrderStatus
+    {
+        Processing,
+        Completed,
+        Canceled
+    }
+}

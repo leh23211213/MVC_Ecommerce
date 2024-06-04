@@ -25,4 +25,26 @@ function Incre(productId, price) {
     document.getElementById(`itemTotal-${productId}`).innerHTML = total;
 }
 
-
+$(document).ready(function () {
+    $(".remove-from-cart").click(function (e) {
+        e.preventDefault();
+        var cartItemId = $(this).data("cart-item-id");
+        var row = $(this).closest('tr');
+        $.ajax({
+            type: "POST",
+            url: "/Cart/Delete",
+            data: {
+                cartItemId: cartItemId,
+                __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+            },
+            success: function (response) {
+                alert(response.message); // Show a success message
+                row.remove(); // Remove the row from the table
+            },
+            error: function (xhr, status, error) {
+                var response = JSON.parse(xhr.responseText);
+                alert(response.message); // Show an error message
+            }
+        });
+    });
+});

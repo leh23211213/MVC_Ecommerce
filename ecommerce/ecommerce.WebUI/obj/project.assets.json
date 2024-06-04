@@ -17,10 +17,7 @@
         },
         "runtime": {
           "bin/placeholder/ecommerce.Data.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       }
     }
   },

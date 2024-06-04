@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ADC3sO2SMzvfIVacDQ6fK5FTRdVPepJ3NBlWgEyz5hg=",
+  "Hash": "HQFLC3UH4b5kWbtibeeYEIAFnWs2t98qS+ebJmXqBeM=",
   "Source": "ecommerce.WebUI",
   "BasePath": "_content/ecommerce.WebUI",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce\\ecommerce.WebUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ecommerce.WebUI.bundle.scp.css"
+    },
+    {
+      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce\\ecommerce.WebUI\\wwwroot\\css\\Login.css",
+      "SourceId": "ecommerce.WebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce\\ecommerce.WebUI\\wwwroot\\",
+      "BasePath": "_content/ecommerce.WebUI",
+      "RelativePath": "css/Login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Login.css"
     },
     {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce\\ecommerce.WebUI\\wwwroot\\css\\site.css",

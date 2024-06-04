@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ecommerce.WebUI.bundle.scp.css"
     },
     {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce\\ecommerce.WebUI\\wwwroot\\css\\Login.css",
+      "PackagePath": "staticwebassets\\css\\Login.css"
+    },
+    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce\\ecommerce.WebUI\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
