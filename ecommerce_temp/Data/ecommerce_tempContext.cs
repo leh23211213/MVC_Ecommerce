@@ -22,17 +22,19 @@ namespace ecommerce_temp.Data
 
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
-            //modelBuilder.ApplyConfiguration(new UsersMap());
             modelBuilder.ApplyConfiguration(new ProductMap());
-            // modelBuilder.ApplyConfiguration(new CartItemConfiguration());
             modelBuilder.ApplyConfiguration(new CartMap());
-            // modelBuilder.ApplyConfiguration(new PaymenMethodMap());
-            // modelBuilder.ApplyConfiguration(new CategoryMap());
+            modelBuilder.ApplyConfiguration(new BrandConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new ColorConfiguration());
+            modelBuilder.ApplyConfiguration(new SizeConfiguration());
+            // modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductDetailConfiguration());
 
             // SeedData
             modelBuilder.Entity<Product>().HasData(
-                new Product { ProductId = "IP13MiniBK128GB", Name = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" },
-                new Product { ProductId = "IP13MiniPK128GB", Name = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-PK-128GB.png" }
+                new Product { ProductId = "IP13MiniBK128GB", ProductName = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" },
+                new Product { ProductId = "IP13MiniPK128GB", ProductName = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-PK-128GB.png" }
             );
 
             modelBuilder.Entity<CartItem>().HasData(
