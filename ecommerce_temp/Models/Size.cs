@@ -7,7 +7,7 @@ namespace ecommerce_temp.Models
             this.ProductDetails = new HashSet<ProductDetail>();
         }
 
-        public string SizeId { get; set; }
+        public int SizeId { get; set; }
         public string SizeName { get; set; }
 
         public virtual ICollection<ProductDetail> ProductDetails { get; set; }

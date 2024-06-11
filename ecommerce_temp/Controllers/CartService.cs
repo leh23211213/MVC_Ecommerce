@@ -32,7 +32,7 @@ public class CartService
             CartItems = cart.CartItems.Select(ci => new CartItemViewModel
             {
                 CartItemId = ci.CartItemId,
-                ProductName = ci.Product.Name,
+                ProductName = ci.Product.ProductName,
                 ImageUrl = ci.Product.ImageUrl,
                 Price = ci.Product.Price,
                 Quantity = ci.Quantity
