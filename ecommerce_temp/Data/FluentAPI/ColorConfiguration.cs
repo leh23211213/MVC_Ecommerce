@@ -11,6 +11,7 @@ public class ColorConfiguration : IEntityTypeConfiguration<Color>
 
         builder.HasMany(c => c.ProductDetails)
                .WithOne(pd => pd.Color)
-               .HasForeignKey(pd => pd.ColorId);
+               .HasForeignKey(pd => pd.ColorId)
+                .OnDelete(DeleteBehavior.Cascade);
     }
 }

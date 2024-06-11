@@ -4,8 +4,8 @@ namespace ecommerce_temp.Models
     {
         public string ProductDetailId { get; set; }
         public string ProductId { get; set; }
-        public string ColorId { get; set; }
-        public string SizeId { get; set; }
+        public int ColorId { get; set; }
+        public int SizeId { get; set; }
 
         public virtual Product Product { get; set; }
         public virtual Color Color { get; set; }

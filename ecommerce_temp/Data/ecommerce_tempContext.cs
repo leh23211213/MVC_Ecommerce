@@ -22,24 +22,40 @@ namespace ecommerce_temp.Data
 
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductMap());
             modelBuilder.ApplyConfiguration(new CartMap());
             modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ColorConfiguration());
             modelBuilder.ApplyConfiguration(new SizeConfiguration());
-            // modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductDetailConfiguration());
 
             // SeedData
-            modelBuilder.Entity<Product>().HasData(
-                new Product { ProductId = "IP13MiniBK128GB", ProductName = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png" },
-                new Product { ProductId = "IP13MiniPK128GB", ProductName = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-PK-128GB.png" }
+            // Seed data for Brand
+            modelBuilder.Entity<Brand>().HasData(
+                new Brand { BrandId = 1, BrandName = "Apple", ImageUrl = "~/lib/image/Brands/Apple.png" }
             );
 
-            modelBuilder.Entity<CartItem>().HasData(
-                new CartItem { CartItemId = 1, ProductId = "IP13MiniBK128GB", Quantity = 1, CartId = "1" },
-                new CartItem { CartItemId = 2, ProductId = "IP13MiniPK128GB", Quantity = 1, CartId = "1" }
+            // Seed data for Category
+            modelBuilder.Entity<Category>().HasData(
+                new Category { CategoryId = 1, CategoryName = "Smartphone" }
+            );
+
+            // Seed data for Color
+            modelBuilder.Entity<Color>().HasData(
+                new Color { ColorId = 1, ColorName = "Black" },
+                new Color { ColorId = 2, ColorName = "Pink" }
+            );
+
+            // Seed data for Size
+            modelBuilder.Entity<Size>().HasData(
+                new Size { SizeId = 1, SizeName = "128GB" },
+                new Size { SizeId = 2, SizeName = "256GB" }
+            );
+            // Seed data for Product
+            modelBuilder.Entity<Product>().HasData(
+                new Product { ProductId = "IP13MiniBK128GB", ProductName = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-BK-128GB.png", BrandId = 1, CategoryId = 1 },
+                new Product { ProductId = "IP13MiniPK128GB", ProductName = "iPhone 13 Mini", Price = 999, ImageUrl = "~/lib/image/SmartPhone/Iphone/IP13-Mini-PK-128GB.png", BrandId = 1, CategoryId = 1 }
             );
 
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())

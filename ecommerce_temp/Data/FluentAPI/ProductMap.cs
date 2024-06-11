@@ -4,7 +4,7 @@ using ecommerce_temp.Models;
 
 namespace ecommerce_temp.Data
 {
-    public class ProductMap : IEntityTypeConfiguration<Product>
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {

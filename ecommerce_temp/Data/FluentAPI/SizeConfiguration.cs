@@ -11,6 +11,7 @@ public class SizeConfiguration : IEntityTypeConfiguration<Size>
 
         builder.HasMany(s => s.ProductDetails)
                .WithOne(pd => pd.Size)
-               .HasForeignKey(pd => pd.SizeId);
+               .HasForeignKey(pd => pd.SizeId)
+                .OnDelete(DeleteBehavior.Cascade);
     }
 }
