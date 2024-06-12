@@ -1,117 +1,176 @@
-CREATE DATABASE Ecommerce;
-USE Ecommerce;
-/*
-	USER
-*/
-CREATE TABLE Users (
-    UserId INT IDENTITY(1000,1) PRIMARY KEY ,
-    UserName NVARCHAR(50) UNIQUE,
-    PassWord VARCHAR(MAX),
-    Email VARCHAR(100) UNIQUE,
-    FullName NVARCHAR(100),
-    Address NVARCHAR(255),
-    PhoneNumber VARCHAR(20) UNIQUE
+
+CREATE TABLE [Cart] (
+	[CartId] NVARCHAR(255) NOT NULL UNIQUE,
+	[UserId] NVARCHAR(255),
+	[DateCreated] DATETIME,
+	[User]  DEFAULT  public virtual User User { get; set; },
+	[CartItems]  DEFAULT public virtual ICollection<CartItem> CartItems { get; set; }
 );
+GO
 
-CREATE TABLE Addresses(
-	AddressId INT IDENTITY PRIMARY KEY ,
-	UserId INT,
-	AddressLine1 NVARCHAR(MAX),
-	City NVARCHAR(50),
-	State NVARCHAR(50),
-	Country NVARCHAR(50),
-	PostalCode VARCHAR(20)
-	FOREIGN KEY (UserId) REFERENCES Users(UserId)
-)
+CREATE INDEX [id_index]
+ON [Cart] ([id]);
+GO
 
-CREATE TABLE PaymentMethods(
-	PaymentMethodId INT IDENTITY PRIMARY KEY,
-	UserId INT,
-	CardNumber VARCHAR(20),
-	ExpiryDate DATE,
-	CVV char(5),
-	CardHolderName VARCHAR(100),
-	BillingAddressId INT,
-	FOREIGN KEY (UserId) REFERENCES Users(UserId),
-	FOREIGN KEY (BillingAddressId) REFERENCES Addresses(AddressId)
-)
-/* 
-	Account
-*/
-	CREATE TABLE Accounts(
-		AccountId INT IDENTITY PRIMARY KEY,
-		UserId INT,
-		AccountName VARCHAR(50),
-		Balance MONEY,
-		FOREIGN KEY (UserId) REFERENCES Users(UserId)
+CREATE TABLE [CartItems] (
+	[CartItemId] NVARCHAR(255) NOT NULL UNIQUE,
+	[CartId] NVARCHAR(255),
+	[ProductId] NVARCHAR(255),
+	[Quantity] INT,
+	[Cart]  DEFAULT public Cart Cart { get; set; },
+	[Product]  DEFAULT   public Product Product { get; set; },
+	PRIMARY KEY([CartItemId])
+);
+GO
 
-	)
-	CREATE TABLE AccountTypes(
-		AccountTypeId INT IDENTITY PRIMARY KEY,
-		TypeName NVARCHAR(20),
-	)
-/* 
-	Product
-*/
-CREATE TABLE Categories(
-	CategoryId INT IDENTITY(1,1) PRIMARY KEY,
-	Name NVARCHAR(100),
-	Description TEXT
-)
+CREATE TABLE [User] (
+	[UserId] NVARCHAR(255),
+	PRIMARY KEY([UserId])
+);
+GO
 
-CREATE TABLE Products (
-    ProductId INT PRIMARY KEY,
-    Name NVARCHAR(100),
-    Description NVARCHAR(MAX),
-    Price MONEY,
-    Quantity INT,
-    Category INT,
-	ImageUrl NVARCHAR(255),
-	FOREIGN KEY (Category) REFERENCES Categories(CategoryId)
-)
+CREATE TABLE [Products] (
+	[ProductId] NVARCHAR(255) NOT NULL UNIQUE,
+	[ProductName] NVARCHAR(255),
+	[Description] NVARCHAR(255),
+	[ImageUrl] NVARCHAR(255),
+	[CategoryId] NVARCHAR(255),
+	[Price] DECIMAL,
+	[BrandId] INT,
+	[Vote] INT,
+	[Quantity] INT,
+	PRIMARY KEY([ProductId])
+);
+GO
 
+CREATE TABLE [Category] (
+	[CategoryId] NVARCHAR(255) NOT NULL UNIQUE,
+	[CategoryName] NVARCHAR(255),
+	--         public virtual ICollection<Product> Products { get; set; }
 
-/* 
-	Cart
-*/
+	[Products] ,
+	PRIMARY KEY([CategoryId])
+);
+GO
 
-CREATE TABLE Carts(
-	CartId INT IDENTITY PRIMARY KEY,
-	UserId INT,
-	ProductId INT,
-	Quantity INT,
-	FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
-)
+CREATE TABLE [ProductDetail] (
+	[ProductDetailId] NVARCHAR(255) NOT NULL UNIQUE,
+	[ProductId] NVARCHAR(255),
+	[ColorId] NVARCHAR(255),
+	[SizeId] NVARCHAR(255),
+	[Product] ,
+	[Color] ,
+	[Size] ,
+	PRIMARY KEY([ProductDetailId])
+);
+GO
 
-CREATE TABLE Orders(
-	OrderId INT IDENTITY PRIMARY KEY,
-	UserId INT,
-	OrderDate DATE,
-	TotalAmount INT,
-	Status NVARCHAR(20),
-	FOREIGN KEY (UserId) REFERENCES Users(UserId)
-)
-CREATE TABLE OrderItems(
-	OrderItemId INT IDENTITY PRIMARY KEY,
-	OrderId INT,
-	ProductId INT,
-	Quantity INT,
-	Price MONEY,
-	FOREIGN KEY (OrderId) REFERENCES Orders(OrderId),
-	FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
-)
+CREATE TABLE [Order] (
+	[OrderId] INT NOT NULL IDENTITY UNIQUE,
+	[UserId] NVARCHAR(255),
+	[TotalPrice] DECIMAL,
+	[OrderDate] DATETIME,
+	-- public enum OrderStatus
+    {
+        Processing,
+        Completed,
+        Canceled
+    }
 
+	[Status]  DEFAULT    public OrderStatus Status { get; set; },
+	--         public ICollection<OrderDetail> OrderDetails { get; set; }
 
+	[OrderDetails] ,
+	[Product]  DEFAULT  public virtual Product Product { get; set; },
+	[Order]  DEFAULT    public virtual Order Order { get; set; },
+	PRIMARY KEY([OrderId])
+);
+GO
 
--- Mẫu dữ liệu cho các sản phẩm iPhone từ iPhone 13 đến iPhone 15 với các biến thể mã sản phẩm đầy đủ
-INSERT INTO Products (ProductId, Name, Description, ImageUrl, Price, Quantity, Category)  
-VALUES 
-('IP13MiniBK128GB','iPhone 13 Mini', 'Description of iPhone 13 (Black, Mini, 16GB)', 'image_url_of_iphone13_black_mini' , 999.99, 100, 'SmartPhone',0),
-('IP13B1MB32','iPhone 13 Mini', 'Description of iPhone 13 (Black, Mini, 32GB)', 'image_url_of_iphone13_black_mini' , 1099.99, 150, 'SmartPhone'),
-('IP13B1TB16','iPhone 13 Standard', 'Description of iPhone 13 (Black, Thường, 16GB)', 'image_url_of_iphone13_black_thường' , 999.99, 100, 'SmartPhone',0),
-('IP13B1TB32','iPhone 13 Standard', 'Description of iPhone 13 (Black, Thường, 32GB)', 'image_url_of_iphone13_black_thường', 1099.99, 150, 'SmartPhone',0),
-('IP13B1PMB16','iPhone 13 Pro Max)', 'Description of iPhone 13 (Black, Pro Max, 16GB)', 'image_url_of_iphone13_black_pro_max' , 999.99, 100, 'SmartPhone',0),
-('IP13-Mini-GR128GB','iPhone 13 Mini', 'iPhone 13 (Black, Pro Max, 32GB)', '~/lib/image/SmartPhone/Iphone/IP13-Mini-GR-128GB.png', 1099, 150, 'SmartPhone',0),
-('IP13MiniPK128GB' ,'iPhone 13 Mini' ,'iPhone 13 (Pink, Mini, 128GB)' ,'~\lib\image\SmartPhone\Iphone\IP13-Mini-PK-128GB.png' ,999 ,100 ,'SmartPhone' ,0),
-('IP13MiniPK128GB' ,'iPhone 13 Mini' ,'iPhone 13 (Pink, Mini, 128GB)' ,'~\lib\image\SmartPhone\Iphone\IP13-Mini-PK-128GB.png' ,999 ,100 ,'SmartPhone' ,0);
+CREATE TABLE [OrderDetail] (
+	[OrderDetailId] INT NOT NULL IDENTITY UNIQUE,
+	[OrderId] INT,
+	[ProductId] NVARCHAR(255),
+	[Quantity] INT,
+	[Price] DECIMAL,
+	--  public enum OrderDetailStatus
+    {
+        Pending,
+        Shipped,
+        Delivered,
+        Returned
+    }
+	[Status]  DEFAULT  public OrderDetailStatus Status { get; set; },
+	PRIMARY KEY([OrderDetailId])
+);
+GO
+
+CREATE TABLE [Size] (
+	[SizeId] NVARCHAR(255) NOT NULL UNIQUE,
+	[SizeName] NVARCHAR(255),
+	--         public virtual ICollection<ProductDetail> ProductDetails { get; set; }
+
+	[ProductDetails] ,
+	PRIMARY KEY([SizeId])
+);
+GO
+
+CREATE TABLE [Color] (
+	[ColorId] NVARCHAR(255) NOT NULL UNIQUE,
+	[ColorName] NVARCHAR(255),
+	--  public virtual ICollection<ProductDetail> ProductDetails { get; set; }
+	[ProductDetails] ,
+	PRIMARY KEY([ColorId])
+);
+GO
+
+CREATE TABLE [Brand] (
+	[BrandId] INT NOT NULL IDENTITY UNIQUE,
+	[BrandName] NVARCHAR(255),
+	[ImageUrl] NVARCHAR(255),
+	--  public virtual ICollection<Product> Products { get; set; }
+	[Products] ,
+	PRIMARY KEY([BrandId])
+);
+GO
+
+ALTER TABLE [ProductDetail]
+ADD FOREIGN KEY([SizeId]) REFERENCES [Size]([SizeId])
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+GO
+ALTER TABLE [ProductDetail]
+ADD FOREIGN KEY([ProductId]) REFERENCES [Products]([ProductId])
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+GO
+ALTER TABLE [Cart]
+ADD FOREIGN KEY([UserId]) REFERENCES [User]([UserId])
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+GO
+ALTER TABLE [CartItems]
+ADD FOREIGN KEY([CartId]) REFERENCES [Cart]([CartId])
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+GO
+ALTER TABLE [Order]
+ADD FOREIGN KEY([UserId]) REFERENCES [User]([UserId])
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+GO
+ALTER TABLE [Products]
+ADD FOREIGN KEY([ProductId]) REFERENCES [CartItems]([ProductId])
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+GO
+ALTER TABLE [Products]
+ADD FOREIGN KEY([BrandId]) REFERENCES [Brand]([BrandId])
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+GO
+ALTER TABLE [ProductDetail]
+ADD FOREIGN KEY([ColorId]) REFERENCES [Color]([ColorId])
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+GO
+ALTER TABLE [Products]
+ADD FOREIGN KEY([CategoryId]) REFERENCES [Category]([CategoryId])
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+GO
+ALTER TABLE [OrderDetail]
+ADD FOREIGN KEY([OrderId]) REFERENCES [Order]([OrderId])
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+GO

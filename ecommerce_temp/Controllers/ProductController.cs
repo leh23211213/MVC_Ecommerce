@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ecommerce_temp.Data;
-using ecommerce_temp.Models;
+using ecommerce_temp.Data.Models;
 
 namespace ecommerce_temp.Controllers
 {
