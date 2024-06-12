@@ -48,3 +48,8 @@ $(document).ready(function () {
         });
     });
 });
+
+function submitDeleteForm(imgElement) {
+    var form = imgElement.closest('form');
+    form.submit();
+}

@@ -1,7 +1,6 @@
 #header_user_shortcut {
     width: 400px;
     height: 70px;
-    
     align-items: center;
     display: flex;
     -webkit-box-align: center;
@@ -35,6 +34,9 @@
     position: relative;
 }
 
+
+
+    /*  dropdown content*/
 .dropdown {
     position: relative;
 }
@@ -46,21 +48,12 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    width: 240px;
-    top: 88px;
-    right: 16px;
+    width: 180px;
+    top: 56px;
+    right: 28px;
     border-radius: 8px;
-    border: 1px solid;
+    border: 1px solid;  
     flex-direction: column;
-    gap: 4px;
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
 }
 
 .show {
