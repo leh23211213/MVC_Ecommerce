@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ecommerce_temp.Models;
+using ecommerce_temp.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using ecommerce_temp.Data.Configuration;
 
 namespace ecommerce_temp.Data
 {
@@ -22,7 +23,7 @@ namespace ecommerce_temp.Data
 
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
-            modelBuilder.ApplyConfiguration(new CartMap());
+            modelBuilder.ApplyConfiguration(new CartConfiguration());
             modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ColorConfiguration());

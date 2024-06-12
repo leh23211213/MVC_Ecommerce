@@ -1,8 +1,9 @@
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Http
+@using ecommerce_temp.Data.Models
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
-@model ecommerce_temp.Models.User
+@model ecommerce_temp.Data.Models.User
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -49,7 +50,7 @@
                                     <div class="pt-4">
                                         <div class="mt-4">
                                             <a class="btn btn-primary waves-effect waves-light btn-sm" asp-area="Identity"
-                                                asp-page="/Account/Manage/Index" title="Manage">View
+                                                asp-action="/Account/Manage/Index" title="Manage">View
                                                 Profile</a>
                                         </div>
                                     </div>

@@ -15,11 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ecommerce_temp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d46b638b3317c82281fdef576ee09e233d1ad97f")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e101f46231c5b6e3201c35fbb4293942f439388")]
->>>>>>> 0d74f08325c0cf366ebff48d08313b25447f45ba
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e1f2dbaa12eafda8ff7c80f0ec3a1f12a9121f0")]
 [assembly: System.Reflection.AssemblyProductAttribute("ecommerce_temp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ecommerce_temp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

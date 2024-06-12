@@ -1,4 +1,4 @@
-using ecommerce_temp.Models;
+using ecommerce_temp.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

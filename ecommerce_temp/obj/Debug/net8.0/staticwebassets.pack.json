@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\css\\Cart.css"
     },
     {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\css\\CoverPage.css",
+      "PackagePath": "staticwebassets\\css\\CoverPage.css"
+    },
+    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\css\\Index.css",
       "PackagePath": "staticwebassets\\css\\Index.css"
     },
@@ -243,6 +247,98 @@
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\eCommerceMVC.png",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\eCommerceMVC.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\features\\2d.jpg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\features\\2d.jpg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\features\\2dgames.jpg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\features\\2dgames.jpg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\features\\3d.jpg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\features\\3d.jpg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\features\\animate.jpg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\features\\animate.jpg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\features\\easy_code.png",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\features\\easy_code.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\features\\innovative.png",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\features\\innovative.png"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\features\\oss.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\features\\oss.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\features\\team_friendly.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\features\\team_friendly.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\get_involved\\code.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\get_involved\\code.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\get_involved\\document.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\get_involved\\document.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\get_involved\\report.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\get_involved\\report.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\icon\\boxes.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\icon\\boxes.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\icon\\download.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\icon\\download.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\icon\\facebook.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\icon\\facebook.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\icon\\github.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\icon\\github.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\icon\\logo.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\icon\\logo.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\icon\\logo_dark.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\icon\\logo_dark.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\icon\\menu.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\icon\\menu.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\icon\\reading-book.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\icon\\reading-book.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\icon\\reddit.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\icon\\reddit.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\icon\\sfc.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\icon\\sfc.svg"
+    },
+    {
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\CoverPage\\icon\\twitter.svg",
+      "PackagePath": "staticwebassets\\lib\\image\\CoverPage\\icon\\twitter.svg"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\lib\\image\\DashBoard\\download.png",
