@@ -1,21 +1,22 @@
 using System.Text;
 using System.Text.Encodings.Web;
+using ecommerce_temp.Areas.Account.Models;
 using ecommerce_temp.Data.Models;
-using ecommerce_temp.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace ecommerce_temp.Controllers.Account
+namespace ecommerce_temp.Areas.Account.Controllers
 {
     [Area("Account")]
-    public class PasswordController : Controller
+    [Route("[area]/[action]")]
+    public class ForgotPasswordController : Controller
     {
         private readonly UserManager<User> _userManager;
         private readonly IEmailSender _emailSender;
-        private readonly ILogger<PasswordController> _logger;
+        private readonly ILogger<ForgotPasswordController> _logger;
 
-        public PasswordController(UserManager<User> userManager, IEmailSender emailSender, ILogger<PasswordController> logger)
+        public ForgotPasswordController(UserManager<User> userManager, IEmailSender emailSender, ILogger<ForgotPasswordController> logger)
         {
             _userManager = userManager;
             _emailSender = emailSender;
@@ -23,9 +24,11 @@ namespace ecommerce_temp.Controllers.Account
         }
 
         [HttpGet]
-        public IActionResult ForgotPassword()
+        public IActionResult ForgotPassword(string returnUrl = null)
         {
-            return View();
+            ViewData["ReturnUrl"] = returnUrl ?? Url.Content("~/");
+            var model = new ForgotPasswordViewModel();
+            return View(model);
         }
 
         [HttpPost]
@@ -61,8 +64,9 @@ namespace ecommerce_temp.Controllers.Account
         }
 
         [HttpGet]
-        public IActionResult ForgotPasswordConfirmation()
+        public IActionResult ForgotPasswordConfirmation(string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 

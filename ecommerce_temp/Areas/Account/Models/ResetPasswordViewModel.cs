@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ecommerce_temp.Models.Account
+namespace ecommerce_temp.Areas.Account.Models
 {
     public class ResetPasswordViewModel
     {
