@@ -13,18 +13,9 @@ namespace ecommerce_temp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string returnUrl = null)
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult DashBoard()
-        {
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 

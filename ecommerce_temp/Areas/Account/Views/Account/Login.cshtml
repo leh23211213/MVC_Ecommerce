@@ -1,7 +1,6 @@
-@page "/Login"
-@model ecommerce_temp.Models.Account.LoginViewModel
+@model ecommerce_temp.Areas.Account.Models.LoginViewModel
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Log in";
     Layout = null;
 }
 
@@ -57,10 +56,8 @@
                                                             <input asp-for="Email" class="form-control"
                                                                 autocomplete="username" aria-required="true"
                                                                 placeholder="name@example.com" />
-                                                            <label asp-for="Email"
-                                                                class="form-label">Email</label>
-                                                            <span asp-validation-forEmail"
-                                                                class="text-danger"></span>
+                                                            <label asp-for="Email" class="form-label">Email</label>
+                                                            <span asp-validation-forEmail" class="text-danger"></span>
                                                         </div>
                                                         <div class="form-floating mb-3">
                                                             <input asp-for="Password" class="form-control"
@@ -73,8 +70,7 @@
                                                         </div>
                                                         <div class="checkbox mb-3">
                                                             <label asp-for="RememberMe" class="form-label">
-                                                                <input class="form-check-input"
-                                                                    asp-for="RememberMe" />
+                                                                <input class="form-check-input" asp-for="RememberMe" />
                                                                 @Html.DisplayNameFor(m => m.RememberMe)
                                                             </label>
                                                         </div>
@@ -95,13 +91,12 @@
                                                                         }
                                                                         else
                                                                         {
-                                                                        <form id="external-account" asp-action="./ExternalLogin"
+                                                                        <form id="external-account" asp-area="Account" asp-controller="ExternalLogin" asp-action="LoginWithProvider"
                                                                             asp-route-returnUrl="@Model.ReturnUrl" method="post"
                                                                             class="form-horizontal">
                                                                             <div>
                                                                                 <p>
-                                                                                        @foreach (var provider in
-                                                                            Model.ExternalLogins!)
+                                                                                        @foreach (var provider in Model.ExternalLogins!)
                                                                                         {
                                                                                             if (provider.Name == "Google")
                                                                                             {
@@ -110,7 +105,7 @@
                                                                                                 value="@provider.Name"
                                                                                                 title="Log in using your @provider.DisplayName account">
                                                                                                 <img src="~/lib/image/Login/@provider.Name.ToLower()_logo.png"
-                                                                                                    style="height: 30px; weight: 30px; "
+                                                                                                    style="height: 30px; width: 30px; "
                                                                                                     alt="@provider.DisplayName" />
                                                                                                 Continue with @provider.DisplayName
                                                                                             </button>
@@ -125,7 +120,8 @@
                                                         </div>
                                                         </p>
                                                         <p>
-                                                            <a id="forgot-password" asp-action="./ForgotPassword">Forgot
+                                                            <a id="forgot-password" asp-area="Account" asp-controller="ForgotPassword"
+                                                                asp-action="ForgotPassword">Forgot
                                                                 your
                                                                 password?</a>
                                                         </p>
@@ -133,12 +129,12 @@
                                                     <div class="my-form__actions">
                                                         <div class="my-form__row">
                                                             <span>Don't have an account?</span>
-                                                            <a asp-action="./Register"
+                                                            <a asp-area="Account" asp-controller="Register" asp-action="Register"
                                                                 asp-route-returnUrl="@Model.ReturnUrl">
                                                                 Sign Up Now
                                                             </a>
                                                         </div>
-                                                    </div>
+                                                    </div> 
                                                 </div>
                                             </div>
                                         </div>
@@ -153,7 +149,7 @@
                             </div>
                             <h4 class=" mt-5">
                                 Get's
-                                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">OverView</a>
+                                <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary">OverView</a>
                             </h4>
                             <p class="text-muted">A central workspace for building, testing Website.</p>
                         </div>
@@ -166,5 +162,3 @@
         <partial name="_ValidationScriptsPartial" />
     }
 </body>
-
-</html>

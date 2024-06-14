@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authentication;
 
-namespace ecommerce_temp.Models.Account
+namespace ecommerce_temp.Areas.Account.Models
 {
     public class ExternalLoginViewModel
     {

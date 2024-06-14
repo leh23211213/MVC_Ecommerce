@@ -1,36 +1,47 @@
+using ecommerce_temp.Areas.Account.Models;
 using ecommerce_temp.Data.Models;
-using ecommerce_temp.ViewModels;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ecommerce_temp.Controllers.Account
+namespace ecommerce_temp.Areas.Account.Controllers
 {
     [Area("Account")]
-    public class LoginController : Controller
+    [Route("[controller]/[action]")]
+    public class AccountController : Controller
     {
         private readonly SignInManager<User> _signInManager;
-        private readonly ILogger<LoginController> _logger;
-
-        public LoginController(SignInManager<User> signInManager, ILogger<LoginController> logger)
+        private readonly ILogger<AccountController> _logger;
+        [ActivatorUtilitiesConstructor]
+        public AccountController(SignInManager<User> signInManager, ILogger<AccountController> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
         }
 
+        // GET: /Account/Login
         [HttpGet]
-        public async Task<IActionResult> Login(string returnUrl = null)
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(string? returnUrl = null)
         {
+            // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-            ViewData["ReturnUrl"] = returnUrl;
-            return View(new LoginViewModel());
+            var model = new LoginViewModel
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+            };
+
+            return View(model);
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
@@ -41,7 +52,7 @@ namespace ecommerce_temp.Controllers.Account
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToAction("LoginWith2fa", "Login", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction("LoginWith2fa", "Account", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
@@ -51,10 +62,12 @@ namespace ecommerce_temp.Controllers.Account
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
                     return View(model);
                 }
             }
 
+            model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             ViewData["ReturnUrl"] = returnUrl;
             return View(model);
         }

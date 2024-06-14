@@ -1,12 +1,13 @@
 using System.Security.Claims;
 using ecommerce_temp.Data.Models;
-using ecommerce_temp.ViewModels;
+using ecommerce_temp.Areas.Account.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ecommerce_temp.Controllers.Account
+namespace ecommerce_temp.Areas.Account.Controllers
 {
     [Area("Account")]
+    [Route("[area]/[action]")]
     public class ExternalLoginController : Controller
     {
         private readonly SignInManager<User> _signInManager;
@@ -20,7 +21,8 @@ namespace ecommerce_temp.Controllers.Account
             _logger = logger;
         }
 
-        [HttpGet]
+
+        [HttpPost]
         public IActionResult LoginWithProvider(string provider, string returnUrl = null)
         {
             var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "ExternalLogin", new { ReturnUrl = returnUrl });
@@ -36,13 +38,13 @@ namespace ecommerce_temp.Controllers.Account
             if (remoteError != null)
             {
                 _logger.LogError($"Error from external provider: {remoteError}");
-                return RedirectToAction(nameof(LoginController.Login), "Login");
+                return RedirectToAction(nameof(AccountController.Login), "Login");
             }
 
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                return RedirectToAction(nameof(LoginController.Login), "Login");
+                return RedirectToAction(nameof(AccountController.Login), "Login");
             }
 
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
@@ -53,11 +55,11 @@ namespace ecommerce_temp.Controllers.Account
             }
             if (result.RequiresTwoFactor)
             {
-                return RedirectToAction(nameof(LoginController.LoginWith2fa), "Login", new { ReturnUrl = returnUrl });
+                return RedirectToAction(nameof(AccountController.LoginWith2fa), "Login", new { ReturnUrl = returnUrl });
             }
             if (result.IsLockedOut)
             {
-                return RedirectToAction(nameof(LoginController.Lockout), "Login");
+                return RedirectToAction(nameof(AccountController.Lockout), "Login");
             }
             else
             {
@@ -78,7 +80,7 @@ namespace ecommerce_temp.Controllers.Account
                 var info = await _signInManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
-                    return RedirectToAction(nameof(LoginController.Login), "Login");
+                    return RedirectToAction(nameof(AccountController.Login), "Login");
                 }
 
                 var user = new User { UserName = model.Email, Email = model.Email };

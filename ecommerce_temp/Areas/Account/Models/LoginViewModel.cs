@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authentication;
-
-namespace ecommerce_temp.Models.Account
+using Microsoft.AspNetCore.Mvc;
+namespace ecommerce_temp.Areas.Account.Models
 {
     public class LoginViewModel
     {
@@ -15,8 +15,9 @@ namespace ecommerce_temp.Models.Account
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
-        public string ReturnUrl { get; set; }
-
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
+        public string? ReturnUrl { get; set; }
+        public IList<AuthenticationScheme>? ExternalLogins { get; set; }
+        [TempData]
+        public string? ErrorMessage { get; set; }
     }
 }

@@ -2,14 +2,18 @@ using System.Text;
 using System.Text.Encodings.Web;
 using ecommerce_temp.Data;
 using ecommerce_temp.Data.Models;
-using ecommerce_temp.ViewModels;
+using ecommerce_temp.Areas.Account.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.AspNetCore.Authorization;
 
-namespace ecommerce_temp.Controllers.Account
+
+namespace ecommerce_temp.Areas.Account.Controllers
 {
     [Area("Account")]
+    [Route("[area]/[action]")]
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -40,7 +44,12 @@ namespace ecommerce_temp.Controllers.Account
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            var model = new RegisterViewModel
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+            };
+            return View(model);
         }
 
         [HttpPost]

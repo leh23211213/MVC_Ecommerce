@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ecommerce_temp.Data;
 using Microsoft.AspNetCore.Identity;
-using ecommerce_temp.Models;
 using ecommerce_temp.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using ecommerce_temp.Data.Models;
+using ecommerce_temp.Controllers;
 namespace ecommerce_temp
 {
     public class Startup
@@ -107,25 +108,15 @@ namespace ecommerce_temp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+           name: "areas",
+           pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                           name: "areas",
-                           pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                // endpoints.MapControllerRoute(
-                //     name: "Cart",
-                //     pattern: "Cart", // URL /Cart
-                //     defaults: new { controller = "Cart", action = "Index" }); // Controller và action mặc định
-
-                // Bạn có thể thêm các định tuyến riêng cho các controller khác nếu cần thiết
-                // Ví dụ:
-                // endpoints.MapControllerRoute(
-                //     name: "Product",
-                //     pattern: "Products/{action=Index}/{id?}",
-                //     defaults: new { controller = "Product" });
 
                 endpoints.MapRazorPages();
-            }); // Cấu hình các điểm cuối cho ứng dụng. Ở đây, chúng ta định nghĩa một route mặc định cho ứng dụng.
+            });
         }
     }
 }
