@@ -5,33 +5,38 @@
     padding: 0;
     box-sizing: border-box;
 }
-header{
-    background: #F6C356;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+
+header, footer {
+    padding: 18px;
 }
-/* CSS */
+
+
+footer {
+    margin-top: auto;   
+}
+
+
 main {
     display: flex; /* Sử dụng flexbox để chia phần "main" thành hai phần */
 }
 
-.sidebar-left,
-.sidebar-right {
+.left-content,
+.right-content {
     flex: 1; /* Mỗi phần chiếm 50% chiều rộng của "main" */
+    max-width: 50%;
+    box-sizing: border-box;
+    padding: 20px;
 }
 
-.sidebar-left {
+.left-content {
     order: 1; /* Xác định phần left sẽ hiển thị trước phần right */
+    
 }
-.sidebar-right {
+.right-content {
     text-align: center;
-}
-
-footer{
-    background: #f656e9;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
-

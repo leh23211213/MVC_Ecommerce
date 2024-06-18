@@ -42,12 +42,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWNjb3VudFxWaWV3c1xGb3Jnb3RQYXNzd29yZFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/IT/VSCode/Github/MVC_Ecommerce/ecommerce_temp/Areas/Account/Views/Shared/ConfirmEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWNjb3VudFxWaWV3c1xTaGFyZWRcQ29uZmlybUVtYWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/IT/VSCode/Github/MVC_Ecommerce/ecommerce_temp/Areas/Account/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWNjb3VudFxWaWV3c1xTaGFyZWRcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/IT/VSCode/Github/MVC_Ecommerce/ecommerce_temp/Areas/Account/Views/Shared/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWNjb3VudFxWaWV3c1xTaGFyZWRcUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/IT/VSCode/Github/MVC_Ecommerce/ecommerce_temp/Areas/Account/Views/Shared/RegisterConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWNjb3VudFxWaWV3c1xTaGFyZWRcUmVnaXN0ZXJDb25maXJtYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/IT/VSCode/Github/MVC_Ecommerce/ecommerce_temp/Areas/Account/Views/Shared/_Layout.cshtml]
