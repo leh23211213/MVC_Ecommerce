@@ -26,14 +26,13 @@ namespace ecommerce_temp.Areas.Account.Controllers
         [HttpGet]
         public IActionResult ForgotPassword(string returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl ?? Url.Content("~/");
-            var model = new ForgotPasswordViewModel();
+            var model = new ForgotPasswordViewModel { };
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model, string returnUrl = null)
         {
             if (ModelState.IsValid)
             {

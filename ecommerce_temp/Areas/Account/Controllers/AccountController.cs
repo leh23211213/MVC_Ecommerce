@@ -9,6 +9,7 @@ namespace ecommerce_temp.Areas.Account.Controllers
 {
     [Area("Account")]
     [Route("[controller]/[action]")]
+
     public class AccountController : Controller
     {
         private readonly SignInManager<User> _signInManager;
@@ -41,7 +42,7 @@ namespace ecommerce_temp.Areas.Account.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("~/DashBoard");
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
@@ -52,7 +53,7 @@ namespace ecommerce_temp.Areas.Account.Controllers
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToAction("LoginWith2fa", "Account", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction("LoginWith2fa", "Account", new { ReturnUrl = returnUrl });
                 }
                 if (result.IsLockedOut)
                 {
@@ -72,26 +73,75 @@ namespace ecommerce_temp.Areas.Account.Controllers
             return View(model);
         }
 
-        [HttpGet]
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            if (returnUrl != null)
+
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
             {
                 return LocalRedirect(returnUrl);
             }
             else
             {
-                return RedirectToAction();
+                return RedirectToAction("Login", "Account", new { area = "Account" });
             }
         }
 
+
         [HttpGet]
-        public IActionResult LoginWith2fa(string returnUrl = null, bool rememberMe = false)
+        [AllowAnonymous]
+        public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
         {
-            // Implement your 2FA logic here
-            return View();
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            if (user == null)
+            {
+                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+            }
+
+            var model = new TwoFactorViewModel { RememberMe = rememberMe };
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LoginWith2fa(TwoFactorViewModel model, bool rememberMe, string returnUrl = null)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            if (user == null)
+            {
+                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+            }
+
+            var authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
+            var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine);
+
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User with ID '{UserId}' logged in with 2fa.", user.Id);
+                return LocalRedirect(returnUrl);
+            }
+            else if (result.IsLockedOut)
+            {
+                _logger.LogWarning("User with ID '{UserId}' account locked out.", user.Id);
+                return RedirectToAction(nameof(Lockout));
+            }
+            else
+            {
+                _logger.LogWarning("Invalid authenticator code entered for user with ID '{UserId}'.", user.Id);
+                ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
+                return View();
+            }
         }
 
         [HttpGet]
