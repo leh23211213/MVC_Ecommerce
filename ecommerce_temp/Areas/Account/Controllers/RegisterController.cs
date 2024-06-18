@@ -41,7 +41,8 @@ namespace ecommerce_temp.Areas.Account.Controllers
             _context = context;
         }
 
-        public IActionResult Register(string returnUrl = null)
+        [HttpGet]
+        public async Task<IActionResult> Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             var model = new RegisterViewModel
@@ -53,9 +54,10 @@ namespace ecommerce_temp.Areas.Account.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("~/DashBoard");
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
@@ -102,7 +104,6 @@ namespace ecommerce_temp.Areas.Account.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -115,9 +116,24 @@ namespace ecommerce_temp.Areas.Account.Controllers
         }
 
         [HttpGet]
-        public IActionResult ConfirmEmail(string userId, string code, string returnUrl = null)
+        public async Task<IActionResult> ConfirmEmail(string userId, string code, string returnUrl = null)
         {
-            return View(); // Implement your email confirmation logic here
+            if (userId == null || code == null)
+            {
+                return RedirectToAction(nameof(Register));
+            }
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new InvalidOperationException($"Unable to load user with ID '{userId}'.");
+            }
+            var decodedCode = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var result = await _userManager.ConfirmEmailAsync(user, decodedCode);
+            if (result.Succeeded)
+            {
+                return LocalRedirect(returnUrl ?? Url.Content("~/"));
+            }
+            return View("Error");
         }
 
         private User CreateUser()

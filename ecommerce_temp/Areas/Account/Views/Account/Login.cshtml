@@ -12,18 +12,17 @@
 </head>
 
 <body>
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="grid">
-                    <main>
-                        <div class="sidebar-left">
-                            <div class="account-pages my-5 pt-sm-5">
-                                <div class="justify-content-center row">
-                                    <div class="col-md-8 col-lg-6 col-xl-5">
-                                        <div class="overflow-hidden card">
-                                            <div class="bg-primary-subtle">
-                                                <div class="row">
+     <header>
+        
+    </header>
+    <main>
+        <div class="left-content">
+            <div class="account-pages my-5 pt-sm-5">
+                <div class="justify-content-center row">
+                    <div class="col-md-8 col-lg-6 col-xl-5">
+                            <div class="overflow-hidden card">
+                                <div class="bg-primary-subtle">
+                                    <div class="row">
                                                     <div class="col col-7">
                                                         <div class="text-primary p-4">
                                                             <h4>Welcome &#128079;</h4>
@@ -142,22 +141,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sidebar-right">
+        <div class="right-content">
                             <div class="blockquote-wrappe">
                                 <img src="~/lib/image/Login/megamenu-img.png" alt=""
                                     style="width: 700px; height: 700px;">
                             </div>
-                            <h4 class=" mt-5">
+                            <h4 class="mt-5">
                                 Get's
                                 <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary">OverView</a>
                             </h4>
                             <p class="text-muted">A central workspace for building, testing Website.</p>
                         </div>
-                    </main>
-                </div>
-            </div>
-        </div>
-    </div>
+    </main>
+      <footer>
+    </footer>
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
     }

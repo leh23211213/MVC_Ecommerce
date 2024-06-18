@@ -2,10 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using ecommerce_temp.Data;
 using ecommerce_temp.Data.Models;
+using ecommerce_temp.Models.Product;
 
 namespace ecommerce_temp.Controllers
 {
-    [Route("Product")]
+    [Route("[controller]")]
     public class ProductController : Controller
     {
         private readonly ILogger<ProductController> _logger;
@@ -17,11 +18,20 @@ namespace ecommerce_temp.Controllers
         }
 
         // GET: Products
-        [HttpGet("")]
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var products = await _context.Products.ToListAsync();
-            return View(products);
+            var productViewModels = products.Select(p => new ProductViewModel
+            {
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                Price = p.Price,
+                Description = p.Description,
+                ImageUrl = p.ImageUrl
+                // Map các thuộc tính khác nếu cần
+            }).ToList();
+            return View(productViewModels);
         }
 
         // GET: Products/Details/5

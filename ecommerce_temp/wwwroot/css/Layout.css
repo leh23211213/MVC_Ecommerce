@@ -1,0 +1,67 @@
+/* Thiết lập font-size cho html */
+html {
+  font-size: 16px;
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+}
+
+/* Thiết lập font-size cho html khi màn hình có độ rộng lớn hơn hoặc bằng 768px */
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+                                        /* sidebar */
+.sidebar {
+  background-color: #f5f5f5;
+  width: 250px;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.sidebar nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  margin: 10px 0;
+}
+
+.sidebar nav ul li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+  background-color: #ddd;
+}
+
+                                       /* main */
+#main {
+  margin-right: auto;
+  margin-left: auto;
+  flex: 1; /* Phần nội dung sẽ chiếm hết không gian còn lại */
+  padding-left: 260px; /* Padding cho phần nội dung */
+  overflow: hidden;
+  padding: 40px;
+}
+
