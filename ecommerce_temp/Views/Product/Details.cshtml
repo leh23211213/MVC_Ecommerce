@@ -5,8 +5,9 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/Product/ProductDetail.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/Product/Detail.css" asp-append-version="true">
 </head>
+
 @if (User.Identity.IsAuthenticated)
 {
     <div class="page-content">
@@ -43,12 +44,12 @@
                     <div class="group-button">
                         <ul>
                             <li>
-                                <a class="enroll" title="Enroll Now" href="">
+                                <a class="enroll" title="Buy Now" href="">
                                     Buy
                                 </a>
                             </li>
                             <li>
-                                <a id="addToCartLink" method="post" class="enroll" title="add" asp-action="Add"
+                                <a id="addToCartLink" method="post" class="enroll" title="Add to Cart" asp-action="Add"
                                     asp-controller="Cart" data-product-id="@Model.ProductId">
                                     @Html.AntiForgeryToken()
                                     Add to Cart</a>
@@ -60,7 +61,7 @@
         </section>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript">
+    <script>
         $(document).ready(function () {
             $("#addToCartLink").click(function (e) {
                 e.preventDefault();
@@ -83,11 +84,6 @@
             });
         });
     </script>
-    @*
-<div>
-<a asp-action="Edit" asp-route-id="@Model?.ProductId">Edit</a> |
-<a asp-action="Index">Back to List</a>
-</div> *@
 }
 else
 {

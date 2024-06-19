@@ -66,7 +66,7 @@ namespace ecommerce_temp.Controllers
 
         // TODO : clean code
         // POST: Classes/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Delete/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
@@ -76,19 +76,10 @@ namespace ecommerce_temp.Controllers
             {
                 return Unauthorized("User not found");
             }
-            // // c1
-            // var cartItem = await _context.CartItems.FindAsync(id);
-            // if (cartItem != null)
-            // {
-            //     return NotFound("{product.Name} Not exits.");
-            // }
-            // _context.CartItems.Remove(cartItem);
-            // await _context.SaveChangesAsync();
 
-            // c2
             var cart = _context.Carts
-         .Include(c => c.CartItems)
-         .FirstOrDefault(c => c.UserId == userId);
+                        .Include(c => c.CartItems)
+                        .FirstOrDefault(c => c.UserId == userId);
 
             if (cart != null)
             {
@@ -101,5 +92,31 @@ namespace ecommerce_temp.Controllers
             }
             return RedirectToAction("");
         }
+
+        [HttpPost("DeleteAll")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAll()
+        {
+            var userId = _userManager.GetUserId(User);
+            if (userId == null)
+            {
+                return Unauthorized("User not found");
+            }
+
+            var cart = _context.Carts
+                            .Include(c => c.CartItems)
+                            .FirstOrDefault(c => c.UserId == userId);
+
+            if (cart != null)
+            {
+                // Xóa tất cả các mục trong giỏ hàng
+                _context.CartItems.RemoveRange(cart.CartItems);
+                _context.SaveChanges();
+            }
+
+            // Chuyển hướng người dùng đến trang giỏ hàng hoặc trang chủ
+            return RedirectToAction("Index"); // Thay "Index" bằng đường dẫn tương ứng
+        }
+
     }
 }

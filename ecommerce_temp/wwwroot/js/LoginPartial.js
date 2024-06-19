@@ -2,7 +2,7 @@ function dropdownFunction() {
     document.getElementById("profile-dropdown").classList.toggle("show");
 }
   // Close the dropdown if the user clicks outside of it
-window.onclick = function (event) {
+window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
     var dropdowns = document.getElementsByClassName("dropdown-content");
     var i;
@@ -12,5 +12,18 @@ window.onclick = function (event) {
          openDropdown.classList.remove('show');
         }
     }
+    }
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+            }
+        }
     }
 }
