@@ -5,27 +5,11 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/Account/LoginPartial.css" asp-append-version="true" />
-</head>
+
 @if (SignInManager.IsSignedIn(User))
 {
     <div id="header_user_shortcut">
         <ul class="ul">
-            <li>
-                <a asp-controller="DashBoard" asp-action="Index">
-                    <img src="~/lib/image/home-icon.png" alt="" style="width: 24px; height: 24px">Home
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Cart" asp-action="Index"><img src="~/lib/image/cart-icon.png" alt=""
-                        style="width: 24px; height: 24px">Cart</a>
-            </li>
             <li>
                 <div class="d-inline-block dropdown">
                     <div onclick="dropdownFunction()" class="dropbtn">
@@ -35,13 +19,13 @@
                         <span key="t-fullname" class="dropbtn">@UserManager.GetUserName(User)</span>
                     </div>
                     <ul id="profile-dropdown" class="dropdown-content">
-                        <a href="" class="dropdown-item">
+                        <a href="#" class="dropdown-item">
                             <img src="~/lib/image/setting-icon.png" alt="Settings"
                                 style="border-radius:10px; width: 24px; height:24px;">
                             Settings
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="" class="dropdown-item">
+                        <a href="#" class="dropdown-item">
                             <form id="logoutForm" class="form-inline" asp-area="Account" asp-controller="Account"
                                 method="post" asp-action="Logout" asp-route-returnUrl="~/Account/Login">
                                 <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">

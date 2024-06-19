@@ -14,15 +14,9 @@
             <h1>Apple-Store</h1>
         </div>
         <nav>
-            @{
-                // TODO : E:\Destop\ui\dropdown-menu-03
-                // TODO : E:\Destop\ui\dropdown-menu-06
-                // TODO : E:\Destop\ui\toolbar-02
-            }
             <ul>
                 <li>
                     <a asp-controller="DashBoard" asp-action="Index">
-                        <i class="fas fa-home"></i>
                         <span>SP3</span>
                     </a>
                 </li>
@@ -51,15 +45,9 @@
                 </li>
             </ul>
             <div>____________________</div>
-            <ul>
-                <li>
-                    <a asp-controller="Product" asp-action="Index">
-                        <span>Your Profile</span>
-                    </a>
-                </li>
-            </ul>
+            <!-- Login Partial Section -->
+            @await Html.PartialAsync("_LoginPartial")
         </nav>
-        </div>
     </aside>
     <main id="main">
         <main role="main" class="pb-3">
