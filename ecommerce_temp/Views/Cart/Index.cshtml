@@ -33,8 +33,20 @@
             var form = imgElement.closest('form');
             form.submit();
         }
+
+        var isAllCheck = false;
+        function togglecheckboxes(cn) {
+
+            var cbarray = document.getElementsByName(cn);
+            for (var i = 0; i < cbarray.length; i++) {
+
+                cbarray[i].checked = !isAllCheck
+            }
+            isAllCheck = !isAllCheck;
+        }
     </script>
 </head>
+
 @if (User.Identity.IsAuthenticated)
 {
     <div class="page-content">
@@ -45,7 +57,7 @@
             <div class="left-content">
                 <div class="row-heading">
                     <label class="checkBox">
-                        <input type="checkbox">
+                        <input type="checkbox" onclick="togglecheckboxes('cb')" value="Toggle all" />
                         <span class="checkbox-fake">
                             <svg class="checkbox-mark" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -57,10 +69,13 @@
                     <span>Amount</span>
                     <span>Total</span>
                     @{
-                        // TODO : delete ALL
+                // TODO : delete ALL
                     }
-                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg" class="delete-button"
-                        alt=" deleted">
+                    <form asp-action="DeleteAll" asp-controller="Cart">
+                        <input type="hidden" name="id" />
+                        <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg" alt="deleted"
+                            class="delete-button" style="cursor: pointer;" onclick="submitDeleteForm(this)">
+                    </form>
                 </div>
                 <div>
                     <div class="infinite-scroll-component">
@@ -71,7 +86,7 @@
                                     <div class="Row">
                                         <div class="Item-Info">
                                             <label class="checkbox">
-                                                <input type="checkbox">
+                                                <input type="checkbox" name="cb" />
                                             </label>
                                             <a href="#">
                                                 <img src="@Url.Content(item.ImageUrl)" width="80" height="60">
