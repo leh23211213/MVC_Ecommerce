@@ -34,7 +34,7 @@ namespace ecommerce_temp.Areas.Account.Controllers
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
             // TODO  : error external provider bug ( click register and lost provider)
-            returnUrl ??= Url.Content("~/DashBoard");
+            returnUrl ??= Url.Content("~/Product");
 
             if (remoteError != null)
             {

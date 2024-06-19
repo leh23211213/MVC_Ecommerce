@@ -9,10 +9,6 @@
       "PackagePath": "staticwebassets\\css\\Account\\Login.css"
     },
     {
-      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\css\\Account\\LoginPartial.css",
-      "PackagePath": "staticwebassets\\css\\Account\\LoginPartial.css"
-    },
-    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\css\\Cart.css",
       "PackagePath": "staticwebassets\\css\\Cart.css"
     },
@@ -25,12 +21,12 @@
       "PackagePath": "staticwebassets\\css\\Layout.css"
     },
     {
-      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\css\\Product\\Product.css",
-      "PackagePath": "staticwebassets\\css\\Product\\Product.css"
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\css\\Product\\Detail.css",
+      "PackagePath": "staticwebassets\\css\\Product\\Detail.css"
     },
     {
-      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\css\\Product\\ProductDetail.css",
-      "PackagePath": "staticwebassets\\css\\Product\\ProductDetail.css"
+      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\css\\Product\\Index.css",
+      "PackagePath": "staticwebassets\\css\\Product\\Index.css"
     },
     {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\favicon.ico",
