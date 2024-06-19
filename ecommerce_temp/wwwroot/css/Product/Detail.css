@@ -1,3 +1,4 @@
+/* Product Detail */
 :root {
     --primary-blue: #5DA8FF;
     --primary-blue-violet: #605DFF;
@@ -5,9 +6,10 @@
     --text-color: #303651;
     --text-color-neutral: #697089;
     --background-blue: #E5F1FF;
+    --background-card: #ffffff; /* Light background for cards */
 }
 
-.page-content{
+.page-content {
     min-width: 1280px;
     max-width: 1440px;
     width: 100%;
@@ -26,7 +28,7 @@
     height: 100%;
 }
 
-.top{
+.top {
     display: flex;
     padding-top: 10px;
     padding-bottom: 15px;
@@ -34,26 +36,24 @@
     min-height: 57px;
 }
 
-.Product-Name{
-    -webkit-webkit-box-flex: 1;
+.Product-Name {
     flex: 1;
     font-weight: 500;
-    color: black;
-
+    color: var(--text-color);
 }
 
 .page-content .divider {
     border-top: 1px solid #E6E8F0;
-    width: 100%; /* Chiều rộng sẽ chiếm toàn bộ chiều rộng của phần tử chứa nó */
-    height: 0; /* Chiều cao bằng 0 để không chiếm không gian dọc */
-    margin: 20px 0; /* Điều chỉnh khoảng cách trên và dưới */
+    width: 100%;
+    height: 0;
+    margin: 20px 0;
 }
 
 .gradient-text {
     background-image: linear-gradient(
-      90.65deg,   
-      #605DFF 41.17%,
-      #AD63F6 92.13%
+        90.65deg,
+        #605DFF 41.17%,
+        #AD63F6 92.13%
     );
     background-size: 100%;
     background-clip: text;
@@ -61,7 +61,7 @@
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
-    flex : 1;
+    flex: 1;
 }
 
 .detail-content {
@@ -86,9 +86,10 @@
     border-radius: 0.5rem;
     padding: 3rem 2rem;
     cursor: pointer;
-    background: #F7FAFF;
-    float: left;
+    background: var(--background-card);
+    transition: transform 0.3s;
 }
+
 
 .pricing-card__price {
     background: var(--background-blue);
@@ -135,6 +136,7 @@
     letter-spacing: 0.75px;
     border: 0px solid var(--primary-blue-violet);
 }
+
 .pricing-card .group-button > ul > li > .enroll {
     display: block;
     width: 100%;
@@ -173,8 +175,8 @@
 
 .pricing-card--primary .group-button > ul > li > .enroll {
     background: linear-gradient(
-      90deg, #605DFF, #AD63F6 50%,
-      #AD63F6 50%, #605DFF 80%, #5DA8FF 100%
+        90deg, #605DFF, #AD63F6 50%,
+        #AD63F6 50%, #605DFF 80%, #5DA8FF 100%
     );
     background-size: 200% 200%;
     background-position: 0% 0%;
@@ -182,11 +184,28 @@
     color: white;
 }
 
-.pricing-card--primary .group-button > ul > li > .enroll:hover, .enroll:focus {
+.pricing-card--primary .group-button > ul > li > .enroll:hover,
+.enroll:focus {
     border: none;
     background-position: 100% 100%;
     transition: background-position 1s;
 }
 
+.details-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-
+    .details-button:hover {
+        background-color: #0056b3;
+        color: black;
+    }
