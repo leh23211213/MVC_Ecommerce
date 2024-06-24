@@ -37,10 +37,6 @@
       "PackagePath": "staticwebassets\\js\\Cart.js"
     },
     {
-      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\js\\LoginPartial.js",
-      "PackagePath": "staticwebassets\\js\\LoginPartial.js"
-    },
-    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

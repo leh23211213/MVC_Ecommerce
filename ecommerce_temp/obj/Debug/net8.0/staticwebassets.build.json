@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GfRbcKKkWomJH+37y0K8vv41Up6R7OPqm3iAr0DoJHk=",
+  "Hash": "u1T1u9DWbRXUxdeAXKFEr6GrEJky5eAWEKqHMtt/Tg0=",
   "Source": "ecommerce_temp",
   "BasePath": "_content/ecommerce_temp",
   "Mode": "Default",
@@ -1383,25 +1383,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Cart.js"
-    },
-    {
-      "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\js\\LoginPartial.js",
-      "SourceId": "ecommerce_temp",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\",
-      "BasePath": "_content/ecommerce_temp",
-      "RelativePath": "js/LoginPartial.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\LoginPartial.js"
     },
     {
       "Identity": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\js\\site.js",

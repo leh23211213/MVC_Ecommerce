@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rHdRlfh5eqG0kBrJVho0pJus3fBkH3Pza826QsSnemVcPpQU1iQAVjIStJJVBr7ap6AaRyytfvWO0ejY5CdrFA==",
+  "dgSpecHash": "/W4HJbdAUVM3r6aUXZvwjwoHT4HaP98dkX/PpZMoJiBG96/a9WrJe7IGw4BlDbf5oKlhb+XeK3soz8c4HL1YVg==",
   "success": true,
-  "projectFilePath": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj",
+  "projectFilePath": "e:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lenovo\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
