@@ -1,43 +1,30 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Http
 @using ecommerce_temp.Data.Models
-
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-
 @if (SignInManager.IsSignedIn(User))
 {
-    <div id="header_user_shortcut">
-        <ul class="ul">
-            <li>
-                <div class="d-inline-block dropdown">
-                    <div onclick="dropdownFunction()" class="dropbtn">
-                        <img src="~/lib/image/profile-icon.png" alt=""
-                            class="dropbtn img-thumbnail rounded-circle header-profile-user"
-                            style="width: 36px; height: 36px">
-                        <span key="t-fullname" class="dropbtn">@UserManager.GetUserName(User)</span>
-                    </div>
-                    <ul id="profile-dropdown" class="dropdown-content">
-                        <a href="#" class="dropdown-item">
-                            <img src="~/lib/image/setting-icon.png" alt="Settings"
-                                style="border-radius:10px; width: 24px; height:24px;">
-                            Settings
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <form id="logoutForm" class="form-inline" asp-area="Account" asp-controller="Account"
-                                method="post" asp-action="Logout" asp-route-returnUrl="~/Account/Login">
-                                <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">
-                                    <img src="~/lib/image/logout-icon.png" alt="Logout" style="border-radius: 10px;"
-                                        width="40" height="40">Logout
-                                </button>
-                            </form>
-                        </a>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <script src="~/js/LoginPartial.js"></script>
 }
+<div class="sidebar__profile">
+
+    <div class="avatar__wrapper">
+        <img src="~/lib/image/profile-icon.png" class="avatar">
+        <div class="online__status"></div>
+    </div>
+
+    <div class="avatar__name hide">
+        <span key="t-fullname" class="user-name"> @UserManager.GetUserName(User) </span>
+        <span class="email"> @UserManager.GetUserName(User) </span>
+    </div>
+
+    <div class="menu hide"> 
+        <a asp-area="Account" asp-controller="Account" method="post" asp-action="Logout" asp-route-returnUrl="~/Account/Login">
+                    <img src="~/lib/image/logout-icon.png" alt="Logout" style="border-radius: 4px;" width="40"
+                        height="40">
+        </a>
+    </div>
+     
+</div>
+<script src="~/js/LoginPartial.js"></script>
