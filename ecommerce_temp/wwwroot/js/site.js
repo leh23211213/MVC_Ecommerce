@@ -28,3 +28,8 @@ allLinks.forEach((elem) => {
     });
   });
 });
+
+document.getElementById("logoutImage").addEventListener("click", function() {
+  document.getElementById("logoutForm").submit();
+});
+
