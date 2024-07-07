@@ -25,31 +25,18 @@ function Incre(productId, price) {
     document.getElementById(`itemTotal-${productId}`).innerHTML = total;
 }
 
-$(document).ready(function () {
-    $(".remove-from-cart").click(function (e) {
-        e.preventDefault();
-        var cartItemId = $(this).data("cart-item-id");
-        var row = $(this).closest('tr');
-        $.ajax({
-            type: "POST",
-            url: "/Cart/Delete",
-            data: {
-                cartItemId: cartItemId,
-                __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
-            },
-            success: function (response) {
-                alert(response.message); // Show a success message
-                row.remove(); // Remove the row from the table
-            },
-            error: function (xhr, status, error) {
-                var response = JSON.parse(xhr.responseText);
-                alert(response.message); // Show an error message
-            }
-        });
-    });
-});
-
 function submitDeleteForm(imgElement) {
     var form = imgElement.closest('form');
     form.submit();
+}
+
+var isAllCheck = false;
+function togglecheckboxes(cn) {
+
+    var cbarray = document.getElementsByName(cn);
+    for (var i = 0; i < cbarray.length; i++) {
+
+        cbarray[i].checked = !isAllCheck
+    }
+    isAllCheck = !isAllCheck;
 }

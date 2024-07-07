@@ -25,18 +25,9 @@
             transform: scale(1.1);
         }
     </style>
-    @{
-        // TODO : js nhiều chỗ
-    }
     <script>
-        function submitDeleteForm(imgElement) {
-            var form = imgElement.closest('form');
-            form.submit();
-        }
-
         var isAllCheck = false;
         function togglecheckboxes(cn) {
-
             var cbarray = document.getElementsByName(cn);
             for (var i = 0; i < cbarray.length; i++) {
 
@@ -68,9 +59,6 @@
                     <span>Price</span>
                     <span>Amount</span>
                     <span>Total</span>
-                    @{
-                // TODO : delete ALL
-                    }
                     <form asp-action="DeleteAll" asp-controller="Cart">
                         <input type="hidden" name="id" />
                         <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg" alt="deleted"
@@ -96,7 +84,8 @@
                                             </div>
                                         </div>
                                         <div class="Item-Price">
-                                            <div type="normal" class="Price">@item.Price <sup>đ</sup> </div>
+                                            <div type="normal" class="Price">@item.Price <sup>đ</sup>
+                                            </div>
                                         </div>
                                         <div class="Item-Quantity">
                                             <div class="Quantity">
