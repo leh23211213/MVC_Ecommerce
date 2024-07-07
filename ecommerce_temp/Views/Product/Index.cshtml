@@ -17,27 +17,24 @@
     <div class="page-content">
         <div class="Content">
             <div class="Left-Content">
-                <div class="Filter">
-                    <div class="Filter-Block">
-                        <div class="Filter-Title"> Hãng sản xuất </div>
-                        <div class="Filter-CheckList" data-level="-1" data-query="hang-san-xuat">
-                            <!-- Example filter options -->
-                            <input type="checkbox" id="apple" name="brand" value="Apple">
-                            <label for="apple">Apple</label><br>
-                            <input type="checkbox" id="samsung" name="brand" value="Samsung">
-                            <label for="samsung">Samsung</label><br>
-                            <input type="checkbox" id="xiaomi" name="brand" value="Xiaomi">
-                            <label for="xiaomi">Xiaomi</label><br>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="Right-Content">
                 <div class="box-filter top-box  block-scroll-main cate-42">
                     <section>
                         <h3 class="Title">All Product</h3>
+                        <form class="input-group w-50 float-right" asp-controller="Product" asp-action="Search"
+                            method="get">
+                            <input type="text" class="form-control" placeholder="Search for" name="item" />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Search</button>
+                            </div>
+                        </form>
                     </section>
                 </div>
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-warning mt-3">@ViewBag.Message</div>
+                }
                 <section id="CategoryPage" data-name="Phone" data-template="cate">
                     <div class="Product-Box">
                         <ul class="List-Product">
@@ -53,7 +50,8 @@
                                         <strong class="price">@item.Price<sup>đ</sup></strong>
                                     </div>
                                     <div>
-                                          <a asp-action="Details" asp-route-id="@item.ProductId" class="details-button">Details</a>
+                                        <a asp-action="Details" asp-route-id="@item.ProductId"
+                                            class="details-button">Details</a>
                                     </div>
                                 </li>
                             }

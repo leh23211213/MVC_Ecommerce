@@ -16,7 +16,6 @@ namespace ecommerce_temp.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -68,39 +67,5 @@ namespace ecommerce_temp.Data
                 }
             }
         }
-
-        // public override int SaveChanges()
-        // {
-        //     var entries = ChangeTracker.Entries<User>().Where(e => e.State == EntityState.Added).ToList();
-
-        //     foreach (var entry in entries)
-        //     {
-        //         var user = entry.Entity;
-        //         Carts.Add(new Cart
-        //         {
-        //             UserId = user.Id,
-        //             DateCreated = DateTime.Now
-        //         });
-        //     }
-
-        //     return base.SaveChanges();
-        // }
-
-        // public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        // {
-        //     var entries = ChangeTracker.Entries<User>().Where(e => e.State == EntityState.Added).ToList();
-
-        //     foreach (var entry in entries)
-        //     {
-        //         var user = entry.Entity;
-        //         Carts.Add(new Cart
-        //         {
-        //             UserId = user.Id,
-        //             DateCreated = DateTime.Now
-        //         });
-        //     }
-
-        //     return await base.SaveChangesAsync(cancellationToken);
-        // }
     }
 }

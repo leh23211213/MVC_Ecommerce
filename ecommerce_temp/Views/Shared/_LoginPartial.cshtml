@@ -6,25 +6,31 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    <div class="sidebar__profile">
+
+        <div class="avatar__wrapper">
+            <img src="~/lib/image/profile-icon.png" class="avatar">
+            <div class="online__status"></div>
+        </div>
+
+        <div class="avatar__name hide">
+            <span key="t-fullname" class="user-name"> @UserManager.GetUserName(User) </span>
+            <span class="email"> @UserManager.GetUserName(User) </span>
+        </div>
+
+
+        <div class="menu hide">
+            <form asp-area="Account" asp-controller="Account" method="post" asp-action="Logout"
+                asp-route-returnUrl="~/Account/Login" id="logoutForm">
+                <img id="logoutImage" src="~/lib/image/logout-icon.png" alt="Logout" style="border-radius: 4px;" width="40"
+                    height="40">
+            </form>
+        </div>
+
+        <script>
+            document.getElementById("logoutImage").addEventListener("click", function () {
+                document.getElementById("logoutForm").submit();
+            });
+        </script>
+    </div>
 }
-<div class="sidebar__profile">
-
-    <div class="avatar__wrapper">
-        <img src="~/lib/image/profile-icon.png" class="avatar">
-        <div class="online__status"></div>
-    </div>
-
-    <div class="avatar__name hide">
-        <span key="t-fullname" class="user-name"> @UserManager.GetUserName(User) </span>
-        <span class="email"> @UserManager.GetUserName(User) </span>
-    </div>
-
-    <div class="menu hide"> 
-        <a asp-area="Account" asp-controller="Account" method="post" asp-action="Logout" asp-route-returnUrl="~/Account/Login">
-                    <img src="~/lib/image/logout-icon.png" alt="Logout" style="border-radius: 4px;" width="40"
-                        height="40">
-        </a>
-    </div>
-     
-</div>
-<script src="~/js/LoginPartial.js"></script>

@@ -63,14 +63,12 @@ namespace ecommerce_temp.Controllers
             return Json(new { success = true });
         }
 
-
         // TODO : clean code
         // POST: Classes/Delete/5
-        [HttpPost("Delete/{id}")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-
             var userId = _userManager.GetUserId(User);
             if (userId == null)
             {
@@ -80,7 +78,6 @@ namespace ecommerce_temp.Controllers
             var cart = _context.Carts
                         .Include(c => c.CartItems)
                         .FirstOrDefault(c => c.UserId == userId);
-
             if (cart != null)
             {
                 var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartItemId == id);
@@ -106,17 +103,13 @@ namespace ecommerce_temp.Controllers
             var cart = _context.Carts
                             .Include(c => c.CartItems)
                             .FirstOrDefault(c => c.UserId == userId);
-
             if (cart != null)
             {
-                // Xóa tất cả các mục trong giỏ hàng
+
                 _context.CartItems.RemoveRange(cart.CartItems);
                 _context.SaveChanges();
             }
-
-            // Chuyển hướng người dùng đến trang giỏ hàng hoặc trang chủ
-            return RedirectToAction("Index"); // Thay "Index" bằng đường dẫn tương ứng
+            return RedirectToAction("");
         }
-
     }
 }

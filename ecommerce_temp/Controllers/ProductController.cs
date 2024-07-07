@@ -11,6 +11,7 @@ namespace ecommerce_temp.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         private readonly ecommerce_tempContext _context;
+
         public ProductController(ILogger<ProductController> logger, ecommerce_tempContext context)
         {
             _logger = logger;
@@ -18,7 +19,7 @@ namespace ecommerce_temp.Controllers
         }
 
         // GET: Products
-        [HttpGet]
+        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
             var products = await _context.Products.ToListAsync();
@@ -29,7 +30,6 @@ namespace ecommerce_temp.Controllers
                 Price = p.Price,
                 Description = p.Description,
                 ImageUrl = p.ImageUrl
-                // Map các thuộc tính khác nếu cần
             }).ToList();
             return View(productViewModels);
         }
@@ -52,58 +52,44 @@ namespace ecommerce_temp.Controllers
 
             return View(product);
         }
-        // GET: Products/Edit/5
-        [HttpGet("Edit")]
-        public async Task<IActionResult> Edit(string id)
+
+        [HttpGet("Search/{item}")]
+        public async Task<IActionResult> Search(string item)
         {
-            if (id == null)
+            if (string.IsNullOrWhiteSpace(item))
             {
-                _logger.LogWarning("Product with ID {ProductId} not found.", id);
-                return NotFound();
+                ViewBag.Message = "Please enter a valid keyword (at least 1 characters)";
+                return View("Index", new List<ProductViewModel>());
             }
 
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
+            var productViewModels = await SearchProductsAsync(item);
+
+            if (productViewModels == null || !productViewModels.Any())
             {
-                return NotFound();
+                ViewBag.Message = "No products found";
             }
-            return View(product);
+
+            return View("Index", productViewModels);
         }
 
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ProductId,Name,Description,ImageUrl,Price,Quantity,CategoryId,Vote")] Product product)
+        private async Task<List<ProductViewModel>> SearchProductsAsync(string search)
         {
-            if (id != product.ProductId)
-            {
-                return NotFound();
-            }
+            var input = search.ToLower();
+            var products = await _context.Products
+                .Where(p => p.ProductName.ToLower().Contains(input))
+                .Select(p => new ProductViewModel
+                {
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    Price = p.Price,
+                    Description = p.Description,
+                    ImageUrl = p.ImageUrl
+                })
+                .ToListAsync();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.ProductId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(product);
+            return products;
         }
+
         private bool ProductExists(string id)
         {
             return _context.Products.Any(e => e.ProductId == id);

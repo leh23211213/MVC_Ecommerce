@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj": {}
+    "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj": {}
   },
   "projects": {
-    "e:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj": {
+    "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj",
+        "projectUniqueName": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj",
         "projectName": "ecommerce_temp",
-        "projectPath": "e:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj",
+        "projectPath": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj",
         "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-        "outputPath": "e:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\obj\\",
+        "outputPath": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
