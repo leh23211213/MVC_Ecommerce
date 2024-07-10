@@ -20,9 +20,19 @@ namespace ecommerce_temp.Controllers
 
         // GET: Products
         [HttpGet("")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var products = await _context.Products.ToListAsync();
+            int pageSize = 6;
+
+            var products = await _context.Products
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            var totalProduct = await _context.Products.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalProduct / (double)pageSize);
+
+
             var productViewModels = products.Select(p => new ProductViewModel
             {
                 ProductId = p.ProductId,
@@ -31,11 +41,19 @@ namespace ecommerce_temp.Controllers
                 Description = p.Description,
                 ImageUrl = p.ImageUrl
             }).ToList();
-            return View(productViewModels);
+
+            var viewModel = new ProductListViewModel
+            {
+                Products = productViewModels,
+                CurrentPage = page,
+                TotalPages = totalPages
+            };
+
+            return View(viewModel);
         }
 
         // GET: Products/Details/5
-        [HttpGet("Details/{id}")]
+        [HttpGet("Details")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -53,30 +71,32 @@ namespace ecommerce_temp.Controllers
             return View(product);
         }
 
-        [HttpGet("Search/{item}")]
-        public async Task<IActionResult> Search(string item)
+        [HttpGet("Search")]
+        public async Task<IActionResult> Search(string item, int page = 1)
         {
-            if (string.IsNullOrWhiteSpace(item))
+            if (string.IsNullOrEmpty(item))
             {
                 ViewBag.Message = "Please enter a valid keyword (at least 1 characters)";
-                return View("Index", new List<ProductViewModel>());
+                return View("Index", new ProductListViewModel());
             }
 
-            var productViewModels = await SearchProductsAsync(item);
-
-            if (productViewModels == null || !productViewModels.Any())
+            var productListViewModel = await SearchProductsAsync(item, page);
+            if (productListViewModel == null || !productListViewModel.Products.Any())
             {
                 ViewBag.Message = "No products found";
             }
 
-            return View("Index", productViewModels);
+            return View("Index", productListViewModel);
         }
 
-        private async Task<List<ProductViewModel>> SearchProductsAsync(string search)
+        private async Task<ProductListViewModel> SearchProductsAsync(string search, int page)
         {
+            int pageSize = 6;
             var input = search.ToLower();
             var products = await _context.Products
                 .Where(p => p.ProductName.ToLower().Contains(input))
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .Select(p => new ProductViewModel
                 {
                     ProductId = p.ProductId,
@@ -87,8 +107,18 @@ namespace ecommerce_temp.Controllers
                 })
                 .ToListAsync();
 
-            return products;
+            var totalProducts = await _context.Products.CountAsync(p => p.ProductName.ToLower().Contains(input));
+            var totalPages = (int)Math.Ceiling(totalProducts / (double)pageSize);
+
+            return new ProductListViewModel
+            {
+                Products = products,
+                CurrentPage = page,
+                TotalPages = totalPages
+            };
         }
+
+
 
         private bool ProductExists(string id)
         {

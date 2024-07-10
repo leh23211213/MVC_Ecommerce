@@ -9254,11 +9254,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj",
+      "projectUniqueName": "e:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj",
       "projectName": "ecommerce_temp",
-      "projectPath": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj",
+      "projectPath": "e:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj",
       "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\obj\\",
+      "outputPath": "e:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
