@@ -50,7 +50,7 @@ namespace ecommerce_temp.Controllers
             var product = await _context.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
             if (product == null)
             {
-                return NotFound("{product.Name} Not exits.");
+                return NotFound(new { message = "Product not found." });
             }
 
             var userId = _userManager.GetUserId(User);
@@ -59,8 +59,15 @@ namespace ecommerce_temp.Controllers
                 return Unauthorized("User not found");
             }
 
-            _cartService.Add(userId, productId);
-            return Json(new { success = true });
+            try
+            {
+                await _cartService.Add(userId, productId); // Ensure AddAsync is awaited
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = ex.Message });
+            }
         }
 
         // TODO : clean code

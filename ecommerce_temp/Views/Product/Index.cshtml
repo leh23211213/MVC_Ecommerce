@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ecommerce_temp.Models.Product.ProductViewModel>
+﻿@model ecommerce_temp.Models.Product.ProductListViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -10,6 +10,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap">
     <link rel="stylesheet" type="text/css" href="~/css/Product/Index.css" asp-append-version="true">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+        }
+
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #007bff;
+        }
+    </style>
 </head>
 
 @if (User.Identity.IsAuthenticated)
@@ -38,7 +52,7 @@
                 <section id="CategoryPage" data-name="Phone" data-template="cate">
                     <div class="Product-Box">
                         <ul class="List-Product">
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Products)
                             {
                                 <li class="Item">
                                     <div class="Item-Img">
@@ -56,6 +70,14 @@
                                 </li>
                             }
                         </ul>
+                        <div class="pagination">
+                            @for (int i = 1; i <= Model.TotalPages; i++)
+                            {
+                                <a asp-controller="Product" asp-action="Index" asp-route-page="@i"
+                                    class="@(i == Model.CurrentPage ? "active" : "")">@i</a>
+                            }
+                        </div>
+
                     </div>
                 </section>
             </div>
