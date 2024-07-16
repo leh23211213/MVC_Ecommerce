@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.WebUtilities;
 namespace ecommerce_temp.Areas.Account.Controllers
 {
     [Area("Account")]
-    [Route("[area]/[action]")]
+   [Route("[Area]/[action]")]
     public class ForgotPasswordController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -24,10 +24,9 @@ namespace ecommerce_temp.Areas.Account.Controllers
         }
 
         [HttpGet]
-        public IActionResult ForgotPassword(string returnUrl = null)
+        public IActionResult ForgotPassword()
         {
-            var model = new ForgotPasswordViewModel { };
-            return View(model);
+            return View();
         }
 
         [HttpPost]

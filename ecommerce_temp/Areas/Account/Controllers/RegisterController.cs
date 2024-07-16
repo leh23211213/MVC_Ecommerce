@@ -47,7 +47,6 @@ namespace ecommerce_temp.Areas.Account.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             var model = new RegisterViewModel
             {
-                ReturnUrl = returnUrl,
                 ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
             };
             return View(model);
@@ -57,12 +56,14 @@ namespace ecommerce_temp.Areas.Account.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/DashBoard");
+            returnUrl ??= Url.Content("~/Product");
             ViewData["ReturnUrl"] = returnUrl;
+            var externalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            model.ExternalLogins = externalLogins;
+
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
                 await _userStore.SetUserNameAsync(user, model.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, model.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -75,9 +76,9 @@ namespace ecommerce_temp.Areas.Account.Controllers
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Action(
-                        "ConfirmEmail",
-                        "Register",
-                        new { userId = userId, code = code, returnUrl = returnUrl },
+                        action: "ConfirmEmail",
+                        controller: "ConfirmEmail",
+                        new { area = "Account", userId = userId, code = code },
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(model.Email, "Confirm your email",
@@ -90,7 +91,7 @@ namespace ecommerce_temp.Areas.Account.Controllers
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToAction("RegisterConfirmation", new { email = model.Email, returnUrl = returnUrl });
+                        return RedirectToAction("RegisterConfirmation", new { email = model.Email });
                     }
                     else
                     {
@@ -103,37 +104,7 @@ namespace ecommerce_temp.Areas.Account.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
             return View(model);
-        }
-
-        [HttpGet]
-        public IActionResult RegisterConfirmation(string email, string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            ViewData["Email"] = email;
-            return View();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> ConfirmEmail(string userId, string code, string returnUrl = null)
-        {
-            if (userId == null || code == null)
-            {
-                return RedirectToAction(nameof(Register));
-            }
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                throw new InvalidOperationException($"Unable to load user with ID '{userId}'.");
-            }
-            var decodedCode = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await _userManager.ConfirmEmailAsync(user, decodedCode);
-            if (result.Succeeded)
-            {
-                return LocalRedirect(returnUrl ?? Url.Content("~/"));
-            }
-            return View("Error");
         }
 
         private User CreateUser()
