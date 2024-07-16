@@ -1,6 +1,6 @@
 namespace ecommerce_temp.Areas.Account.Models
 {
-    public class RegisterConfirmationModel
+    public class RegisterConfirmationViewModel
     {
         public string Email { get; set; }
         public bool DisplayConfirmAccountLink { get; set; }

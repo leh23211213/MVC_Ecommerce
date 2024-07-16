@@ -1,26 +1,13 @@
 @model ecommerce_temp.Areas.Account.Models.LoginViewModel
 @{
     ViewData["Title"] = "Log in";
-    Layout = null;
 }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/Account/Login.css" asp-append-version="true">
-</head>
-
 <body>
-     <header>
-        
-    </header>
-    <main>
-        <div class="left-content">
-            <div class="account-pages my-5 pt-sm-5">
-                <div class="justify-content-center row">
-                    <div class="col-md-8 col-lg-6 col-xl-5">
-                            <div class="overflow-hidden card">
+    <div class="account-pages my-5 pt-sm-5">
+        <div class="justify-content-center row">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="overflow-hidden card">
                                 <div class="bg-primary-subtle">
                                     <div class="row">
                                                     <div class="col col-7">
@@ -56,7 +43,7 @@
                                                                 autocomplete="username" aria-required="true"
                                                                 placeholder="name@example.com" />
                                                             <label asp-for="Email" class="form-label">Email</label>
-                                                            <span asp-validation-forEmail" class="text-danger"></span>
+                                                            <span asp-validation-forEmail" class="text-danger" ></span>
                                                         </div>
                                                         <div class="form-floating mb-3">
                                                             <input asp-for="Password" class="form-control"
@@ -136,25 +123,10 @@
                                                     </div> 
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-        <div class="right-content">
-                            <div class="blockquote-wrappe">
-                                <img src="~/lib/image/Login/megamenu-img.png" alt=""
-                                    style="width: 700px; height: 700px;">
-                            </div>
-                            <h4 class="mt-5">
-                                Get's
-                                <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary">OverView</a>
-                            </h4>
-                            <p class="text-muted">A central workspace for building, testing Website.</p>
-                        </div>
-    </main>
-      <footer>
-    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
     }
