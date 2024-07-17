@@ -7,7 +7,6 @@ namespace ecommerce_temp.Controllers
     public class CartService
     {
         private readonly ecommerce_tempContext _context;
-
         public CartService(ecommerce_tempContext context)
         {
             _context = context;

@@ -74,7 +74,8 @@ namespace ecommerce_temp.Controllers
         [HttpGet("Search")]
         public async Task<IActionResult> Search(string item, int page = 1)
         {
-            if (string.IsNullOrEmpty(item))
+            // TODO : lỗi null khi không nhập giá trị nào hêt.
+            if (string.IsNullOrEmpty(item) || item == null || item.Length == 0)
             {
                 ViewBag.Message = "Please enter a valid keyword (at least 1 characters)";
                 return View("Index", new ProductListViewModel());
@@ -116,13 +117,6 @@ namespace ecommerce_temp.Controllers
                 CurrentPage = page,
                 TotalPages = totalPages
             };
-        }
-
-
-
-        private bool ProductExists(string id)
-        {
-            return _context.Products.Any(e => e.ProductId == id);
         }
     }
 }

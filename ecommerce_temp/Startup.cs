@@ -85,6 +85,27 @@ namespace ecommerce_temp
             services.AddHttpContextAccessor();
             // UserManager is registered by AddIdentity, no need to register it manually
             services.AddHttpContextAccessor();
+
+
+            // Configure cookie settings if needed
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.LoginPath = "/Account/Login";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
+
+            services.Configure<CookiePolicyOptions>(options =>
+    {
+        options.MinimumSameSitePolicy = SameSiteMode.Unspecified;
+        options.OnAppendCookie = cookieContext =>
+            CheckSameSite(cookieContext.Context, cookieContext.CookieOptions);
+        options.OnDeleteCookie = cookieContext =>
+            CheckSameSite(cookieContext.Context, cookieContext.CookieOptions);
+    });
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -108,15 +129,44 @@ namespace ecommerce_temp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-           name: "areas",
-           pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}");
 
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+        }
+
+        private void CheckSameSite(HttpContext httpContext, CookieOptions options)
+        {
+            if (options.SameSite == SameSiteMode.None)
+            {
+                var userAgent = httpContext.Request.Headers["User-Agent"].ToString();
+                if (DisallowsSameSiteNone(userAgent))
+                {
+                    options.SameSite = SameSiteMode.Unspecified;
+                }
+            }
+        }
+
+        private bool DisallowsSameSiteNone(string userAgent)
+        {
+            // Check if the UserAgent is known to incorrectly handle SameSite=None
+            if (string.IsNullOrWhiteSpace(userAgent))
+            {
+                return false;
+            }
+
+            // Chrome 51-66
+            if (userAgent.Contains("Chrome/5") || userAgent.Contains("Chrome/6"))
+            {
+                return true;
+            }
+
+            // TODO: Add checks for other browsers
+            return false;
         }
     }
 }
