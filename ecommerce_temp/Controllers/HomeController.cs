@@ -6,6 +6,7 @@ namespace ecommerce_temp.Controllers
 {
     public class HomeController : Controller
     {
+        
         public IActionResult Index(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
