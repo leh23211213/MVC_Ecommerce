@@ -20,9 +20,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
+    - name: Install dependencies
+      run: dotnet add package Newtonsoft.Json --version 13.0.3
     - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet build
+    - name: Test with the dotnet CLI
+      run: dotnet test
