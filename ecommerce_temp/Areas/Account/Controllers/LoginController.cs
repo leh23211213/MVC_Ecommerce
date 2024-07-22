@@ -4,15 +4,19 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using StackExchange.Redis;
 
 namespace ecommerce_temp.Areas.Account.Controllers
 {
     [Area("Account")]
     [Route("[Area]/[action]")]
+    [Authorize]
     public class LoginController : Controller
     {
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginController> _logger;
+        private readonly IConnectionMultiplexer _redis;
+
         [ActivatorUtilitiesConstructor]
         public LoginController(SignInManager<User> signInManager, ILogger<LoginController> logger)
         {
@@ -44,8 +48,34 @@ namespace ecommerce_temp.Areas.Account.Controllers
             model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             ViewData["ReturnUrl"] = returnUrl;
             returnUrl ??= Url.Content("~/Product");
+
             if (ModelState.IsValid)
             {
+                var database = _redis.GetDatabase();
+                string rateLimitKey = $"rl:{model.Email}";
+                string lockoutKey = $"lockout:{model.Email}";
+                var lockoutValue = await database.StringGetAsync(lockoutKey);
+                if (lockoutValue.HasValue && lockoutValue == "true")
+                {
+                    ModelState.AddModelError(string.Empty, "Too many login attempts. Please try again later.");
+                    return View("Index", "Home");
+                }
+
+                var attempt = await database.StringIncrementAsync(rateLimitKey);
+                if (attempt == 1)
+                {
+                    // Đặt thời gian hết hạn cho khóa rate limit
+                    await database.KeyExpireAsync(rateLimitKey, TimeSpan.FromMinutes(1));
+                }
+
+                if (attempt == 5)
+                {
+                    // Khóa người dùng trong 5 phút
+                    await database.StringSetAsync(lockoutKey, "true", TimeSpan.FromMinutes(5));
+                    ModelState.AddModelError(string.Empty, "Too many login attempts. Please try again later.");
+                    return View("Index", "Home");
+                }
+
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
