@@ -3,24 +3,30 @@
 
 name: .NET
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x', '8.0.x' ]
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: ${{ matrix.dotnet-version }}
+    - name: Install dependencies
+      run: dotnet restore ./ecommerce_temp/ecommerce_temp.csproj
     - name: Build
       run: dotnet build ./ecommerce_temp/ecommerce_temp.csproj
     - name: Test with the dotnet CLI
-      run: dotnet test ./ecommerce_temp/ecommerce_temp.csproj
+      run: dotnet test ./ecommerce_temp/ecommerce_temp.csproj --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: dotnet-results-${{ matrix.dotnet-version }}
+        path: TestResults-${{ matrix.dotnet-version }}
+      if: ${{ always() }}
