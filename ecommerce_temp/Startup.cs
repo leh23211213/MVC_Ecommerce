@@ -5,6 +5,8 @@ using ecommerce_temp.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ecommerce_temp.Data.Models;
 using ecommerce_temp.Controllers;
+using StackExchange.Redis;
+
 namespace ecommerce_temp
 {
     public class Startup
@@ -37,6 +39,9 @@ namespace ecommerce_temp
             .AddEntityFrameworkStores<ecommerce_tempContext>()
             .AddDefaultTokenProviders();
 
+            var redisConnectionString = Configuration.GetConnectionString("ecommerce_tempContext");       // Đọc chuỗi kết nối từ appsettings.json
+            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnectionString));    // Cấu hình kết nối Redis
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Thiết lập về Password
@@ -58,7 +63,7 @@ namespace ecommerce_temp
                 options.User.RequireUniqueEmail = true;  // Email là duy nhất
 
                 // Cấu hình đăng nhập.
-                options.SignIn.RequireConfirmedEmail = false;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
+                options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
                 options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
 
             });
@@ -169,4 +174,6 @@ namespace ecommerce_temp
             return false;
         }
     }
+
+    // TODO : lập các hàm service để ngắng gọn lại file startup.cs
 }

@@ -12,6 +12,7 @@ namespace ecommerce_temp.ViewModels
 
         [Required]
         public string ProductId { get; set; }
+        public string ProductName { get; set; }
 
         [Required]
         [Range(1, int.MaxValue, ErrorMessage = "Quantity must be at least 1")]
@@ -19,6 +20,5 @@ namespace ecommerce_temp.ViewModels
 
         public decimal Price { get; set; }
         public OrderDetailStatus Status { get; set; }
-        public string ProductName { get; set; }
     }
 }
