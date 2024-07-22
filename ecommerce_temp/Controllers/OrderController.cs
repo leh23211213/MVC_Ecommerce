@@ -52,8 +52,8 @@ namespace ecommerce_temp.Controllers
                     Quantity = od.Quantity,
                     Price = od.Price,
                     Status = od.Status,
-                    ProductName = od.Product != null ? od.Product.ProductName : null // Kiểm tra null an toàn cho Product
-                }).ToList() : new List<OrderDetailViewModel>() // Tránh truy cập vào danh sách null
+                    ProductName = od.Product != null ? od.Product.ProductName : null
+                }).ToList() : new List<OrderDetailViewModel>()
             }).ToList();
 
             return View(orderViewModels);
@@ -79,62 +79,103 @@ namespace ecommerce_temp.Controllers
                 return View();
             }
 
-            try
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                var order = new Order
+                try
                 {
-                    UserId = userId,
-                    CustomerName = "Customer Name", // Thay bằng thông tin khách hàng thực tế
-                    Address = "Customer Address",   // Thay bằng thông tin khách hàng thực tế
-                    City = "Customer City",         // Thay bằng thông tin khách hàng thực tế
-                    Country = "Customer Country",   // Thay bằng thông tin khách hàng thực tế
-                    TotalPrice = cart.CartItems.Sum(item => item.Quantity * item.Product.Price), // Tính tổng giá tiền của đơn hàng
-                    Status = OrderStatus.Processing, // Trạng thái đơn hàng ban đầu
-                    OrderDate = DateTime.Now         // Ngày đặt hàng
-                };
-                // TODO TODO: order có vấn đề không vào orderDetail
-                _context.Orders.Add(order);
-                _context.SaveChanges();
-
-                foreach (var cartItem in cart.CartItems)
-                {
-                    var orderDetail = new OrderDetail
+                    // Check if cart is null
+                    if (cart == null)
                     {
-                        OrderId = order.OrderId,
-                        ProductId = cartItem.ProductId,
-                        Quantity = cartItem.Quantity,
-                        Price = cartItem.Product.Price,
-                        Status = OrderDetailStatus.Pending
+                        throw new Exception("Cart is null.");
+                    }
+
+                    // Check if cart items are null or empty
+                    if (cart.CartItems == null || !cart.CartItems.Any())
+                    {
+                        throw new Exception("Cart items are null or empty.");
+                    }
+
+                    // Create and add the order
+                    var order = new Order
+                    {
+                        UserId = userId,
+                        CustomerName = "Customer Name", // Replace with actual customer info
+                        Address = "Customer Address",   // Replace with actual customer info
+                        City = "Customer City",         // Replace with actual customer info
+                        Country = "Customer Country",   // Replace with actual customer info
+                        TotalPrice = cart.CartItems.Sum(item => item.Quantity * item.Product.Price), // Calculate total price
+                        Status = OrderStatus.Processing, // Initial order status
+                        OrderDate = DateTime.Now         // Order date
                     };
 
-                    _context.OrderDetails.Add(orderDetail);
-                }
-                _context.CartItems.RemoveRange(cart.CartItems);
-                _context.Carts.Remove(cart);
+                    _context.Orders.Add(order);
+                    _context.SaveChanges(); // Save order to generate OrderId
 
-                _context.SaveChanges();
-                return RedirectToAction("");
-            }
-            catch (Exception ex)
-            {
-                // Xử lý ngoại lệ nếu có lỗi trong quá trình xử lý đơn hàng
-                // Ví dụ: ghi log lỗi, hiển thị thông báo lỗi cho người dùng, v.v.
-                ViewBag.ErrorMessage = "Error processing order: " + ex.Message;
-                return View("Error"); // Chuyển hướng đến trang lỗi
+                    // Check if order is successfully saved and OrderId is generated
+                    if (order.OrderId <= 0)
+                    {
+                        throw new Exception("OrderId not generated.");
+                    }
+
+                    // Add order details
+                    foreach (var cartItem in cart.CartItems)
+                    {
+                        // Check if cartItem or cartItem.Product is null
+                        if (cartItem == null)
+                        {
+                            throw new Exception("Cart item is null.");
+                        }
+
+                        if (cartItem.Product == null)
+                        {
+                            throw new Exception($"Product is null for CartItem with ProductId {cartItem.ProductId}.");
+                        }
+
+                        var orderDetail = new OrderDetail
+                        {
+                            OrderId = order.OrderId,
+                            ProductId = cartItem.ProductId,
+                            Quantity = cartItem.Quantity,
+                            Price = cartItem.Product.Price,
+                            Status = OrderDetailStatus.Pending
+                        };
+
+                        _context.OrderDetails.Add(orderDetail);
+                    }
+
+                    // Remove cart items and cart
+                    _context.CartItems.RemoveRange(cart.CartItems);
+                    _context.Carts.Remove(cart);
+
+                    _context.SaveChanges(); // Save changes for order details and cart removal
+
+                    transaction.Commit(); // Commit transaction
+
+                    return RedirectToAction("OrderSuccess"); // Redirect to success page or appropriate action
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback(); // Rollback transaction
+
+                    // Log the exception details
+                    Console.WriteLine($"Error processing order: {ex.Message}");
+                    Console.WriteLine(ex.StackTrace);
+
+                    // Set error message and return error view
+                    ViewBag.ErrorMessage = "Error processing order: " + ex.Message;
+                    return View("Error"); // Redirect to error page
+                }
             }
         }
 
         public ActionResult Details(int id)
         {
-            var order = _context.Orders
-           .Include(o => o.OrderDetails)
-               .ThenInclude(od => od.Product)
-           .FirstOrDefault(o => o.OrderId == id);
-
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == id);
             if (order == null)
             {
                 return NotFound();
             }
+
             var OrderDetails = order.OrderDetails.Select(od => new OrderDetailViewModel
             {
                 OrderDetailId = od.OrderDetailId,
