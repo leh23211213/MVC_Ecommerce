@@ -31,7 +31,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore ./ecommerce_temp/ecommerce_temp.csproj
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build ./ecommerce_temp/ecommerce_temp.csproj --configuration Release --no-restore
     - name: Test with the dotnet CLI
       run: dotnet test ./ecommerce_temp/ecommerce_temp.csproj --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
     - name: Upload dotnet test results
