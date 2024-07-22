@@ -6,6 +6,8 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    @* // TODO : tên dài quá bay mất image logout; *@
+
     <div class="sidebar__profile">
 
         <div class="avatar__wrapper">
@@ -18,9 +20,8 @@
             <span class="email"> @UserManager.GetUserName(User) </span>
         </div>
 
-
         <div class="menu hide">
-            <form asp-area="Account" asp-controller="Account" method="post" asp-action="Logout"
+            <form asp-area="Account" asp-controller="Logout" asp-action="Logout" method="post"
                 asp-route-returnUrl="~/Account/Login" id="logoutForm">
                 <img id="logoutImage" src="~/lib/image/logout-icon.png" alt="Logout" style="border-radius: 4px;" width="40"
                     height="40">

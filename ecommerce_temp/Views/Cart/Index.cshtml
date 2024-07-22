@@ -4,8 +4,10 @@
 @using ecommerce_temp.Data.Models
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Cart";
+    var userId = UserManager.GetUserId(User);
 }
 
 <head>
@@ -151,7 +153,9 @@
                             </div>
                         </div>
                     </div>
-                    <button class="button">BUY</button>
+                    <form asp-action="Buy" asp-controller="Order" method="post">
+                        <button type="submit" class="button">BUY</button>
+                    </form>
                 </div>
             </div>
         </div>

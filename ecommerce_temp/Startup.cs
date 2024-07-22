@@ -5,6 +5,8 @@ using ecommerce_temp.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ecommerce_temp.Data.Models;
 using ecommerce_temp.Controllers;
+using StackExchange.Redis;
+
 namespace ecommerce_temp
 {
     public class Startup
@@ -37,6 +39,9 @@ namespace ecommerce_temp
             .AddEntityFrameworkStores<ecommerce_tempContext>()
             .AddDefaultTokenProviders();
 
+            var redisConnectionString = Configuration.GetConnectionString("ecommerce_tempContext");       // Đọc chuỗi kết nối từ appsettings.json
+            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnectionString));    // Cấu hình kết nối Redis
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Thiết lập về Password
@@ -58,7 +63,7 @@ namespace ecommerce_temp
                 options.User.RequireUniqueEmail = true;  // Email là duy nhất
 
                 // Cấu hình đăng nhập.
-                options.SignIn.RequireConfirmedEmail = false;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
+                options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
                 options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
 
             });
@@ -85,6 +90,27 @@ namespace ecommerce_temp
             services.AddHttpContextAccessor();
             // UserManager is registered by AddIdentity, no need to register it manually
             services.AddHttpContextAccessor();
+
+
+            // Configure cookie settings if needed
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.LoginPath = "/Account/Login";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
+
+            services.Configure<CookiePolicyOptions>(options =>
+    {
+        options.MinimumSameSitePolicy = SameSiteMode.Unspecified;
+        options.OnAppendCookie = cookieContext =>
+            CheckSameSite(cookieContext.Context, cookieContext.CookieOptions);
+        options.OnDeleteCookie = cookieContext =>
+            CheckSameSite(cookieContext.Context, cookieContext.CookieOptions);
+    });
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -108,15 +134,46 @@ namespace ecommerce_temp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-           name: "areas",
-           pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}");
 
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
+
+        private void CheckSameSite(HttpContext httpContext, CookieOptions options)
+        {
+            if (options.SameSite == SameSiteMode.None)
+            {
+                var userAgent = httpContext.Request.Headers["User-Agent"].ToString();
+                if (DisallowsSameSiteNone(userAgent))
+                {
+                    options.SameSite = SameSiteMode.Unspecified;
+                }
+            }
+        }
+
+        private bool DisallowsSameSiteNone(string userAgent)
+        {
+            // Check if the UserAgent is known to incorrectly handle SameSite=None
+            if (string.IsNullOrWhiteSpace(userAgent))
+            {
+                return false;
+            }
+
+            // Chrome 51-66
+            if (userAgent.Contains("Chrome/5") || userAgent.Contains("Chrome/6"))
+            {
+                return true;
+            }
+
+            // TODO: Add checks for other browsers
+            return false;
+        }
     }
+
+    // TODO : lập các hàm service để ngắng gọn lại file startup.cs
 }
