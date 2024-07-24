@@ -15,7 +15,7 @@
     <WebStackScaffolding_DbContextTypeFullName>Web_MVC_Commerce.Data.ecommerce_tempContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
-    <NameOfLastUsedPublishProfile>Default Settings</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

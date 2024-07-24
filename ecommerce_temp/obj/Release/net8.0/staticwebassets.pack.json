@@ -1,10 +1,6 @@
 {
   "Files": [
     {
-      "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\obj\\Release\\net8.0\\scopedcss\\projectbundle\\ecommerce_temp.bundle.scp.css",
-      "PackagePath": "staticwebassets\\ecommerce_temp.bundle.scp.css"
-    },
-    {
       "Id": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\wwwroot\\css\\Account\\Login.css",
       "PackagePath": "staticwebassets\\css\\Account\\Login.css"
     },
