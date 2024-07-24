@@ -68,7 +68,16 @@ namespace ecommerce_temp.Controllers
                 return NotFound();
             }
 
-            return View(product);
+            var viewModel = new ProductViewModel
+            {
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                Description = product.Description,
+                ImageUrl = product.ImageUrl,
+                Price = product.Price
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet("Search")]

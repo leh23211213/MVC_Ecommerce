@@ -5,7 +5,7 @@ using ecommerce_temp.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ecommerce_temp.Data.Models;
 using ecommerce_temp.Controllers;
-using StackExchange.Redis;
+
 
 namespace ecommerce_temp
 {
@@ -15,7 +15,9 @@ namespace ecommerce_temp
         {
             Configuration = configuration;
         }
+
         public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -38,9 +40,6 @@ namespace ecommerce_temp
             services.AddIdentity<User, IdentityRole>()
             .AddEntityFrameworkStores<ecommerce_tempContext>()
             .AddDefaultTokenProviders();
-
-            var redisConnectionString = Configuration.GetConnectionString("ecommerce_tempContext");       // Đọc chuỗi kết nối từ appsettings.json
-            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnectionString));    // Cấu hình kết nối Redis
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -69,7 +68,9 @@ namespace ecommerce_temp
             });
             // Database context
             services.AddDbContext<ecommerce_tempContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ecommerce_tempContext")));
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            
             // Session configuration
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
