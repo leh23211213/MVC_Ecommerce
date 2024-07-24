@@ -3,6 +3,7 @@ using ecommerce_temp.Data.Models;
 using ecommerce_temp.Areas.Account.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ecommerce_temp.Areas.Account.Controllers
 {
@@ -14,6 +15,7 @@ namespace ecommerce_temp.Areas.Account.Controllers
         private readonly UserManager<User> _userManager;
         private readonly ILogger<ExternalLoginController> _logger;
         private readonly IUserStore<User> _userStore;
+
         [ActivatorUtilitiesConstructor]
         public ExternalLoginController(SignInManager<User> signInManager, UserManager<User> userManager, ILogger<ExternalLoginController> logger, IUserStore<User> userStore)
         {
@@ -25,6 +27,7 @@ namespace ecommerce_temp.Areas.Account.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public IActionResult LoginWithProvider(string provider, string returnUrl = null)
         {
             var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "ExternalLogin", new { ReturnUrl = returnUrl });
@@ -33,9 +36,9 @@ namespace ecommerce_temp.Areas.Account.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
             if (remoteError != null)
             {
                 _logger.LogError($"Error from external provider: {remoteError}");

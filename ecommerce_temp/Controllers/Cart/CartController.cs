@@ -31,7 +31,7 @@ namespace ecommerce_temp.Controllers
             var userId = _userManager.GetUserId(User);
             if (string.IsNullOrEmpty(userId))
             {
-                return Unauthorized();
+                return RedirectToAction("Login", "Account");
             }
 
             var cartViewModel = _cartService.GetView(userId);

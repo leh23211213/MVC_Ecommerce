@@ -6,18 +6,21 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    @* // TODO : tên dài quá bay mất image logout; *@
+    var loginPartialViewModel = new ecommerce_temp.Models.LoginPartialViewModel
+                {
+                    UserName = UserManager.GetUserName(User),
+                    UserEmail = UserManager.GetUserName(User)
+                };
 
     <div class="sidebar__profile">
-
         <div class="avatar__wrapper">
             <img src="~/lib/image/profile-icon.png" class="avatar">
             <div class="online__status"></div>
         </div>
 
         <div class="avatar__name hide">
-            <span key="t-fullname" class="user-name"> @UserManager.GetUserName(User) </span>
-            <span class="email"> @UserManager.GetUserName(User) </span>
+            <span key="t-fullname" class="user-name"> @loginPartialViewModel.UserName </span>
+            <span class="email"> @loginPartialViewModel.UserEmail </span>
         </div>
 
         <div class="menu hide">

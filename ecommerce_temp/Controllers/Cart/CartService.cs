@@ -44,7 +44,7 @@ namespace ecommerce_temp.Controllers
         public async Task Add(string userId, string productId, int quantity = 1)
         {
             var cart = GetCartId(userId);
-
+            
             var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartId == cart.CartId && ci.ProductId == productId);
             if (cartItem == null)
             {
