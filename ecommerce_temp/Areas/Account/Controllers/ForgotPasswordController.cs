@@ -2,6 +2,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using ecommerce_temp.Areas.Account.Models;
 using ecommerce_temp.Data.Models;
+using ecommerce_temp.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.WebUtilities;
 namespace ecommerce_temp.Areas.Account.Controllers
 {
     [Area("Account")]
-   [Route("[Area]/[action]")]
+    [Route("[Area]/[action]")]
     public class ForgotPasswordController : Controller
     {
         private readonly UserManager<User> _userManager;

@@ -1,7 +1,7 @@
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using ecommerce_temp.Service;
+namespace ecommerce_temp.Service;
 
 public interface IEmailSender
 {

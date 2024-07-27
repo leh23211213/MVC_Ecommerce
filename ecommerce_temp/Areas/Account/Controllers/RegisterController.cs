@@ -1,12 +1,13 @@
-using System.Text;
 using System.Text.Encodings.Web;
 using ecommerce_temp.Data;
 using ecommerce_temp.Data.Models;
 using ecommerce_temp.Areas.Account.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.AspNetCore.Authorization;
+using ecommerce_temp.Service;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Text;
 
 
 namespace ecommerce_temp.Areas.Account.Controllers
@@ -42,7 +43,7 @@ namespace ecommerce_temp.Areas.Account.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Register(string returnUrl = null)
+        public async Task<ActionResult> Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             var model = new RegisterViewModel
@@ -56,8 +57,8 @@ namespace ecommerce_temp.Areas.Account.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/Product");
-            ViewData["ReturnUrl"] = returnUrl;
+            returnUrl = returnUrl ?? Url.Content("~/Product");
+             ViewData["ReturnUrl"] = returnUrl;
             var externalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             model.ExternalLogins = externalLogins;
 
@@ -93,11 +94,8 @@ namespace ecommerce_temp.Areas.Account.Controllers
                     {
                         return RedirectToAction("RegisterConfirmation", new { email = model.Email });
                     }
-                    else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
                 {
@@ -128,5 +126,28 @@ namespace ecommerce_temp.Areas.Account.Controllers
             }
             return (IUserEmailStore<User>)_userStore;
         }
+        private async Task<string> SendEmailConfirmationTokenAsync(User user, string subject)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
+            if (string.IsNullOrEmpty(user.Email))
+            {
+                throw new ArgumentNullException(nameof(user.Email), "User email cannot be null or empty.");
+            }
+            // Tạo mã xác nhận email
+            string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            // Tạo URL xác nhận email
+            var callbackUrl = Url.Action("ConfirmEmail", "Account",
+                new { userId = user.Id, code = code }, protocol: Request.Scheme);
+            // Gửi email xác nhận
+            await _emailSender.SendEmailAsync(user.Email, subject,
+                $"Please confirm your account by clicking <a href=\"{callbackUrl}\">here</a>");
+
+            return callbackUrl;
+        }
+
     }
 }

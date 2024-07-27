@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using ecommerce_temp.Data.Models;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
 namespace ecommerce_temp.Areas.Account.Controllers
 {
@@ -24,23 +23,19 @@ namespace ecommerce_temp.Areas.Account.Controllers
         {
             if (userId == null || code == null)
             {
-                return RedirectToAction(nameof(Register));
+                return RedirectToAction("Index", "Home");
             }
+
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                throw new InvalidOperationException($"Unable to load user with ID '{userId}'.");
+                return NotFound($"Unable to load user with ID '{userId}'.");
             }
-            var decodedCode = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await _userManager.ConfirmEmailAsync(user, decodedCode);
-            if (result.Succeeded)
-            {
-                return LocalRedirect(returnUrl ?? Url.Content("~/Product"));
-            }
-            else
-            {
-                return View("Error");
-            }
+
+            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            ViewData["StatusMessage"] = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+            return View();
         }
     }
 }

@@ -1,13 +1,10 @@
-namespace ecommerce_temp.Data.Models
+namespace ecommerce_temp.Data.Models;
+
+public partial class Size
 {
-    public class Size
-    {
-        public Size()
-        {
-            this.ProductDetails = new HashSet<ProductDetail>();
-        }
-        public int SizeId { get; set; }
-        public string SizeName { get; set; }
-        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
-    }
+    public int SizeId { get; set; }
+
+    public string SizeName { get; set; } = null!;
+
+    public virtual ICollection<ProductDetail> ProductDetails { get; set; } = new List<ProductDetail>();
 }
