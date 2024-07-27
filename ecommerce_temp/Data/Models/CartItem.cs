@@ -1,16 +1,16 @@
-namespace ecommerce_temp.Data.Models
+namespace ecommerce_temp.Data.Models;
+
+public partial class CartItem
 {
-    public class CartItem
-    {
-        public int CartItemId { get; set; }
-        public string CartId { get; set; }
-        public string ProductId { get; set; }
-        public int Quantity { get; set; }
+    public int CartItemId { get; set; }
 
-        // Navigation property for Cart
-        public Cart Cart { get; set; }
-        // Navigation property for Product
-        public Product Product { get; set; }
-    }
+    public string CartId { get; set; } = null!;
 
+    public string ProductId { get; set; } = null!;
+
+    public int Quantity { get; set; }
+
+    public virtual Cart Cart { get; set; } = null!;
+
+    public virtual Product Product { get; set; } = null!;
 }

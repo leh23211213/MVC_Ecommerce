@@ -1,23 +1,20 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
 namespace ecommerce_temp.Areas.Account.Models
 {
     public class LoginViewModel
     {
         [Required]
         [EmailAddress]
-        public string Email { get; set; } = null!;
-
+        [Display(Name = "Email")]
+        public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; } = null!;
-
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
-        public string? ReturnUrl { get; set; } = null!;
         public IList<AuthenticationScheme>? ExternalLogins { get; set; } = null!;
-        [TempData]
-        public string? ErrorMessage { get; set; } = null!;
     }
 }

@@ -1,15 +1,10 @@
-namespace ecommerce_temp.Data.Models
+namespace ecommerce_temp.Data.Models;
+
+public partial class Category
 {
-    public class Category
-    {
-        public Category()
-        {
-            this.Products = new HashSet<Product>();
-        }
+    public int CategoryId { get; set; }
 
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
+    public string CategoryName { get; set; } = null!;
 
-        public virtual ICollection<Product> Products { get; set; }
-    }
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

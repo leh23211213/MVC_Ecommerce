@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Authentication;
 
 namespace ecommerce_temp.Areas.Account.Models
 {

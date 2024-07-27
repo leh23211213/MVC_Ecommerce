@@ -47,7 +47,11 @@
           "dependencies": {
             "MailKit": {
               "target": "Package",
-              "version": "[4.5.0, )"
+              "version": "[4.7.1.1, )"
+            },
+            "Microsoft.AspNet.Identity.Core": {
+              "target": "Package",
+              "version": "[2.2.4, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
@@ -109,11 +113,15 @@
             },
             "MimeKit": {
               "target": "Package",
-              "version": "[4.5.0, )"
+              "version": "[4.7.1, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.29.3, )"
             },
             "StackExchange.Redis": {
               "target": "Package",
