@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ecommerce_temp.Areas.Account.Models;
 using ecommerce_temp.Data.Models;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
 namespace ecommerce_temp.Areas.Account.Controllers
 {

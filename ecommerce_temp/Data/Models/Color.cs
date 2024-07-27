@@ -1,15 +1,10 @@
-namespace ecommerce_temp.Data.Models
+namespace ecommerce_temp.Data.Models;
+
+public partial class Color
 {
-    public class Color
-    {
-        public Color()
-        {
-            this.ProductDetails = new HashSet<ProductDetail>();
-        }
+    public int ColorId { get; set; }
 
-        public int ColorId { get; set; }
-        public string ColorName { get; set; }
+    public string ColorName { get; set; } = null!;
 
-        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
-    }
+    public virtual ICollection<ProductDetail> ProductDetails { get; set; } = new List<ProductDetail>();
 }

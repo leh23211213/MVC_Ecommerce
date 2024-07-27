@@ -1,7 +1,4 @@
-using ecommerce_temp.Areas.Account.Models;
 using ecommerce_temp.Data.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 

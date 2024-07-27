@@ -1,5 +1,7 @@
+using System.Text.Encodings.Web;
 using ecommerce_temp.Areas.Account.Models;
 using ecommerce_temp.Data.Models;
+using ecommerce_temp.Service;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -9,71 +11,86 @@ namespace ecommerce_temp.Areas.Account.Controllers
 {
     [Area("Account")]
     [Route("[Area]/[action]")]
+    [AllowAnonymous]
     [Authorize]
     public class LoginController : Controller
     {
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginController> _logger;
+        private readonly UserManager<User> _userManager;
+        private readonly IEmailSender _emailSender;
+
 
         [ActivatorUtilitiesConstructor]
-        public LoginController(SignInManager<User> signInManager, ILogger<LoginController> logger )
+        public LoginController(SignInManager<User> signInManager,
+                                ILogger<LoginController> logger,
+                                UserManager<User> userManager,
+                                IEmailSender emailSender)
         {
             _signInManager = signInManager;
             _logger = logger;
-
+            _userManager = userManager;
+            _emailSender = emailSender;
         }
 
         // GET: /Account/Login
         [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> Login(string? returnUrl = null)
+        public async Task<ActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             var model = new LoginViewModel
             {
-                ReturnUrl = returnUrl,
                 ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
             };
-
             return View(model);
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-            model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            ViewData["ReturnUrl"] = returnUrl;
-            returnUrl ??= Url.Content("~/Product");
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToAction("LoginWith2fa", "Account", new { ReturnUrl = returnUrl });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToAction("Lockout");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-                    return View(model);
-                }
+                return RedirectToAction("Login");
             }
 
-            return View(model);
+            string returnUrl = Url.Content("~/Product");
+            model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            // Require the user to have a confirmed email before they can log on.
+            // var user = await _userManager.FindByEmailAsync(model.Email);
+            // if (user != null)
+            // {
+            //     if (!await _userManager.IsEmailConfirmedAsync(user))
+            //     {
+            //         string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            //         var callbackUrl = Url.Action("ConfirmEmail", "Account",
+            //            new { userId = user.Id, code = code }, protocol: Request.Scheme);
+            //         await _emailSender.SendEmailAsync(user.Email, "Confirm your email",
+            //                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+            //         ViewBag.errorMessage = "You must have a confirmed email to log on. "
+            //                             + "The confirmation token has been resent to your email account.";
+            //         return View("Error");
+            //     }
+            // }
+
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+            if (result.Succeeded)
+            {
+                return LocalRedirect(returnUrl);
+            }
+            if (result.IsLockedOut)
+            {
+                return RedirectToAction("Lockout");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Login Information.");
+                model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                return View(model);
+            }
         }
     }
+
 }

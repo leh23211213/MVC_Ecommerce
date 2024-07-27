@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using ecommerce_temp.Areas.Account.Models;
 using ecommerce_temp.Data.Models;
+using ecommerce_temp.Service;
 
 namespace Web_MVC_Commerce.Areas.Identity.Pages.Account
 {

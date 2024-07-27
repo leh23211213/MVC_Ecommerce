@@ -1,17 +1,18 @@
-namespace ecommerce_temp.Data.Models
+namespace ecommerce_temp.Data.Models;
+public partial class Cart
 {
-    public class Cart
+    public string CartId { get; set; } = null!;
+
+    public string UserId { get; set; } = null!;
+
+    public DateTime DateCreated { get; set; }
+
+    public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
+
+    public virtual User User { get; set; } = null!;
+
+    public Cart()
     {
-        public string CartId { get; set; }
-        public string UserId { get; set; }
-        public DateTime DateCreated { get; set; }
-        public virtual User User { get; set; }
-        public virtual ICollection<CartItem> CartItems { get; set; }
-
-        public Cart()
-        {
-            CartId = Guid.NewGuid().ToString(); // Tạo GUID mới cho CartId khi khởi tạo Cart
-        }
+        CartId = Guid.NewGuid().ToString(); // Tạo GUID mới cho CartId khi khởi tạo Cart
     }
-
 }
