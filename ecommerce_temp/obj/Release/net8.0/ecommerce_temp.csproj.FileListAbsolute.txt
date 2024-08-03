@@ -302,3 +302,7 @@ E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Release\net8.0\runtimes\win
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Release\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Release\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Release\net8.0\runtimes\win-x86\native\e_sqlite3.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Release\net8.0\Microsoft.AspNet.Identity.Core.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Release\net8.0\SendGrid.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Release\net8.0\StarkbankEcdsa.dll
+E:\IT\VSCode\Github\MVC_Ecommerce\ecommerce_temp\bin\Release\net8.0\System.Formats.Asn1.dll

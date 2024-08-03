@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ecommerce_temp.Data;
-using ecommerce_temp.Data.Models;
 using ecommerce_temp.Models.Product;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ecommerce_temp.Controllers
 {
@@ -11,36 +12,44 @@ namespace ecommerce_temp.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         private readonly ecommerce_tempContext _context;
-
-        public ProductController(ILogger<ProductController> logger, ecommerce_tempContext context)
+        private readonly IMemoryCache _cache;
+        public ProductController(ILogger<ProductController> logger, ecommerce_tempContext context, IMemoryCache cache)
         {
             _logger = logger;
             _context = context;
+            _cache = cache;
         }
 
-        // GET: Products
-        [HttpGet("")]
-        public async Task<IActionResult> Index(int page = 1)
+        // GET: api/Products
+        [HttpGet]
+        public async Task<IActionResult> GetProducts(int page = 1)
         {
             int pageSize = 6;
+            string cacheKey = $"Products_Page_{page}";
 
-            var products = await _context.Products
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
+            if (!_cache.TryGetValue(cacheKey, out List<ProductViewModel> productViewModels))
+            {
+                var products = await _context.Products
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
+
+                productViewModels = products.Select(p => new ProductViewModel
+                {
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    Price = p.Price,
+                    Description = p.Description,
+                    ImageUrl = p.ImageUrl
+                }).ToList();
+
+                var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+                _cache.Set(cacheKey, productViewModels, cacheEntryOptions);
+            }
 
             var totalProduct = await _context.Products.CountAsync();
             var totalPages = (int)Math.Ceiling(totalProduct / (double)pageSize);
-
-
-            var productViewModels = products.Select(p => new ProductViewModel
-            {
-                ProductId = p.ProductId,
-                ProductName = p.ProductName,
-                Price = p.Price,
-                Description = p.Description,
-                ImageUrl = p.ImageUrl
-            }).ToList();
 
             var viewModel = new ProductListViewModel
             {
@@ -53,7 +62,7 @@ namespace ecommerce_temp.Controllers
         }
 
         // GET: Products/Details/5
-        [HttpGet("Details")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -61,22 +70,28 @@ namespace ecommerce_temp.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
+            string cacheKey = $"Product_Details_{id}";
+            if (!_cache.TryGetValue(cacheKey, out ProductViewModel viewModel))
             {
-                return NotFound();
+
+                var product = await _context.Products
+                    .FirstOrDefaultAsync(m => m.ProductId == id);
+                if (product == null)
+                {
+                    return NotFound();
+                }
+
+                viewModel = new ProductViewModel
+                {
+                    ProductId = product.ProductId,
+                    ProductName = product.ProductName,
+                    Description = product.Description,
+                    ImageUrl = product.ImageUrl,
+                    Price = product.Price
+                };
+                var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(5));
+                _cache.Set(cacheKey, viewModel, cacheEntryOptions);
             }
-
-            var viewModel = new ProductViewModel
-            {
-                ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                Description = product.Description,
-                ImageUrl = product.ImageUrl,
-                Price = product.Price
-            };
-
             return View(viewModel);
         }
 
@@ -96,7 +111,7 @@ namespace ecommerce_temp.Controllers
                 ViewBag.Message = "No products found";
             }
 
-            return View("Index", productListViewModel);
+            return Ok(productListViewModel);
         }
 
         private async Task<ProductListViewModel> SearchProductsAsync(string search, int page)
@@ -128,4 +143,6 @@ namespace ecommerce_temp.Controllers
             };
         }
     }
+
+
 }

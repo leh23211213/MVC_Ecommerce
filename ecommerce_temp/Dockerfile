@@ -1,29 +1,23 @@
-# syntax=docker/dockerfile:1
+#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-# Comments are provided throughout this file to help you get started.
-# If you need more help, visit the Dockerfile reference guide at
-# https://docs.docker.com/go/dockerfile-reference/
-# Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
-################################################################################
-# Learn about building .NET container images:
-# https://github.com/dotnet/dotnet-docker/blob/main/samples/README.md
-# Create a stage for building the application.
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
-
-COPY . /source
-WORKDIR /source
-
-ARG TARGETARCH
-
-
-RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
-    dotnet publish -a ${TARGETARCH/amd64/x64} --use-current-runtime --self-contained false -o /app
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
 WORKDIR /app
+EXPOSE 80
+EXPOSE 433
 
-COPY --from=build /app .
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY ["ecommerce_temp/ecommerce_temp.csproj", "ecommerce_temp/"]
+RUN dotnet restore "ecommerce_temp/ecommerce_temp.csproj"
+COPY . .
+WORKDIR "/src/ecommerce_temp"
+RUN dotnet build "./ecommerce_temp.csproj" -c Release -o /app/build
 
-USER $APP_UID
+FROM build AS publish
+RUN dotnet publish "ecommerce_temp.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "ecommerce_temp.dll"]
