@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7M6RcZ/DDfMuLcaK8PG0FVuyY13fftH3KFkXYvA7/5B1ShnDJ1BTfWV9HpHDFl01IcEA8xXLjsgMB7gLEnyH7Q==",
+  "dgSpecHash": "O8U40KRzx1+Z0wfEguMqAqkJP014VHzJ7g7SX9Wg4RNK45WcoQp6hz76kU0h9qLJ2vtTW0MZ3a4VG4Vjf8aqTA==",
   "success": true,
   "projectFilePath": "E:\\IT\\VSCode\\Github\\MVC_Ecommerce\\ecommerce_temp\\ecommerce_temp.csproj",
   "expectedPackageFiles": [
@@ -149,6 +149,7 @@
     "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.net.stringtools\\17.8.3\\microsoft.net.stringtools.17.8.3.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.5\\microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\8.0.3\\microsoft.visualstudio.web.codegeneration.8.0.3.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\8.0.3\\microsoft.visualstudio.web.codegeneration.core.8.0.3.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.design\\8.0.3\\microsoft.visualstudio.web.codegeneration.design.8.0.3.nupkg.sha512",

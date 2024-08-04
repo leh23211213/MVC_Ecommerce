@@ -19,6 +19,7 @@ namespace ecommerce_temp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -40,6 +41,13 @@ namespace ecommerce_temp
             // Cấu hình DbContext
             services.AddDbContext<ecommerce_tempContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            // Add services to the container.
+            // var dbHost = Environment.GetEnvironmentVariable("DB_HOST") ?? "localhost";
+            // var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? "demoApp";
+            // var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD") ?? "password@123";
+            // var connectionString = $"Data Source={dbHost};Initial Catalog={dbName};User ID=sa;Password={dbPassword}";
+            // services.AddDbContext<ecommerce_tempContext>(options => options.UseSqlServer(connectionString));
 
             // Cấu hình Identity
             services.AddIdentity<User, IdentityRole>()
