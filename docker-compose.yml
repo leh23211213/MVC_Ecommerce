@@ -1,0 +1,22 @@
+version: '4'
+services:
+  frontend:
+    image: docker-essentials:latest
+    build: 
+      context: .
+      dockerfile: ecommerce_temp/Dockerfile
+    networks:
+      - front-tier
+      - back-tier
+
+  backend:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    networks:
+      - back-tier
+      - admin
+    # Không cần build cho image này nếu bạn chỉ sử dụng image đã có sẵn
+
+networks:
+  front-tier:
+  back-tier:
+  admin:
