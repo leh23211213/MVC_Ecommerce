@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ecommerce_temp.Data;
 
@@ -11,9 +12,11 @@ using ecommerce_temp.Data;
 namespace ecommerce_temp.Migrations
 {
     [DbContext(typeof(ecommerce_tempContext))]
-    partial class ecommerce_tempContextModelSnapshot : ModelSnapshot
+    [Migration("20240806084346_AddIdentityToOrderDetailId")]
+    partial class AddIdentityToOrderDetailId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -350,6 +353,9 @@ namespace ecommerce_temp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("ProductId1")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -362,6 +368,8 @@ namespace ecommerce_temp.Migrations
                     b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("ProductId1");
 
                     b.ToTable("OrderItems", (string)null);
                 });
@@ -651,10 +659,14 @@ namespace ecommerce_temp.Migrations
                         .IsRequired();
 
                     b.HasOne("ecommerce_temp.Data.Models.Product", null)
-                        .WithMany("OrderDetail")
+                        .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("ecommerce_temp.Data.Models.Product", null)
+                        .WithMany("OrderDetail")
+                        .HasForeignKey("ProductId1");
                 });
 
             modelBuilder.Entity("ecommerce_temp.Data.Models.Product", b =>

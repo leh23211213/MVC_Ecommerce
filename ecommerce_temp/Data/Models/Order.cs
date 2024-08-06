@@ -11,7 +11,7 @@ namespace ecommerce_temp.Data.Models
 
         public OrderStatus Status { get; set; }
 
-        public DateTime OrderDate { get; set; }
+        public DateTime OrderDate { get; set; } = DateTime.Now;
 
         public string? Address { get; set; }
 

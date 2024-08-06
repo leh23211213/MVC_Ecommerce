@@ -65,10 +65,7 @@ namespace ecommerce_temp.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             string cacheKey = $"Product_Details_{id}";
             if (!_cache.TryGetValue(cacheKey, out ProductViewModel viewModel))

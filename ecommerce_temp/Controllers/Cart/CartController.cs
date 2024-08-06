@@ -1,6 +1,8 @@
 using System.Security.Claims;
 using ecommerce_temp.Data;
 using ecommerce_temp.Data.Models;
+using ecommerce_temp.Models.Cart;
+using ecommerce_temp.Models.Order;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +42,9 @@ namespace ecommerce_temp.Controllers
             {
                 return NotFound();
             }
-            
+
+            ViewBag.TotalTemporaryPrice = cartViewModel.TemporaryPrice;
+            ViewBag.TotalPrice = cartViewModel.TotalPrice;
 
             return View(cartViewModel);
         }
@@ -72,7 +76,6 @@ namespace ecommerce_temp.Controllers
             }
         }
 
-        // TODO : clean code
         // POST: Classes/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]

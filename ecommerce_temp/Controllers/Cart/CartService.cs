@@ -36,9 +36,15 @@ namespace ecommerce_temp.Controllers
                     ProductName = ci.Product.ProductName,
                     ImageUrl = ci.Product.ImageUrl,
                     Price = ci.Product.Price,
-                    Quantity = ci.Quantity
+                    Quantity = ci.Quantity,
+                    TemporaryPrice = ci.Product.Price * ci.Quantity,
+                    TotalPrice = ci.Product.Price * ci.Quantity
                 }).ToList()
             };
+
+            cartViewModel.TemporaryPrice = cartViewModel.CartItems.Sum(item => item.TemporaryPrice);
+            cartViewModel.TotalPrice = cartViewModel.TemporaryPrice;
+
             return cartViewModel;
         }
 
