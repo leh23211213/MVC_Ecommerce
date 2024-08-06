@@ -1,6 +1,5 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: .NET
 on:
   push:
@@ -19,7 +18,7 @@ on:
       - .gitignore
 env:
   DOTNET_VERSION: "8.0.x"
-  ROOT_PATH: ./src
+  ROOT_PATH: ./ecommerce_temp
 
 jobs:
   build:
@@ -46,14 +45,17 @@ jobs:
       run: echo "DOTNET_ROOT=/usr/local/share/dotnet" >> $GITHUB_ENV
       
     - name: Install dependencies
-      run: dotnet restore ./ecommerce_temp/ecommerce_temp.csproj
+      run: dotnet restore ecommerce_temp.csproj
+      working-directory: ${{env.ROOT_PATH}}
       
     - name: Build
-      run: dotnet build ./ecommerce_temp/ecommerce_temp.csproj --configuration Release --no-restore
+      run: dotnet build ecommerce_temp.csproj --configuration Release --no-restore
+      working-directory: ${{env.ROOT_PATH}}
+      
     - name: Test with the dotnet CLI
-      run: dotnet test ./ecommerce_temp/ecommerce_temp.csproj --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
-
-
+      run: dotnet test ecommerce_temp.csproj --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      working-directory: ${{env.ROOT_PATH}}
+      
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v4
       with:
