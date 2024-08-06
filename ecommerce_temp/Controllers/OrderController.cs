@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ecommerce_temp.Data;
 using ecommerce_temp.Models.Order;
-using ecommerce_temp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using ecommerce_temp.Data.Models;
@@ -27,11 +26,7 @@ namespace ecommerce_temp.Controllers
         public ActionResult Index()
         {
             var orders = _context.Orders.ToList();
-
-            if (orders == null)
-            {
-                return View();
-            }
+            if (orders == null) return View();
 
             var orderViewModels = orders.Select(o => new OrderViewModel
             {
@@ -44,23 +39,23 @@ namespace ecommerce_temp.Controllers
                 TotalPrice = o.TotalPrice,
                 Status = o.Status,
                 OrderDate = o.OrderDate,
-                OrderDetails = o.OrderDetails != null ? o.OrderDetails.Select(od => new OrderDetailViewModel
-                {
-                    OrderDetailId = od.OrderDetailId,
-                    OrderId = od.OrderId,
-                    ProductId = od.ProductId,
-                    Quantity = od.Quantity,
-                    Price = od.Price,
-                    Status = od.Status,
-                    ProductName = od.Product != null ? od.Product.ProductName : null
-                }).ToList() : new List<OrderDetailViewModel>()
+                // OrderDetails = o.OrderDetails != null ? o.OrderDetails.Select(od => new OrderDetailViewModel
+                // {
+                //     OrderDetailId = od.OrderDetailId,
+                //     OrderId = od.OrderId,
+                //     ProductId = od.ProductId,
+                //     Quantity = od.Quantity,
+                //     Price = od.Price,
+                //     Status = od.Status,
+                //     ProductName = od.Product != null ? od.Product.ProductName : null
+                // }).ToList() : new List<OrderDetailViewModel>()
             }).ToList();
 
             return View(orderViewModels);
         }
 
-        // Action để mua hàng từ giỏ hàng
         [HttpPost("Buy")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Buy()
         {
             var userId = _userManager.GetUserId(User);
@@ -83,111 +78,82 @@ namespace ecommerce_temp.Controllers
             {
                 try
                 {
-                    // Check if cart is null
-                    if (cart == null)
-                    {
-                        throw new Exception("Cart is null.");
-                    }
+                    if (cart == null) throw new Exception("Cart is null.");
 
-                    // Check if cart items are null or empty
-                    if (cart.CartItems == null || !cart.CartItems.Any())
-                    {
-                        throw new Exception("Cart items are null or empty.");
-                    }
+                    if (cart.CartItems == null || !cart.CartItems.Any()) throw new Exception("Cart items are null or empty.");
 
-                    // Create and add the order
                     var order = new Order
                     {
                         UserId = userId,
-                        CustomerName = "Customer Name", // Replace with actual customer info
-                        Address = "Customer Address",   // Replace with actual customer info
-                        City = "Customer City",         // Replace with actual customer info
-                        Country = "Customer Country",   // Replace with actual customer info
-                        TotalPrice = cart.CartItems.Sum(item => item.Quantity * item.Product.Price), // Calculate total price
-                        Status = OrderStatus.Processing, // Initial order status
-                        OrderDate = DateTime.Now         // Order date
+                        CustomerName = "NONE",
+                        Address = "NONE",
+                        City = "NONE",
+                        Country = "NONE",
+                        TotalPrice = cart.CartItems.Sum(item => item.Quantity * item.Product.Price),
+                        OrderDate = DateTime.Now
                     };
 
                     _context.Orders.Add(order);
-                    _context.SaveChanges(); // Save order to generate OrderId
+                    await _context.SaveChangesAsync();
 
-                    // Check if order is successfully saved and OrderId is generated
-                    if (order.OrderId <= 0)
-                    {
-                        throw new Exception("OrderId not generated.");
-                    }
+                    if (order.OrderId <= 0) throw new Exception("OrderId not generated.");
 
                     // Add order details
-                    foreach (var cartItem in cart.CartItems)
+                    // add list
+                    var orderDetails = cart.CartItems.Select(cartItem => new OrderDetail
                     {
-                        // Check if cartItem or cartItem.Product is null
-                        if (cartItem == null)
-                        {
-                            throw new Exception("Cart item is null.");
-                        }
+                        OrderId = order.OrderId,
+                        ProductId = cartItem.ProductId,
+                        Quantity = cartItem.Quantity,
+                        Price = cartItem.Product.Price,
+                        Status = OrderDetailStatus.Pending
+                    }).ToList();
 
-                        if (cartItem.Product == null)
-                        {
-                            throw new Exception($"Product is null for CartItem with ProductId {cartItem.ProductId}.");
-                        }
-
-                        var orderDetail = new OrderDetail
-                        {
-                            OrderId = order.OrderId,
-                            ProductId = cartItem.ProductId,
-                            Quantity = cartItem.Quantity,
-                            Price = cartItem.Product.Price,
-                            Status = OrderDetailStatus.Pending
-                        };
-
-                        _context.OrderDetails.Add(orderDetail);
-                    }
-
-                    // Remove cart items and cart
+                    _context.OrderDetails.AddRange(orderDetails);
                     _context.CartItems.RemoveRange(cart.CartItems);
-                    _context.Carts.Remove(cart);
+                    await _context.SaveChangesAsync();
 
-                    _context.SaveChanges(); // Save changes for order details and cart removal
+                    transaction.Commit();
 
-                    transaction.Commit(); // Commit transaction
-
-                    return RedirectToAction("OrderSuccess"); // Redirect to success page or appropriate action
+                    return RedirectToAction("");
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback(); // Rollback transaction
-
-                    // Log the exception details
-                    Console.WriteLine($"Error processing order: {ex.Message}");
-                    Console.WriteLine(ex.StackTrace);
-
-                    // Set error message and return error view
+                    transaction.Rollback();
                     ViewBag.ErrorMessage = "Error processing order: " + ex.Message;
-                    return View("Error"); // Redirect to error page
+                    return View("");
                 }
             }
         }
 
-        public ActionResult Details(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult> OrderDetails(int orderId)
         {
-            var order = _context.Orders.FirstOrDefault(o => o.OrderId == id);
+            var order = await _context.Orders
+                        .Include(o => o.OrderDetails)
+                        .FirstOrDefaultAsync(o => o.OrderId == orderId);
+
             if (order == null)
             {
-                return NotFound();
+                return NotFound("Order not found");
             }
 
-            var OrderDetails = order.OrderDetails.Select(od => new OrderDetailViewModel
+            var OrderViewModel = new OrderViewModel
             {
-                OrderDetailId = od.OrderDetailId,
-                OrderId = od.OrderId,
-                ProductId = od.ProductId,
-                Quantity = od.Quantity,
-                Price = od.Price,
-                Status = od.Status,
-                ProductName = od.Product.ProductName
-            }).ToList();
-
-            return View(OrderDetails);
+                OrderId = order.OrderId,
+                UserId = order.UserId,
+                OrderDate = order.OrderDate,
+                OrderDetails = order.OrderDetails.Select(od => new OrderDetailsViewModel
+                {
+                    OrderDetailId = od.OrderDetailId,
+                    OrderId = od.OrderId,
+                    ProductId = od.ProductId,
+                    Quantity = od.Quantity,
+                    Price = od.Price,
+                    Status = od.Status,
+                }).ToList()
+            };
+            return View(OrderViewModel);
         }
     }
 }

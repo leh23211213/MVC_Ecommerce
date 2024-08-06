@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ecommerce_temp.Data;
 
@@ -11,9 +12,11 @@ using ecommerce_temp.Data;
 namespace ecommerce_temp.Migrations
 {
     [DbContext(typeof(ecommerce_tempContext))]
-    partial class ecommerce_tempContextModelSnapshot : ModelSnapshot
+    [Migration("20240806095256_update_orderDetail_identity_orderDetailId")]
+    partial class update_orderDetail_identity_orderDetailId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

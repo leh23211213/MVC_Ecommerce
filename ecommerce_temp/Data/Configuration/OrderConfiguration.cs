@@ -16,11 +16,6 @@ namespace ecommerce_temp.Data.Configuration
                 .WithMany()
                 .HasForeignKey(e => e.UserId)
                 .IsRequired();
-            builder
-                    .HasMany(o => o.OrderDetails)
-                    .WithOne(od => od.Order)
-                    .HasForeignKey(od => od.OrderId)
-                    .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

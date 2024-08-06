@@ -143,7 +143,7 @@
                                 <ul class="Price-Items">
                                     <li class="Price-Item">
                                         <div class="Prices-Text">temporary price</div>
-                                        <div class="Prices-Value"> @Model.TemporaryPrice <sup>đ</sup> </div>
+                                        <div class="Prices-Value"> @ViewBag.TotalTemporaryPrice <sup>đ</sup> </div>
                                     </li>
                                     <li class="Price-Item">
                                         <div class="Prices-Text">discount</div>
@@ -154,11 +154,12 @@
                                 <div class="Prices-Total">
                                     <span class="Prices-Text">Total</span>
                                     <div class="Prices-Content">
-                                        <span class="Prices-Value-Final"> @Model.TotalPrice <sup>đ</sup> </span>
+                                        <span class="Prices-Value-Final"> @ViewBag.TotalPrice <sup>đ</sup> </span>
                                     </div>
                                 </div>
                             </div>
                             <form asp-action="Buy" asp-controller="Order" method="post">
+                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="UserId" value="@Model.UserId" />
                                 <button type="submit" class="button">BUY</button>
                             </form>
