@@ -52,11 +52,8 @@ jobs:
       run: dotnet build ./ecommerce_temp/ecommerce_temp.csproj --configuration Release --no-restore
     - name: Test with the dotnet CLI
       run: dotnet test ./ecommerce_temp/ecommerce_temp.csproj --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
-    - 
-      name: Publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-      working-directory: ${{ env.ROOT_PATH }}
-      
+
+
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v4
       with:
