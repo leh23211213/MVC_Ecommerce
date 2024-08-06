@@ -174,7 +174,7 @@ namespace ecommerce_temp.Migrations
 
                     b.HasKey("BrandId");
 
-                    b.ToTable("Brand");
+                    b.ToTable("Brands");
 
                     b.HasData(
                         new
@@ -250,7 +250,7 @@ namespace ecommerce_temp.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -275,7 +275,7 @@ namespace ecommerce_temp.Migrations
 
                     b.HasKey("ColorId");
 
-                    b.ToTable("Color");
+                    b.ToTable("Colors");
 
                     b.HasData(
                         new
@@ -343,17 +343,10 @@ namespace ecommerce_temp.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId1")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ProductId1")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -368,11 +361,7 @@ namespace ecommerce_temp.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("OrderId1");
-
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("ProductId1");
 
                     b.ToTable("OrderItems", (string)null);
                 });
@@ -462,7 +451,7 @@ namespace ecommerce_temp.Migrations
 
                     b.HasIndex("SizeId");
 
-                    b.ToTable("ProductDetail");
+                    b.ToTable("ProductDetails");
                 });
 
             modelBuilder.Entity("ecommerce_temp.Data.Models.Size", b =>
@@ -480,7 +469,7 @@ namespace ecommerce_temp.Migrations
 
                     b.HasKey("SizeId");
 
-                    b.ToTable("Size");
+                    b.ToTable("Sizes");
 
                     b.HasData(
                         new
@@ -661,27 +650,11 @@ namespace ecommerce_temp.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ecommerce_temp.Data.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ecommerce_temp.Data.Models.Product", null)
-                        .WithMany()
+                        .WithMany("OrderDetail")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("ecommerce_temp.Data.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ecommerce_temp.Data.Models.Product", b =>
@@ -758,6 +731,8 @@ namespace ecommerce_temp.Migrations
                 {
                     b.Navigation("CartItems");
 
+                    b.Navigation("OrderDetail");
+
                     b.Navigation("ProductDetails");
                 });
 
@@ -768,8 +743,7 @@ namespace ecommerce_temp.Migrations
 
             modelBuilder.Entity("ecommerce_temp.Data.Models.User", b =>
                 {
-                    b.Navigation("Cart")
-                        .IsRequired();
+                    b.Navigation("Cart");
                 });
 #pragma warning restore 612, 618
         }

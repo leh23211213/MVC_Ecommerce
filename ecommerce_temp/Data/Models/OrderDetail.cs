@@ -16,10 +16,5 @@ public class OrderDetail
 
     public OrderDetailStatus Status { get; set; }
 
-    public string ProductId1 { get; set; } = null!;
-
-    public virtual Order Order { get; set; } = null!;
-
-    public virtual Product Product { get; set; } = null!;
 
 }

@@ -12,7 +12,7 @@ namespace ecommerce_temp.Controllers
             _context = context;
         }
 
-        private Cart GetCartId(string userId)
+        internal Cart GetCart(string userId)
         {
             var cart = _context.Carts
                .Include(c => c.CartItems)
@@ -22,9 +22,9 @@ namespace ecommerce_temp.Controllers
             return cart == null ? null : cart;
         }
 
-        public CartViewModel GetView(string userId)
+        public CartViewModel GetCartViewModel(string userId)
         {
-            var cart = GetCartId(userId);
+            var cart = GetCart(userId);
 
             var cartViewModel = new CartViewModel
             {
@@ -32,18 +32,30 @@ namespace ecommerce_temp.Controllers
                 CartItems = cart.CartItems.Select(ci => new CartItemViewModel
                 {
                     CartItemId = ci.CartItemId,
+                    ProductId = ci.ProductId,
                     ProductName = ci.Product.ProductName,
                     ImageUrl = ci.Product.ImageUrl,
                     Price = ci.Product.Price,
-                    Quantity = ci.Quantity
+                    Quantity = ci.Quantity,
+                    TemporaryPrice = ci.Product.Price * ci.Quantity,
+                    TotalPrice = ci.Product.Price * ci.Quantity
                 }).ToList()
             };
+
+            cartViewModel.TemporaryPrice = cartViewModel.CartItems.Sum(item => item.TemporaryPrice);
+            cartViewModel.TotalPrice = cartViewModel.TemporaryPrice;
+
             return cartViewModel;
         }
 
         public async Task Add(string userId, string productId, int quantity = 1)
         {
-            var cart = GetCartId(userId);
+            var cart = GetCart(userId);
+
+            if (cart.CartItems.Count >= 5)
+            {
+                throw new InvalidOperationException("You can only add up to 5 products to your cart.");
+            }
 
             var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartId == cart.CartId && ci.ProductId == productId);
             if (cartItem == null)
@@ -58,77 +70,9 @@ namespace ecommerce_temp.Controllers
             }
             else
             {
-                cartItem.Quantity += 1;
-                _context.CartItems.Update(cartItem);
+                throw new InvalidOperationException("Product are ready exists in your cart");
             }
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
-
-        public void Delete(string userId, string productId)
-        {
-            var cart = _context.Carts
-              .Include(c => c.CartItems)
-              .FirstOrDefault(c => c.UserId == userId);
-
-            if (cart != null)
-            {
-                var cartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == productId);
-                if (cartItem != null)
-                {
-                    _context.CartItems.Remove(cartItem);
-                    _context.SaveChanges();
-                }
-            }
-        }
-
-        public void ClearCart(string userId)
-        {
-            var cart = _context.Carts
-              .Include(c => c.CartItems)
-              .FirstOrDefault(c => c.UserId == userId);
-
-            if (cart != null)
-            {
-                _context.CartItems.RemoveRange(cart.CartItems);
-                _context.SaveChanges();
-            }
-        }
-        // public CartViewModel IncreaseCartItemQuantity(string userId, string cartItemId)
-        // {
-        //     var cart = _context.Carts
-        //         .Include(c => c.CartItems)
-        //         .FirstOrDefault(c => c.UserId == userId);
-
-        //     if (cart != null)
-        //     {
-        //         var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartItemId == cartItemId);
-        //         if (cartItem != null)
-        //         {
-        //             cartItem.Quantity++;
-        //             _context.SaveChanges();
-        //         }
-        //     }
-
-        //     return GetCart(userId);
-        // }
-
-        // public CartViewModel DecreaseCartItemQuantity(string userId, string cartItemId)
-        // {
-        //     var cart = _context.Carts
-        //         .Include(c => c.CartItems)
-        //         .FirstOrDefault(c => c.UserId == userId);
-
-        //     if (cart != null)
-        //     {
-        //         var cartItem = cart.CartItems.FirstOrDefault(ci => ci.CartItemId == cartItemId);
-        //         if (cartItem != null && cartItem.Quantity > 1)
-        //         {
-        //             cartItem.Quantity--;
-        //             _context.SaveChanges();
-        //         }
-        //     }
-
-        //     return GetCart(userId);
-        // }
     }
 }

@@ -9,6 +9,8 @@ namespace ecommerce_temp.Data.Configuration
         {
             builder.ToTable("OrderItems");
             builder.HasKey(e => e.OrderDetailId);
+            builder.Property(e => e.OrderDetailId)
+               .ValueGeneratedOnAdd();
             builder.Property(e => e.Quantity).IsRequired();
             builder.Property(e => e.Price).HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(od => od.Status).HasConversion<string>();
@@ -16,11 +18,6 @@ namespace ecommerce_temp.Data.Configuration
             builder.HasOne<Order>()
                     .WithMany(o => o.OrderDetails)
                     .HasForeignKey(od => od.OrderId)
-                    .IsRequired()
-                    .OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne<Product>()
-                    .WithMany()
-                    .HasForeignKey(e => e.ProductId)
                     .IsRequired()
                     .OnDelete(DeleteBehavior.Restrict);
         }
